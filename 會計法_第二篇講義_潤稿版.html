@@ -1,0 +1,2344 @@
+<title>雅惠老師的會計法講義</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: 左側章節目錄（窄螢幕改為頂端橫向列）＋右側閱讀區；講義本文維持紙本白底 */
+:root {
+  --bg: #EEF1F4;
+  --surface: #FFFFFF;
+  --ink: #1C2533;
+  --muted: #5B6676;
+  --line: #D3D9E1;
+  --navy: #1F3864;
+  --seal: #B3261E;
+  --seal-soft: #F6E3E1;
+  --chip: #E3E8EF;
+  --font-display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-body: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141A23; --surface: #1C2430; --ink: #E6EAF0; --muted: #9AA6B6; --line: #2E3947;
+    --navy: #9DB7E8; --seal: #E8786F; --seal-soft: #3A2224; --chip: #263040; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141A23; --surface: #1C2430; --ink: #E6EAF0; --muted: #9AA6B6; --line: #2E3947;
+  --navy: #9DB7E8; --seal: #E8786F; --seal-soft: #3A2224; --chip: #263040; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; border-radius: 4px; }
+
+.masthead { background: var(--surface); border-bottom: 1px solid var(--line); padding-block: 18px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.masthead-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 14px; }
+.seal { flex: none; width: 46px; height: 46px; border: 2px solid var(--seal); color: var(--seal); border-radius: 6px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 13px; line-height: 1.05; text-align: center; letter-spacing: .05em; }
+.brand { min-width: 0; text-decoration: none; }
+.brand h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 3.2vw, 28px); color: var(--navy); letter-spacing: .04em; text-wrap: balance; }
+.brand p { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: .08em; }
+
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 28px; padding-block: 24px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; display: flex; flex-direction: column; gap: 4px; }
+.toc-label { font-size: 12px; color: var(--muted); letter-spacing: .14em; margin: 0 0 6px 10px; }
+.toc a { display: grid; grid-template-columns: 44px 1fr; gap: 6px; align-items: baseline; padding: 8px 10px; border-radius: 6px; text-decoration: none; color: var(--ink); border-left: 3px solid transparent; }
+.toc a .n { font-family: var(--font-display); font-weight: 600; color: var(--muted); font-size: 13px; }
+.toc a .t { font-size: 14px; }
+.toc a:hover { background: var(--chip); }
+.toc a[aria-current="page"] { background: var(--seal-soft); border-left-color: var(--seal); }
+.toc a[aria-current="page"] .n { color: var(--seal); }
+
+main { min-width: 0; }
+
+/* 首頁 */
+.intro { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 24px 28px; }
+.intro h2 { margin: 0 0 6px; font-family: var(--font-display); font-size: 22px; color: var(--navy); }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.section-h { margin: 28px 0 12px; font-family: var(--font-display); font-size: 18px; color: var(--ink); }
+.cycle { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.cycle div { padding: 14px 16px; border-left: 1px solid var(--line); }
+.cycle div:first-child { border-left: 0; }
+.cycle .when { font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--seal); font-variant-numeric: tabular-nums; }
+.cycle .what { font-size: 13.5px; }
+.cycle .law { font-size: 12px; color: var(--muted); }
+.chapters { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.card { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); }
+.card:hover { border-color: var(--seal); }
+.card .k { font-family: var(--font-display); font-weight: 600; color: var(--seal); font-size: 13px; letter-spacing: .1em; }
+.card .h { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--navy); }
+.card .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.card .meta span { font-size: 12px; background: var(--chip); color: var(--muted); padding: 2px 8px; border-radius: 99px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; border: 1px solid rgba(0,0,0,.12); }
+.foot { margin-top: 28px; font-size: 12.5px; color: var(--muted); }
+
+/* 章節頁 */
+.chapter-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 14px 0 0; }
+.chapter-bar a { text-decoration: none; font-size: 14px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.chapter-bar a:hover { border-color: var(--seal); color: var(--seal); }
+
+/* 講義本文：固定為紙本白底，兩種主題皆同 */
+.doc { background: #FFFFFF; color: #222222; border: 1px solid var(--line); border-radius: 8px; padding: 28px clamp(16px, 4vw, 40px); font-family: "PMingLiU", "Noto Serif TC", serif; font-size: 15px; line-height: 1.75; overflow-wrap: anywhere; }
+.doc p { margin: 4px 0; }
+.doc h1 { font-family: var(--font-body); font-size: 22px; color: #1F3864; border-bottom: 2px solid #1F3864; padding-bottom: 4px; margin: 28px 0 10px; text-wrap: balance; }
+.doc h2 { font-family: var(--font-body); font-size: 17px; color: #2E75B6; margin: 18px 0 8px; }
+.doc h3 { font-family: var(--font-body); font-size: 15px; color: #404040; margin: 12px 0 6px; }
+.doc table.box { width: 100%; border-collapse: collapse; margin: 8px 0 12px; }
+.doc table.box td { padding: 8px 12px; border: 1px solid #BFBFBF; }
+.doc table.box.law-b td { background: #DCE6F1; }
+.doc table.box.hint td { background: #EFEAF6; }
+.doc table.box.note td { background: #FBEAEA; }
+.doc table.box.prac td { background: #EAF3EA; }
+.doc .bt { font-family: var(--font-body); font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.doc .law { font-family: "DFKai-SB", "BiauKai", "Kaiti TC", "Noto Serif TC", serif; font-size: 16px; line-height: 1.85; }
+.doc .law.i1 { padding-left: 2em; text-indent: -2em; }
+.doc .law.i2 { padding-left: 5em; text-indent: -3em; }
+.doc .law.i3 { padding-left: 7em; text-indent: -2em; }
+.doc .no, .doc .pg, .doc .src { color: #808080; font-family: var(--font-body); font-size: 12px; }
+.doc .cap { font-family: var(--font-body); font-weight: 700; margin-top: 14px; }
+.doc table.cmp { width: 100%; border-collapse: collapse; margin: 8px 0 14px; }
+.doc table.cmp td, .doc table.cmp th { border: 1px solid #8C8C8C; padding: 5px 7px; font-size: 13.5px; vertical-align: top; line-height: 1.55; }
+.doc table.cmp th { background: #FDF3DC; font-family: var(--font-body); }
+.doc td.f { background: #F2F2F2; font-family: var(--font-body); font-weight: 700; }
+.doc .q { margin-top: 10px; }
+.doc .opt { margin-left: 24px; }
+.doc .pb { margin-top: 40px; }
+.doc b { color: inherit; }
+
+@media (max-width: 820px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .toc { position: static; flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
+  .toc-label { display: none; }
+  .toc a { grid-template-columns: auto; flex: none; border-left: 0; border-bottom: 3px solid transparent; padding: 6px 10px; }
+  .toc a .t { display: none; }
+  .toc a[aria-current="page"] { border-bottom-color: var(--seal); }
+  .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cycle div:nth-child(3) { border-left: 0; }
+  .cycle div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .doc .opt { margin-left: 12px; }
+  .doc .law.i2 { padding-left: 3.5em; }
+  .doc .law.i3 { padding-left: 5em; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.doc .tag { display: inline-block; font-family: var(--font-body); font-size: 12px; background: #FDF3DC; border: 1px solid #E2C98A; color: #7A5A12; padding: 0 6px; border-radius: 3px; margin-left: 4px; vertical-align: 1px; }
+.doc .tblwrap { overflow-x: auto; }
+.doc ol.flow { margin: 6px 0 10px; padding-left: 1.6em; }
+.doc ol.flow li { margin: 2px 0; }
+</style>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="seal" aria-hidden="true">會審<br>法規</div>
+    <a class="brand" href="#">
+      <h1>雅惠老師的會審法規</h1>
+      <p>會計法 · 第二篇 教學講義</p>
+    </a>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="章節目錄">
+    <p class="toc-label">章節</p>
+    <a href="#" data-view="home"><span class="n">首頁</span><span class="t">課程總覽</span></a>
+    <a href="#ch0" data-view="ch0"><span class="n">導論</span><span class="t">政府會計與修法</span></a>
+    <a href="#ch1" data-view="ch1"><span class="n">第一章</span><span class="t">通則</span></a>
+    <a href="#ch2" data-view="ch2"><span class="n">第二章</span><span class="t">會計制度</span></a>
+    <a href="#ch3" data-view="ch3"><span class="n">第三章</span><span class="t">會計事務程序</span></a>
+    <a href="#ch4" data-view="ch4"><span class="n">第四章</span><span class="t">內部審核</span></a>
+    <a href="#ch5" data-view="ch5"><span class="n">第五章</span><span class="t">會計人員</span></a>
+  </nav>
+
+  <main id="top">
+    <section id="view-home" data-view="home">
+      <div class="intro">
+        <h2>會計法教學講義</h2>
+        <p>本講義以《會計法》條文為起點，搭配重點解析、閱讀提示及比較表，幫助同學了解各項規定與適用情境。歷屆國考選擇題按主題編排，解答附於章末，供課後複習。條文依民國111年6月15日修正公布版本編寫。</p>
+        <div class="legend">
+          <span><i style="background:#DCE6F1"></i>法條原文</span>
+          <span><i style="background:#EFEAF6"></i>HINT</span>
+          <span><i style="background:#FBEAEA"></i>易錯點</span>
+          <span><i style="background:#FDF3DC"></i>歸納比較</span>
+          <span><i style="background:#EAF3EA"></i>練習題</span>
+        </div>
+      </div>
+
+      <h3 class="section-h">會計檔案最低保存年限（自總決算公布或令行日起算）</h3>
+      <div class="cycle">
+        <div><div class="when">2年</div><div class="what">各種會計憑證（涉及債權、債務者，屆期銷毀規定不適用）</div><div class="law">第83條</div></div>
+        <div><div class="when">20年</div><div class="what">總會計的會計報告、帳簿及重要備查簿等</div><div class="law">第84條</div></div>
+        <div><div class="when">10年</div><div class="what">單位會計、附屬單位會計</div><div class="law">第84條</div></div>
+        <div><div class="when">5年</div><div class="what">分會計、附屬單位會計之分會計</div><div class="law">第84條</div></div>
+      </div>
+
+      <h3 class="section-h">章節導覽</h3>
+      <div class="chapters">
+        <a class="card" href="#ch0"><span class="k">導論</span><span class="h">政府會計與108年修法</span><span class="meta"><span>預算與會計組織</span><span>壹～參</span><span>2題</span></span></a>
+        <a class="card" href="#ch1"><span class="k">第一章</span><span class="h">通則</span><span class="meta"><span>第1～16、121條</span><span>壹～陸</span><span>17題</span></span></a>
+        <a class="card" href="#ch2"><span class="k">第二章</span><span class="h">會計制度</span><span class="meta"><span>第17～57條</span><span>壹～柒</span><span>26題</span></span></a>
+        <a class="card" href="#ch3"><span class="k">第三章</span><span class="h">會計事務程序</span><span class="meta"><span>第58～94條</span><span>壹～捌</span><span>22題</span></span></a>
+        <a class="card" href="#ch4"><span class="k">第四章</span><span class="h">內部審核</span><span class="meta"><span>第95～103條</span><span>壹～參</span><span>13題</span></span></a>
+        <a class="card" href="#ch5"><span class="k">第五章</span><span class="h">會計人員</span><span class="meta"><span>第104～120條</span><span>壹～肆</span><span>12題</span></span></a>
+      </div>
+    </section>
+
+    <section id="view-ch0" data-view="ch0" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　導論</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（〇）：政府會計 · 預算與會計組織的對應 · 111年修法</p>
+
+<h2>本篇學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:28%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>—</td><td>什麼是政府會計？它和企業會計的共同基礎是什麼？</td></tr>
+<tr><td class="f">貳</td><td>預算法第4條；會計法第4～7、9～11條</td><td>不同的預算，各自對應哪一種會計組織、哪一類會計事務？</td></tr>
+<tr><td class="f">參</td><td>會計法第4、10、16、29、95條</td><td>108年11月修法改了哪五件事？對實務有什麼影響？</td></tr>
+</table>
+
+
+<h1>壹、政府會計的意義</h1>
+<p>政府會計依《會計法》等相關法令及一般公認會計原則，運用複式簿記記錄政府的財務活動。會計資料經分類、彙總、報導及公告後，可進一步分析與解釋，供公共決策與行政監督使用。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜政府會計與企業會計的報導目的</p>
+<p>技術底子相同：都用<b>複式簿記</b>、都要記錄、分類、彙總、報導。差別在「為誰報導」：企業會計主要服務投資人與債權人；政府會計除了報導財務狀況，還要回答<b>錢有沒有照預算用</b>，因此多了「公告」與「行政監督」的任務。</p>
+<p>這也說明為什麼會計法的條文常和預算法、決算法、審計法互相連動：預算決定能花多少，會計記錄實際花多少，決算與審計回頭檢查。</p>
+</td></tr></table>
+
+
+<h1>貳、政府預算種類與會計組織之關聯</h1>
+
+<h2>乙、解析重點</h2>
+<h3>一、普通公務預算 → 單位會計 → 普通公務之會計事務</h3>
+<p>依《預算法》第4條，歲入供一般用途者為普通基金，以總預算型態編列。總預算包含各公務機關單位預算的歲入與歲出、舉借債務、移用以前年度歲計賸餘與債務還本，也包括附屬單位預算應編入的部分，例如營業基金盈餘繳庫、政府對營業基金增資或對其他特種基金增撥。總預算連同依《預算法》第79、83條辦理的追加預算與特別預算，通稱政府普通公務預算。編列單位預算的公務機關，依《會計法》第9、11條採單位會計，依第4條辦理普通公務的會計事務。</p>
+
+<h3>二、附屬單位預算 → 附屬單位會計 → 公營事業／特種基金之會計事務</h3>
+<p>《預算法》第4條列有六類特種基金：營業、作業、特別收入、債務、資本計畫及信託基金。政府代管的信託基金因所有權不屬政府，相關資訊在中央政府總預（決）算附屬單位決算及綜計表的非營業部分以附錄揭露。其餘特種基金編列附屬單位預算，會計組織為附屬單位會計及其分會計。</p>
+<p>‧ <b>營業基金</b> → 會計法第7條之<b>公營事業之會計事務</b>。</p>
+<p>‧ <b>作業基金等4種</b> → 會計法第6條之<b>特種基金之會計事務</b>。</p>
+
+<h3>三、部分公務機關兼辦特種公務會計</h3>
+<table class="cmp">
+<tr><th style="width:30%">機關</th><th style="width:30%">為何要兼辦</th><th>辦理之特種公務會計（第6條）</th></tr>
+<tr><td class="f">財政部國庫署</td><td>政府債務舉借機關；辦理各機關現金收付之國庫出納業務</td><td><b>公債</b>之會計事務、<b>公庫出納</b>之會計事務</td></tr>
+<tr><td class="f">財政部國有財產署</td><td>依國有財產法第10條承辦國有財產業務</td><td><b>財物經理</b>之會計事務</td></tr>
+<tr><td class="f">國立故宮博物院、國立歷史博物館等</td><td>管有歷史文物等珍貴財產</td><td><b>特種財物</b>之會計事務</td></tr>
+<tr><td class="f">各國稅局、海關</td><td>稽徵國稅及關稅</td><td><b>徵課</b>之會計事務</td></tr>
+</table>
+
+<h3>四、各級政府之總會計</h3>
+<p>會計法第10條：中央、直轄市、縣（市）、鄉（鎮、市）及直轄市山地原住民區之會計，各為一<b>總會計</b>。總會計係將政府所屬公務機關及特種基金之會計報告彙編而成之綜合報告：</p>
+<p>（一）公務機關會計報告。將普通公務單位會計的財務報表，與國庫出納、賦稅徵課、公共債務及國有財產管理等應納入的財務資訊彙編。特種公務會計資料依其性質與普通公務單位會計核對，並直接彙入中央總會計，或先由普通公務單位會計入帳後再彙入。</p>
+<p>（二）<b>特種基金會計報告</b>：彙總特種基金之財務報表，包括營業及非營業部分。</p>
+
+<p class="cap">▲ 歸納比較 1 · 預算型態、會計組織與會計事務的對應</p>
+<table class="cmp">
+<tr><th style="width:22%">預算型態</th><th style="width:22%">會計組織（第9條）</th><th>辦理之會計事務（第4～7條）</th></tr>
+<tr><td class="f">總預算（含追加、特別預算）</td><td><b>總會計</b></td><td>彙編各公務機關及特種基金之會計報告</td></tr>
+<tr><td class="f">單位預算／單位預算之分預算</td><td><b>單位會計</b>／<b>分會計</b></td><td><b>普通公務</b>之會計事務；部分機關另兼辦<b>特種公務</b></td></tr>
+<tr><td class="f">附屬單位預算（營業基金）</td><td><b>附屬單位會計</b>及其分會計</td><td><b>公營事業</b>之會計事務（第7條）</td></tr>
+<tr><td class="f">附屬單位預算（作業、特別收入、債務、資本計畫基金）</td><td><b>附屬單位會計</b>及其分會計</td><td><b>特種基金</b>之會計事務（第6條，屬特種公務）</td></tr>
+<tr><td class="f">特別預算</td><td>—</td><td><b>非常事件</b>之會計事務（第4條）</td></tr>
+<tr><td class="f">信託基金</td><td>不納入報導個體</td><td>於附屬單位決算及綜計表以附錄揭露</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜同一機關可以辦理多種會計事務</p>
+<p>依業務性質判斷會計事務。以財政部國庫署為例，薪資與辦公費屬普通公務會計，國庫現金與公債業務則分屬公庫出納及公債等特種公務會計。第93條規定，機關應按所掌理的特種公務辦理相應的會計事務。</p>
+</td></tr></table>
+
+
+<h1>參、會計法108年11月修正重點及其影響</h1>
+<p>會計法係設計政府會計制度之依據及處理會計事務之準繩。民國3年公布，24年由國民政府重新制定全文127條，其後歷經多次修正。<b>108年11月20日</b>為近年幅度最大之修正（下表五項）；<b>111年6月15日</b>再修正第99條之1，增列「國務機要計畫費用」（詳第四章參），為最近一次修正。</p>
+
+<table class="cmp">
+<tr><th style="width:6%">#</th><th style="width:22%">條文</th><th style="width:32%">修正內容</th><th>為什麼改／影響</th></tr>
+<tr><td>1</td><td class="f">第4、7、60、65、66、93條</td><td>「公有事業機關」與「公有營業機關」合併為「<b>公營事業機關</b>」</td><td>原區分與實務落差；比照預算法第62條之1、統計法、商業會計法、政府採購法、檔案法，<b>用詞一致</b>。會計事務因此由5類精簡為<b>4類</b>。</td></tr>
+<tr><td>2</td><td class="f">第10條</td><td>增列<b>直轄市山地原住民區</b>之會計為總會計</td><td>配合103年5月28日施行之地方制度法第83條之2，山地原住民區為地方自治團體。</td></tr>
+<tr><td>3</td><td class="f">第16條</td><td>記帳由「至分為止，釐位四捨五入」改為「<b>至元為止，角位四捨五入</b>」</td><td>符合收付款項實況，簡化會計事務。</td></tr>
+<tr><td>4</td><td class="f">第29條</td><td><b>刪除</b>「政府財物及固定負債不得列入平衡表」之規定</td><td>使平衡表能完整表達政府整體財務，與先進國家一致；詳見下方說明。</td></tr>
+<tr><td>5</td><td class="f">第95條第1項</td><td>增列但書：「但涉及<b>非會計專業規定、實質或技術性事項</b>，應由<b>業務主辦單位</b>負責辦理。」</td><td>權責分明，提升行政效率。</td></tr>
+</table>
+
+<h3>第29條刪除後，對政府會計事務的影響</h3>
+<p>主計總處配合修正各號政府會計準則公報，主要影響如下：</p>
+<p>（一）原先另設的資本資產帳與長期負債帳予以刪除。非流動資產與負債改在平衡表列示。</p>
+<p>（二）購置固定資產由「列為支出」改為「<b>列為資產</b>」，並<b>提列折舊</b>、將折舊認列為支出，以合理分攤財產隨時間經過之使用成本。</p>
+<p>（三）固定資產出售、毀損、遺失、報廢與贈與時，列為<b>財產收益或財產損失</b>；長期股權投資變動與長期負債舉借、償還之實際收付與帳面金額差額，列為財產交易利益（損失）、投資利益（損失）。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜原第29條固定項目分開列示的背景</p>
+<p>政事型基金（普通基金、債務基金、特別收入基金、資本計畫基金）重視的是<b>年度收支平衡</b>：買一台車和發一個月薪水，對「今年還剩多少錢可用」的影響一樣。固定資產不能隨便賣掉當作今年財源，長期負債也不是用現有資產償還，而是靠<b>未來的稅收</b>。</p>
+<p>如果把固定資產和長期負債都放進同一張平衡表，「基金餘額」就不再等於可動用的賸餘現金，會誤導預算編列。所以舊法把它們另立資本資產帳、長期負債帳。</p>
+<p>缺點是：一張平衡表看不到政府的全貌，也和國際（IPSAS）作法不一致。108年刪除第29條後，自<b>109年度</b>起整併為1套科目與帳表。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 108年修法</p>
+<p>‧ 修法日期：<b>108年11月20日</b>總統公布。</p>
+<p>‧ 會計事務由5類變<b>4類</b>：普通公務、特種公務、<b>公營事業</b>、非常事件。</p>
+<p>‧ 記帳單位：<b>至元為止，角位四捨五入</b>（舊題「至分為止，釐位四捨五入」已不適用）。</p>
+<p>‧ 第29條是「<b>刪除</b>」，不是修正；考題問「現行會計法」時，固定項目分開原則已不存在。</p>
+</td></tr></table>
+
+<h2>丙、練習題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 導論</p>
+<p class="q">（　　）1. 依會計法規定，除為乘除計算外，記帳時應如何辦理？</p>
+<p class="opt">(A) 記帳時至分為止，釐位四捨五入<br>(B) 記帳時至角為止，分位四捨五入<br>(C) 記帳時至元為止，角位四捨五入<br>(D) 記帳時至千元為止，百元以下四捨五入</p>
+<p class="src">【109年經濟部事業機構】</p>
+<p class="q">（　　）2. 依會計法規定，下列之會計①臺東縣關山鎮②臺中市和平區③高雄市六龜區④花蓮縣壽豐鄉，何者須各為一總會計？</p>
+<p class="opt">(A) 僅①④　(B) 僅②③　(C) 僅①②④　(D) ①②③④</p>
+<p class="src">【109年地特3等】</p>
+<p class="q">申論練習：會計法於108年11月20日之修正重點及其影響為何？</p>
+<p class="src">（答題架構：本篇參、五項修正＋第29條刪除之三項影響）</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄　練習題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>C</b></td><td>第16條第1項（108年修正）：記帳時，除為乘除計算外，至元為止，角位四捨五入。</td></tr>
+<tr><td>2</td><td><b>C</b></td><td>關山鎮、壽豐鄉為鄉（鎮、市），和平區為<b>直轄市山地原住民區</b>，三者各為一總會計。六龜區是高雄市的一般行政區，不是山地原住民區（高雄市的山地原住民區為那瑪夏、桃源、茂林三區）。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#">← 回首頁</a><a href="#ch1">第一章 通則 →</a></div>
+    </section>
+
+    <section id="view-ch1" data-view="ch1" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　第一章　通則</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（一）：適用範圍 · 超然主計 · 會計事務 · 會計組織 · 會計年度 · 本位幣</p>
+
+<h2>本章學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:24%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>第1、121條</td><td>會計法管誰？民間團體、公私合營事業為何只「準用」？</td></tr>
+<tr><td class="f">貳</td><td>第2條</td><td>超然主計制度的三個面向是什麼？</td></tr>
+<tr><td class="f">參</td><td>第3～8條</td><td>會計事項有哪8款？會計事務分哪4類、各有幾種？</td></tr>
+<tr><td class="f">肆</td><td>第9～14條</td><td>政府會計組織有哪5種？哪些可以不用複式簿記？哪些地方政府各為一總會計？</td></tr>
+<tr><td class="f">伍</td><td>第15條</td><td>會計年度依哪部法律？季、旬、五日期間怎麼切？</td></tr>
+<tr><td class="f">陸</td><td>第16條</td><td>記帳本位幣與記帳單位為何？</td></tr>
+</table>
+
+
+<h1>壹、會計法適用範圍 <span class="pg">【第1、121條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一條</p>
+<p class="law">政府及其所屬機關辦理各項會計事務，依本法之規定。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百二十一條</p>
+<p class="law">受政府補助之民間團體及公私合營之事業，其會計制度及其會計報告程序，準用本法之規定；其適用範圍，由中央主計機關酌定之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、《會計法》是設計政府會計制度與辦理會計事務的依據。依第1條，中央及各級地方政府與其所屬機關均適用本法，使性質相同的交易能採一致方式處理，便於彙總與比較。規範範圍還包括內部審核、會計人員的財務責任、職務交代及超然主計制度。</p>
+<p>二、<b>公私合營之事業</b>，依審計部「審計機關審核公私合營事業辦法」第2條，指政府資本<b>未超過50%</b>之事業，包括：(1) 政府與人民合資經營，政府資本未超過50%者；(2) 公營事業機關及各基金轉投資之資本額未超過該事業資本50%者；(3) 接受政府委託代管公庫對國外合作事業及國內民營事業直接投資，政府資本未超過50%者；(4) 政府及其所屬機關或基金投資國際金融機構，或與國外合作而投資於其公私企業者。</p>
+<p>三、這些團體不是政府機關，不能強制完全依主計法令辦理；但因領有公款補助或為政府直接間接投資，其<b>會計制度及會計報告程序</b>準用會計法。適用範圍由<b>中央主計機關</b>（主計總處）酌定，惟目前主計總處<b>並未訂有</b>相關規定。實務上由各主管機關依其適用法規訂定規範，例如內政部依人民團體法訂「社會團體財務處理辦法」、教育部依財團法人法訂「全國性教育財團法人會計處理及財務報告編製準則」。</p>
+
+<p class="cap">▲ 歸納比較 1 · 會計法與預算法、決算法的適用範圍</p>
+<table class="cmp">
+<tr><th style="width:22%">法律</th><th>中央政府</th><th>地方政府</th><th>受補助民間團體、公私合營事業</th></tr>
+<tr><td class="f">會計法</td><td><b>適用</b></td><td><b>適用</b>（第1條「政府」不限中央）</td><td>會計制度及會計報告程序<b>準用</b>（第121條）</td></tr>
+<tr><td class="f">預算法、決算法</td><td><b>適用</b></td><td>另以法律定之；未制定前<b>準用</b></td><td>—</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜《會計法》與預算、決算法規的適用範圍</p>
+<p>預算和決算涉及<b>民意機關審議</b>，地方議會的程序和立法院不同，所以要留給地方自治另訂法律。會計則是<b>記帳的技術規則</b>：同一筆交易，不管在中央還是縣市政府，都該用同樣方法記，數字才能彙總、比較。所以會計法不分層級，一體適用。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第121條</p>
+<p>‧ 準用的是「<b>會計制度</b>及<b>會計報告程序</b>」，不是全部會計事務，也不是內部審核。</p>
+<p>‧ 適用範圍由「<b>中央主計機關酌定</b>」，不是由審計部或各目的事業主管機關。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 壹【第1、121條】</p>
+<p class="q">（　　）1. 受政府輔助之民間團體及公私合營之事業，其會計報告程序及下列何者，準用會計法之規定？</p>
+<p class="opt">(A) 會計事務　(B) 會計制度　(C) 會計審核　(D) 內部審核</p>
+<p class="src">【105年地特5等】</p>
+</td></tr></table>
+
+
+<h1>貳、政府主計機構組織之超然性 <span class="pg">【第2條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二條</p>
+<p class="law">各下級政府主計機關（無主計機關者，其最高主計人員），關於會計事務，應受該管上級政府主計機關之監督與指導。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>行政院主計總處組織法第6條：「全國各級主辦歲計、會計、統計人員，分別對各該管上級機關主辦歲計、會計、統計人員負責，並依法受所在機關長官之指揮。」主計機構人員設置管理條例第5條並規定主計機構設置及員額編制標準由中央主計機關定之。由此形成特有之<b>超然主計制度</b>：</p>
+<table class="cmp">
+<tr><th style="width:20%">面向</th><th>內涵</th><th style="width:26%">會計法對應條文（詳第五章）</th></tr>
+<tr><td class="f">主計機構組織之超然</td><td>以行政院主計總處為最高主計機關，由上而下，全國成為<b>一個主計系統</b></td><td>第2、105條</td></tr>
+<tr><td class="f">主計人事之超然</td><td>主計人員之任免（遷調）、獎勵及考核，由<b>主計主管機關</b>負責，不由所在機關長官處理</td><td>第104條</td></tr>
+<tr><td class="f">主計職責之超然</td><td>主計人員依會計法、統計法等規定<b>超然獨立行使職務</b>，不受影響</td><td>第99、106～108、110條</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜超然主計制度與會計人員的責任</p>
+<p>主計人員的人事管理由主計體系依法辦理，有助於會計人員依規定審核。辦理所在機關的日常業務時，仍依法受機關長官指揮。</p>
+</td></tr></table>
+
+
+<h1>參、政府各機關辦理之會計事務 <span class="pg">【第3～8條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<h3>一、政府會計事項及其會計事務之性質</h3>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第三條</p>
+<p class="law">政府及其所屬機關，對於左列事項，應依機關別與基金別為詳確之會計：</p>
+<p class="law i1">一、預算之成立、分配、執行。</p>
+<p class="law i1">二、歲入之徵課或收入。</p>
+<p class="law i1">三、債權、債務之發生、處理、清償。</p>
+<p class="law i1">四、現金、票據、證券之出納、保管、移轉。</p>
+<p class="law i1">五、不動產物品及其他財產之增減、保管、移轉。</p>
+<p class="law i1">六、政事費用、事業成本及歲計餘絀之計算。</p>
+<p class="law i1">七、營業成本與損益之計算及歲計盈虧之處理。</p>
+<p class="law i1">八、其他應為會計之事項。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第四條</p>
+<p class="law">前條會計事項之事務，依其性質，分下列四類：</p>
+<p class="law i1">一、普通公務之會計事務：謂公務機關一般之會計事務。</p>
+<p class="law i1">二、特種公務之會計事務：謂特種公務機關除前款之會計事務外，所辦之會計事務。</p>
+<p class="law i1">三、公營事業之會計事務：謂公營事業機關之會計事務。</p>
+<p class="law i1">四、非常事件之會計事務：謂有非常性質之事件，及其他不隨會計年度開始與終了之重大事件，其主辦機關或臨時組織對於處理該事件之會計事務。</p>
+</td></tr></table>
+
+<h3>二、普通公務之會計事務</h3>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五條</p>
+<p class="law">普通公務之會計事務，為左列三種：</p>
+<p class="law i1">一、公務歲計之會計事務：謂公務機關之歲入或經費之預算實施，及其實施時之收支，與因處理收支而發生之債權、債務，及計算政事費用與歲計餘絀之會計事務。</p>
+<p class="law i1">二、公務出納之會計事務：謂公務機關之現金、票據、證券之出納、保管、移轉之會計事務。</p>
+<p class="law i1">三、公務財物之會計事務：謂公務機關之不動產物品及其他財產之增減、保管、移轉之會計事務。</p>
+</td></tr></table>
+
+<h3>三、特種公務之會計事務</h3>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六條</p>
+<p class="law"><span class="no">①</span>特種公務之會計事務，為左列六種：</p>
+<p class="law i1">一、公庫出納之會計事務：謂公庫關於現金、票據、證券之出納、保管、移轉之會計事務。</p>
+<p class="law i1">二、財物經理之會計事務：謂公有財物經理機關，關於所經理不動產物品及其他財產之增減、保管、移轉之會計事務。</p>
+<p class="law i1">三、徵課之會計事務：謂徵收機關，關於稅賦捐費等收入之徵課、查定，及其他依法處理之程序，與所用之票照等憑證，及其處理徵課物之會計事務。</p>
+<p class="law i1">四、公債之會計事務：謂公債主管機關，關於公債之發生、處理、清償之會計事務。</p>
+<p class="law i1">五、特種財物之會計事務：謂特種財物之管理機關，關於所管財物處理之會計事務。</p>
+<p class="law i1">六、特種基金之會計事務：謂特種基金之管理機關，關於所管基金處理之會計事務。</p>
+<p class="law"><span class="no">②</span>前項第六款稱特種基金者：謂除營業基金、公債基金及另為事業會計之事業基金外，各種信託基金、留本基金、非營業之循環基金等，不屬於普通基金之各種基金。</p>
+</td></tr></table>
+
+<h3>四、公營事業之會計事務</h3>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第七條</p>
+<p class="law">公營事業之會計事務，為下列四種：</p>
+<p class="law i1">一、營業歲計之會計事務：謂營業預算之實施，及其實施之收支，與因處理收支而發生之債權、債務，及計算歲計盈虧與營業損益之會計事務。</p>
+<p class="law i1">二、營業成本之會計事務：謂計算營業之出品或勞務每單位所費成本之會計事務。</p>
+<p class="law i1">三、營業出納之會計事務：謂營業上之現金、票據、證券之出納、保管、移轉之會計事務。</p>
+<p class="law i1">四、營業財物之會計事務：謂營業上使用及運用之財產增減、保管、移轉之會計事務。</p>
+</td></tr></table>
+
+<h3>五、統制會計</h3>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第八條</p>
+<p class="law">各機關對於所有前三條之會計事務，均應分別種類，綜合彙編，作為統制會計。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<h3>一、第3條的會計事項並非每個機關都會發生</h3>
+<p>例如<b>預算之成立及分配</b>僅適用<b>公務機關</b>，營業及非營業特種基金不入帳；<b>歲入之徵課</b>僅適用<b>徵課機關</b>（關務署及所屬各關、各稅捐稽徵機關）；<b>營業成本與損益之計算及歲計盈虧之處理</b>則適用<b>公營事業</b>。</p>
+
+<h3>二、特種公務會計事務的實務對應（以中央政府為例）</h3>
+<table class="cmp">
+<tr><th style="width:18%">特種公務</th><th style="width:22%">承辦機關</th><th>與普通公務單位會計、中央總會計之關聯</th></tr>
+<tr><td class="f">公庫出納</td><td>財政部國庫署</td><td>與各機關普通公務單位會計<b>核對</b>歲入歲出繳領科目及金額；現金、應付保管款等<b>直接彙入</b>中央總會計平衡表</td></tr>
+<tr><td class="f">徵課</td><td>關務署及所屬各關、各區國稅局</td><td>徵課會計系統每月產製之收入支出表及平衡表作為原始憑證，<b>先記入</b>關務署、國稅局之普通公務單位會計帳</td></tr>
+<tr><td class="f">公債</td><td>財政部國庫署</td><td>發行公債、國庫券及國內外借款；長短期債務餘額透過公共債務年度會計報告<b>直接彙入</b>中央總會計平衡表</td></tr>
+<tr><td class="f">財物經理</td><td>財政部國有財產署</td><td>國有公用財產（公務用、公共用、事業用）與非公用財產；與各機關<b>核對</b>公用財產金額，非公用財產等<b>直接彙入</b>中央總會計</td></tr>
+<tr><td class="f">特種財物</td><td>故宮、史博館等管有機關</td><td>珍貴動產不動產；依「中央政府各機關珍貴動產不動產管理要點」管理，<b>不受</b>財產要件金額1萬元以上且使用年限2年以上之限制</td></tr>
+<tr><td class="f">特種基金</td><td>各基金管理機關</td><td>作業、特別收入、債務、資本計畫、信託基金之會計事務</td></tr>
+</table>
+
+<h3>三、會計法與預算法特種基金名稱不一致</h3>
+<p>會計法第6條第2項的基金名稱與預算法第4條相同者<b>僅有營業基金及信託基金</b>。原因是會計法<b>尚未配合87年10月29日修正之預算法</b>作修正：預算法已將<b>公債基金</b>改為<b>債務基金</b>，<b>留本基金</b>併入<b>信託基金</b>，<b>事業基金與非營業循環基金</b>劃分為<b>作業基金、特別收入基金及資本計畫基金</b>。實質上兩法所規範的基金種類大致相同。因預算法是政府財務行政的首要依據，且第3條要求依「機關別與基金別」為詳確之會計，實務上<b>依預算法第4條之基金名稱</b>編列預算及執行。</p>
+
+<p class="cap">▲ 歸納比較 2 · 會計法與預算法的基金名稱對照</p>
+<table class="cmp">
+<tr><th>會計法第6條第2項（舊名稱）</th><th>預算法第4條（現行名稱）</th><th style="width:24%">性質</th></tr>
+<tr><td class="f">營業基金</td><td>營業基金</td><td>循環基金</td></tr>
+<tr><td class="f">公債基金</td><td>債務基金</td><td>—</td></tr>
+<tr><td class="f">信託基金、留本基金</td><td>信託基金</td><td>多為留本，亦有動本</td></tr>
+<tr><td class="f">事業基金、非營業之循環基金</td><td>作業基金、特別收入基金、資本計畫基金</td><td>作業基金為循環；特別收入、資本計畫為動本</td></tr>
+</table>
+
+<h3>四、非常事件之會計事務</h3>
+<p>指辦理<b>不隨會計年度起訖之特別預算</b>，其主辦機關或臨時組織處理特別預算事件之會計事務。預算法沿革中，21年稱「非常經費預算」、26年稱「非常預算」、37年才改稱「特別預算」；會計法第4、24、64條沿用「非常事件」用語，尚未配合修正。特別預算大致屬多年期計畫，須單獨按期編造會計報告，年度終了未支用數得轉入下年度繼續支用，期滿後依決算法第22條單獨編造<b>特別決算</b>。</p>
+
+<p class="cap">▲ 歸納比較 3 · 會計事務的4類13種</p>
+<table class="cmp">
+<tr><th style="width:18%">類別（第4條）</th><th style="width:10%">種數</th><th>各種名稱</th><th style="width:20%">記憶關鍵字</th></tr>
+<tr><td class="f">普通公務（第5條）</td><td>3</td><td>公務<b>歲計</b>、公務<b>出納</b>、公務<b>財物</b></td><td>「公務」開頭</td></tr>
+<tr><td class="f">特種公務（第6條）</td><td>6</td><td><b>公庫出納</b>、<b>財物經理</b>、<b>徵課</b>、<b>公債</b>、<b>特種財物</b>、<b>特種基金</b></td><td>庫、理、徵、債、特財、特基</td></tr>
+<tr><td class="f">公營事業（第7條）</td><td>4</td><td>營業<b>歲計</b>、營業<b>成本</b>、營業<b>出納</b>、營業<b>財物</b></td><td>「營業」開頭，多了成本</td></tr>
+<tr><td class="f">非常事件（第4條）</td><td>—</td><td>不隨會計年度開始與終了之重大事件（即特別預算）</td><td>不隨年度起訖</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜從經管對象辨識出納與財物類別</p>
+<p>看<b>誰的錢、誰的東西</b>：</p>
+<p>‧ 機關<b>自己</b>的現金 → 公務出納；<b>公庫</b>（國庫）的現金 → 公庫出納；<b>公營事業</b>的現金 → 營業出納。</p>
+<p>‧ 機關<b>自己</b>使用的財產 → 公務財物；<b>經理全國</b>公有財產的機關（國產署）→ 財物經理；<b>珍貴文物</b> → 特種財物；<b>公營事業</b>的財產 → 營業財物。</p>
+<p>所以考題問「公務機關之不動產物品之增減、保管、移轉」，答案是<b>公務財物</b>，不是財物經理。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第3～8條</p>
+<p>‧ 第3條：依「<b>機關別與基金別</b>」為詳確之會計。</p>
+<p>‧ <b>特種基金之會計事務</b>屬於<b>特種公務</b>（第6條第6款），不屬於公營事業。</p>
+<p>‧ 公營事業4種裡<b>沒有</b>「營業收入」「營業財務」；「財務」與「財物」一字之差，常見陷阱。</p>
+<p>‧ 第8條統制會計涵蓋第5～7條（普通公務、特種公務、公營事業）之會計事務，<b>不含</b>非常事件。</p>
+<p>‧ 「治理、風險管理及內部控制」不是第3條的會計事項。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 參【第3～8條】</p>
+<p class="q">（　　）2. 政府及其所屬機關對於預算之成立、分配、執行，應依下列何者為詳確之會計？</p>
+<p class="opt">(A) 機關別與基金別　(B) 組織觀點與計畫觀點　(C) 報導個體與衡量焦點　(D) 預算觀點與作業觀點</p>
+<p class="src">【106年地特3等】</p>
+<p class="q">（　　）3. 政府及其所屬機關應依機關別與基金別對會計事項為詳確之會計，下列何者非屬會計事項？</p>
+<p class="opt">(A) 機關的治理、風險管理及內部控制<br>(B) 政事費用、事業成本及歲計餘絀之計算<br>(C) 現金、票據、證券之出納、保管、移轉<br>(D) 預算之成立、分配、執行</p>
+<p class="src">【108年地特5等】</p>
+<p class="q">（　　）4. 試指出下列何者為普通公務之會計事務？①公務歲計②公務出納③公務財物④公庫出納⑤徵課及公債</p>
+<p class="opt">(A) ①②④　(B) ②③⑤　(C) ③④⑤　(D) ①②③</p>
+<p class="src">【106年地特3等】</p>
+<p class="q">（　　）5. 依會計法規定，下列那些屬於特種公務之會計事務？①徵課②公債③公務財物④公庫出納⑤特種基金</p>
+<p class="opt">(A) ①③⑤　(B) ①②④⑤　(C) ①②③④　(D) ②③④⑤</p>
+<p class="src">【105年高考】</p>
+<p class="q">（　　）6. 依會計法等相關規範，財政部國庫署須處理下列那些會計事務？①公務出納②國庫出納③公債④財物經理</p>
+<p class="opt">(A) ①②③④　(B) ①②③　(C) ①②④　(D) ②③④</p>
+<p class="src">【108年薦任升等】</p>
+<p class="q">（　　）7. 徵課之會計事務屬於何種會計事務？</p>
+<p class="opt">(A) 公有營業　(B) 公有事業　(C) 特種公務　(D) 普通公務</p>
+<p class="src">【106年高考】</p>
+<p class="q">（　　）8. 依會計法中有關公有營業之會計事務，其因處理收支而發生之債權、債務，及計算歲計盈虧與營業損益之會計事務，屬下列何種會計事務？</p>
+<p class="opt">(A) 營業歲計之會計事務　(B) 營業成本之會計事務　(C) 營業財務之會計事務　(D) 營業財物之會計事務</p>
+<p class="src">【108年高考】</p>
+<p class="q">（　　）9. 依會計法規定，下列各種會計事務有幾種應辦理現金、票據、證券相關事宜之詳確會計？①公庫出納②公務財物③財物經理④營業出納⑤特種財物</p>
+<p class="opt">(A) 4種　(B) 3種　(C) 2種　(D) 1種</p>
+<p class="src">【107年地特5等】</p>
+</td></tr></table>
+
+
+<h1>肆、政府會計之組織 <span class="pg">【第9～14條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九條</p>
+<p class="law"><span class="no">①</span>政府會計之組織為左列五種：</p>
+<p class="law i1">一、總會計。</p>
+<p class="law i1">二、單位會計。</p>
+<p class="law i1">三、分會計。</p>
+<p class="law i1">四、附屬單位會計。</p>
+<p class="law i1">五、附屬單位會計之分會計。</p>
+<p class="law"><span class="no">②</span>前項各款會計，均應用複式簿記。但第三款、第五款分會計之事務簡單者，不在此限。</p>
+<p class="law"><span class="no">③</span>第一項各款會計之帳務處理，得視事實需要，呈請上級主計機關核准後，集中辦理。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十條</p>
+<p class="law">中央、直轄市、縣（市）、鄉（鎮、市）、直轄市山地原住民區之會計，各為一總會計。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十一條</p>
+<p class="law">左列各款會計，為單位會計：</p>
+<p class="law i1">一、在總預算有法定預算之機關單位之會計。</p>
+<p class="law i1">二、在總預算不依機關劃分而有法定預算之特種基金之會計。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十二條</p>
+<p class="law">單位會計下之會計，除附屬單位會計外，為分會計，並冠以機關名稱。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十三條</p>
+<p class="law">左列各款會計，為附屬單位會計：</p>
+<p class="law i1">一、政府或其所屬機關附屬之營業機關、事業機關或作業組織之會計。</p>
+<p class="law i1">二、各機關附屬之特種基金，以歲入、歲出之一部編入總預算之會計。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十四條</p>
+<p class="law">附屬單位會計下之會計，為附屬單位會計之分會計，並冠以機關名稱。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、<b>總會計</b>：中央、直轄市、縣（市）、鄉（鎮、市）及<b>6個直轄市山地原住民區</b>（新北市烏來區、桃園市復興區、臺中市和平區、高雄市那瑪夏區、桃源區、茂林區）各有1個總會計。依中央總會計制度第3點，總會計由普通公務單位會計之財務報表、特種公務會計應彙入之財務資訊及特種基金之會計報告彙編而成，涵蓋總預算、特別預算及各附屬單位預算，<b>範圍較總預算為大</b>。</p>
+<p>二、集中辦理（第9條第3項）。民國61年全文修正時，考量電子計算機的應用可能使會計工作由分散走向集中，增訂各種會計得視需要呈請上級主計機關核准後集中辦理。</p>
+<p>三、單位會計。《預算法》第18條將單位預算分為公務機關及特種基金兩類，《會計法》第11條也分別設款。中央政府自民國88年度起已無編製單位預算的特種基金。單位會計及其分會計，可分別對照單位預算及單位預算之分預算的層級。</p>
+<p>四、<b>附屬單位會計</b>：預算法第4條之6種特種基金，除信託基金外均已編製附屬單位預算，故均為第13條之附屬單位會計。</p>
+
+<p class="cap">▲ 歸納比較 4 · 預算體系與會計組織的對應</p>
+<table class="cmp">
+<tr><th style="width:26%">預算體系</th><th style="width:26%">會計組織</th><th>例子</th><th style="width:16%">可否單式簿記</th></tr>
+<tr><td class="f">總預算</td><td><b>總會計</b></td><td>中央政府、臺北市、新竹市、鄉公所、和平區</td><td>否</td></tr>
+<tr><td class="f">單位預算</td><td><b>單位會計</b></td><td>行政院、主計總處、北區國稅局及所屬</td><td>否</td></tr>
+<tr><td class="f">單位預算之分預算</td><td><b>分會計</b>（實務稱單位會計之分會計）</td><td>客家文化發展中心、刑事警察局</td><td><b>事務簡單者可</b></td></tr>
+<tr><td class="f">附屬單位預算</td><td><b>附屬單位會計</b></td><td>財政部印刷廠、國立大學校務基金、附設醫院作業基金</td><td>否</td></tr>
+<tr><td class="f">附屬單位預算之分預算</td><td><b>附屬單位會計之分會計</b></td><td>—</td><td><b>事務簡單者可</b></td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜特種基金在總預算的編列方式</p>
+<p>先查特種基金在總預算中的編列方式。</p>
+<p>‧ 在總預算不依機關劃分而有法定預算的特種基金，依第11條第2款採單位會計。</p>
+<p>‧ 機關附屬特種基金的歲入、歲出如有一部編入總預算，依第13條第2款採附屬單位會計。例子包括盈餘繳庫或政府增撥。</p>
+<p>作答時可先圈出題幹所描述的預算編列方式，再對照條件。</p>
+</td></tr></table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜從政府層級辨識總會計</p>
+<p>總會計只給「<b>有自治地位的政府</b>」：中央、直轄市、縣（市）、鄉（鎮、市）、直轄市山地原住民區。</p>
+<p>‧ <b>行政院</b>只是中央政府的一個機關，在總預算有法定預算 → <b>單位會計</b>。</p>
+<p>‧ <b>臺北市大安區公所</b>是直轄市政府的派出機關，不是自治團體 → <b>單位會計</b>。</p>
+<p>‧ 但<b>臺中市和平區</b>是山地原住民區，屬自治團體 → <b>總會計</b>。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第9～14條</p>
+<p>‧ 可免用複式簿記的只有<b>分會計</b>與<b>附屬單位會計之分會計</b>，且限「<b>事務簡單者</b>」。</p>
+<p>‧ 集中辦理須「<b>呈請上級主計機關核准</b>」，不是自行決定。</p>
+<p>‧ 會計法第9條的名稱是「<b>分會計</b>」；「單位會計之分會計」是實務用語，不是第9條的法定名稱。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 肆【第9～14條】</p>
+<p class="q">（　　）10. 下列各會計，均應用複式簿記。但事務簡單之何者不在此限？①單位會計②分會計③附屬單位會計④附屬單位會計之分會計</p>
+<p class="opt">(A) ①②　(B) ①③　(C) ②③　(D) ②④</p>
+<p class="src">【105年鐵特3級】</p>
+<p class="q">（　　）11. 下列何者之會計為一總會計？</p>
+<p class="opt">(A) 行政院　(B) 高雄市鼓山區　(C) 臺北市政府主計處　(D) 新竹市政府</p>
+<p class="src">【108年地特3等】</p>
+<p class="q">（　　）12. 特種基金以歲入、歲出之全部編入總預算之會計，屬於何者？</p>
+<p class="opt">(A) 總會計　(B) 單位會計　(C) 分會計　(D) 附屬單位會計</p>
+<p class="src">【104年鐵特3級及退除役特考3等】</p>
+<p class="q">（　　）13. 以下有關嘉義縣阿里山鄉會計的敘述何者正確？</p>
+<p class="opt">(A) 該鄉之帳務處理，得視事實需要，呈請上級主計機關核准後，集中辦理<br>(B) 若該鄉之會計事務簡單，可以不限制用複式簿記<br>(C) 就政府會計之組織而言，該鄉屬於單位會計<br>(D) 該鄉會計年度之開始及終了，依會計法之所定</p>
+<p class="src">【105年高考】</p>
+<p class="q">（　　）14. 下列各機關或單位①行政院②主計總處③客家文化發展中心④北區國稅局及所屬，何者之會計屬單位會計？</p>
+<p class="opt">(A) ①②③④　(B) ①②③　(C) ①③④　(D) ①②④</p>
+<p class="src">【109年地特5等】</p>
+<p class="q">（　　）15. 臺灣大學及臺灣大學附設醫院分別編製何種會計？</p>
+<p class="opt">(A) 單位會計及附屬單位會計　(B) 單位會計及單位會計之分會計　(C) 附屬單位會計及附屬單位會計之分會計　(D) 均為附屬單位會計</p>
+<p class="src">【105年初考】</p>
+</td></tr></table>
+
+
+<h1>伍、會計年度及年度期間之劃分 <span class="pg">【第15條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十五條</p>
+<p class="law"><span class="no">①</span>會計年度之開始及終了，依預算法之所定。</p>
+<p class="law"><span class="no">②</span>會計年度之分季，自年度開始之日起，每三個月為一季。</p>
+<p class="law"><span class="no">③</span>會計年度之分月，依國曆之所定。</p>
+<p class="law"><span class="no">④</span>各月之分旬，以一日至十日為上旬，十一日至二十日為中旬，二十一日至月之末日為下旬。</p>
+<p class="law"><span class="no">⑤</span>各月之分為五日期間者，自一日起，每五日為一期，其最後一期為二十六日至月之末日。</p>
+<p class="law"><span class="no">⑥</span>期間不以會計年度或國曆月份之始日起算者，或月份非連續計算者，其計算依民法第一百二十一條至第一百二十三條之所定。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<table class="cmp">
+<tr><th style="width:18%">民法條文</th><th>內容重點</th></tr>
+<tr><td class="f">第121條</td><td>以日、星期、月或年定期間者，以期間末日之終止為期間之終止；不以始日起算者，以最後之星期、月或年與起算日相當日之<b>前1日</b>為末日；最後之月無相當日者，以<b>其月之末日</b>為末日。</td></tr>
+<tr><td class="f">第122條</td><td>期日或期間末日為星期日、紀念日或其他休息日時，以<b>休息日之次日</b>代之。</td></tr>
+<tr><td class="f">第123條</td><td>稱月或年者，<b>依曆</b>計算；非連續計算者，每月為<b>30日</b>，每年為<b>365日</b>。</td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第15條</p>
+<p>‧ 會計年度的開始與終了依「<b>預算法</b>」（預算法第12條：每年1月1日開始，12月31日終了），不是依會計法或決算法。</p>
+<p>‧ 下旬是「21日至<b>月之末日</b>」；五日期間的最後一期是「26日至<b>月之末日</b>」，不一定只有5天。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 伍【第15條】</p>
+<p class="q">（　　）16. 會計年度之開始及終了，係依何法之所定？</p>
+<p class="opt">(A) 會計法　(B) 審計法　(C) 預算法　(D) 決算法</p>
+<p class="src">【106年初考】</p>
+</td></tr></table>
+
+
+<h1>陸、政府會計之記帳本位幣 <span class="pg">【第16條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十六條</p>
+<p class="law"><span class="no">①</span>政府會計應以國幣或預算所定之貨幣為記帳本位幣；其以不合本位幣之本國或外國貨幣記帳者，應折合本位幣記入主要之帳簿。記帳時，除為乘除計算外，至元為止，角位四捨五入。</p>
+<p class="law"><span class="no">②</span>前項規定，如有特殊情形者，得擬定處理辦法，經各該政府主計機關核定施行。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>普會制度第3點規定，以<b>預算所定之貨幣</b>為記帳本位幣；記帳除乘除計算外，至元為止、角位四捨五入。特殊情形之處理辦法：中央政府各機關報經<b>主計總處</b>核定，地方政府各機關報經各該地方政府<b>主計處（室）</b>核定。另依政府支出憑證處理要點第18點，支出憑證列有其他貨幣數額者，應註明折合率，除特殊情形外應附兌換水單或其他匯率證明。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜第16條對乘除計算與入帳位數的規定</p>
+<p>四捨五入只用在<b>最後入帳的金額</b>。計算過程中（例如外幣乘匯率、總價除以數量算單價），中間值要保留小數，否則一路四捨五入下來，誤差會越滾越大。算完才在記帳那一步取到元。</p>
+<p>例：456.726元 → 角位是7，四捨五入進位 → 記<b>457元</b>。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 陸【第16條】</p>
+<p class="q">（　　）17. 機關某筆支出的金額為新臺幣456.726元，其記帳金額應為多少元？</p>
+<p class="opt">(A) 457　(B) 456.7　(C) 456.73　(D) 456.726</p>
+<p class="src">【109年地特5等】</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄 1　本章重點一頁整理</h1>
+<table class="cmp">
+<tr><th style="width:14%">條文</th><th>一句話重點</th></tr>
+<tr><td class="f">第1、121條</td><td>政府（中央及地方）辦理會計事務依會計法；受補助民間團體及公私合營事業之<b>會計制度及會計報告程序</b>準用，範圍由<b>中央主計機關</b>酌定。</td></tr>
+<tr><td class="f">第2條</td><td>下級政府主計機關受<b>上級政府主計機關</b>監督與指導；超然主計：機構、人事、職責三面向。</td></tr>
+<tr><td class="f">第3條</td><td>8款會計事項，依<b>機關別與基金別</b>為詳確之會計。</td></tr>
+<tr><td class="f">第4～7條</td><td>4類會計事務：普通公務3種、特種公務6種、公營事業4種、非常事件。</td></tr>
+<tr><td class="f">第8條</td><td>第5～7條之會計事務分別種類綜合彙編，作為<b>統制會計</b>。</td></tr>
+<tr><td class="f">第9條</td><td>5種會計組織；均用複式簿記，<b>分會計、附屬單位會計之分會計事務簡單者</b>除外；經上級主計機關核准得<b>集中辦理</b>。</td></tr>
+<tr><td class="f">第10條</td><td>中央、直轄市、縣（市）、鄉（鎮、市）、<b>直轄市山地原住民區</b>各為一總會計。</td></tr>
+<tr><td class="f">第11、13條</td><td>特種基金<b>全部</b>編入總預算 → 單位會計；<b>一部</b>編入 → 附屬單位會計。</td></tr>
+<tr><td class="f">第15條</td><td>會計年度依<b>預算法</b>；每3個月一季；旬、五日期間之末段至月之末日。</td></tr>
+<tr><td class="f">第16條</td><td>記帳<b>至元為止，角位四捨五入</b>（除乘除計算外）。</td></tr>
+</table>
+
+
+<h1 class="pb">附錄 2　練習選擇題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>B</b></td><td>第121條：會計制度及其會計報告程序，準用本法之規定。</td></tr>
+<tr><td>2</td><td><b>A</b></td><td>第3條：應依機關別與基金別為詳確之會計。</td></tr>
+<tr><td>3</td><td><b>A</b></td><td>第3條8款中沒有治理、風險管理及內部控制；(B)為第6款，(C)為第4款，(D)為第1款。</td></tr>
+<tr><td>4</td><td><b>D</b></td><td>第5條：公務歲計、公務出納、公務財物。公庫出納、徵課、公債屬特種公務。</td></tr>
+<tr><td>5</td><td><b>B</b></td><td>第6條：公庫出納、財物經理、徵課、公債、特種財物、特種基金。公務財物屬普通公務。</td></tr>
+<tr><td>6</td><td><b>B</b></td><td>國庫署本身是公務機關，辦<b>公務出納</b>（普通公務）；另辦<b>國庫出納</b>、<b>公債</b>（特種公務）。財物經理由國有財產署辦理。</td></tr>
+<tr><td>7</td><td><b>C</b></td><td>第6條第1項第3款：徵課之會計事務屬特種公務。</td></tr>
+<tr><td>8</td><td><b>A</b></td><td>第7條第1款營業歲計。題目「公有營業」為舊用語，現行法為「公營事業」。</td></tr>
+<tr><td>9</td><td><b>C</b></td><td>涉及現金、票據、證券者為<b>公庫出納</b>與<b>營業出納</b>2種；公務財物、財物經理、特種財物皆處理財產。</td></tr>
+<tr><td>10</td><td><b>D</b></td><td>第9條第2項但書：第3款分會計、第5款附屬單位會計之分會計，事務簡單者不在此限。</td></tr>
+<tr><td>11</td><td><b>D</b></td><td>新竹市為縣（市）層級，各為一總會計；行政院、臺北市政府主計處為單位會計；鼓山區為一般行政區。</td></tr>
+<tr><td>12</td><td><b>B</b></td><td>第11條第2款：在總預算不依機關劃分而有法定預算之特種基金之會計為單位會計。</td></tr>
+<tr><td>13</td><td><b>A</b></td><td>第9條第3項得集中辦理。(B) 鄉為總會計，不得免複式簿記；(C) 屬總會計；(D) 依預算法。</td></tr>
+<tr><td>14</td><td><b>D</b></td><td>客家文化發展中心是客家委員會單位預算之<b>分預算</b>，其會計為分會計；其餘為單位會計。</td></tr>
+<tr><td>15</td><td><b>D</b></td><td>國立大學校務基金與附設醫院均屬作業基金，編附屬單位預算，均為附屬單位會計。</td></tr>
+<tr><td>16</td><td><b>C</b></td><td>第15條第1項：會計年度之開始及終了，依預算法之所定。</td></tr>
+<tr><td>17</td><td><b>A</b></td><td>至元為止，角位（7）四捨五入 → 457元。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#ch0">← 導論</a><a href="#ch2">第二章 會計制度 →</a></div>
+    </section>
+
+    <section id="view-ch2" data-view="ch2" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　第二章　會計制度</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（二）：制度設計 · 會計報告 · 會計科目 · 會計簿籍 · 會計憑證</p>
+
+<h2>本章學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:24%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>第17～20條</td><td>會計制度先決定什麼？誰設計、誰核定？不得牴觸哪些法？</td></tr>
+<tr><td class="f">貳</td><td>第21～26條</td><td>對外與對內報告、靜態與動態報告各有哪些表？</td></tr>
+<tr><td class="f">參</td><td>第27～33條</td><td>日報、月報、半年報各在幾日內送出？差額解釋表由誰編？</td></tr>
+<tr><td class="f">肆</td><td>第34～39條</td><td>會計科目怎麼訂？名稱變更要誰核定、通知誰？</td></tr>
+<tr><td class="f">伍</td><td>第40～44、77條</td><td>帳簿與備查簿、序時與分類帳簿如何區分？</td></tr>
+<tr><td class="f">陸</td><td>第45～50條</td><td>哪些帳簿必設、哪些可酌設？分會計可以只設什麼？</td></tr>
+<tr><td class="f">柒</td><td>第51～57條</td><td>原始憑證有哪15種？傳票要誰簽章才生效？何時可免製傳票？</td></tr>
+</table>
+
+
+<h1>壹、會計制度之設計、核定及應明定事項 <span class="pg">【第17～20條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十七條</p>
+<p class="law"><span class="no">①</span>會計制度之設計，應依會計事務之性質、業務實際情形及其將來之發展，先將所需要之會計報告決定後，據以訂定應設立之會計科目、簿籍、報表及應有之會計憑證。</p>
+<p class="law"><span class="no">②</span>凡性質相同或類似之機關或基金，其會計制度應為一致之規定。</p>
+<p class="law"><span class="no">③</span>政府會計基礎，除公庫出納會計外，應採用權責發生制。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十八條</p>
+<p class="law"><span class="no">①</span>中央總會計制度之設計、核定，由中央主計機關為之。</p>
+<p class="law"><span class="no">②</span>地方政府之總會計制度及各種會計制度之一致規定，由各該政府之主計機關設計，呈經上級主計機關核定頒行。</p>
+<p class="law"><span class="no">③</span>各機關之會計制度，由各該機關之會計機構設計，簽報所在機關長官後，呈請各該政府之主計機關核定頒行。</p>
+<p class="law"><span class="no">④</span>前項設計，應經各關係機關及該管審計機關會商後始得核定；修正時亦同。</p>
+<p class="law"><span class="no">⑤</span>各種會計制度之釋例，與會計事務處理之一致規定，由各該會計制度之頒行機關核定之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第十九條</p>
+<p class="law">前二條之設計，應明定左列各事項：</p>
+<p class="law i1">一、各會計制度應實施之機關範圍。</p>
+<p class="law i1">二、會計報告之種類及其書表格式。</p>
+<p class="law i1">三、會計科目之分類及其編號。</p>
+<p class="law i1">四、會計簿籍之種類及其格式。</p>
+<p class="law i1">五、會計憑證之種類及其格式。</p>
+<p class="law i1">六、會計事務之處理程序。</p>
+<p class="law i1">七、內部審核之處理程序。</p>
+<p class="law i1">八、其他應行規定之事項。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十條</p>
+<p class="law">各會計制度，不得與本法及預算、決算、審計、國庫、統計等法牴觸；單位會計及分會計之會計制度，不得與其總會計之會計制度牴觸；附屬單位會計及其分會計之會計制度，不得與該管單位會計或分會計之會計制度牴觸。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<h3>一、設計原則與主計總處「政府各種會計制度設計應行注意事項」</h3>
+<p>會計制度提供日常會計處理及機關內部管理的依據。設計時，先確認需要哪些會計報告，再據以訂定科目、簿籍、報表與憑證。依設計注意事項，除公庫出納外，會計基礎採權責發生制，並輔以收付實現制及契約責任制，加強經費控制。各會計制度應在本文前列總說明，並就第19條所列事項補充簿記組織系統圖、會計檔案管理及各類內部審核程序。</p>
+
+<h3>二、一致規定的實例</h3>
+<table class="cmp">
+<tr><th style="width:30%">適用對象</th><th>一致規定</th><th style="width:22%">設計／核定</th></tr>
+<tr><td class="f">中央政府公務機關</td><td>中央政府普通公務單位會計制度之一致規定（<b>普會制度</b>）</td><td>主計總處</td></tr>
+<tr><td class="f">直轄市、縣市</td><td>各該普通公務單位會計制度之一致規定（冠以縣市名稱）</td><td>各該政府主計處設計，主計總處核定</td></tr>
+<tr><td class="f">鄉鎮市、直轄市山地原住民區</td><td>鄉鎮市（山地原住民區）總會計及普通公務會計制度（僅編總預算，無單位預算）</td><td>各公所共同設計，縣及直轄市政府主計處核定</td></tr>
+<tr><td class="f">財政部5種特種公務</td><td>國庫出納、關稅徵課、內地稅徵課、中央公共債務、國有財產會計制度</td><td>財政部設計，主計總處核定</td></tr>
+<tr><td class="f">性質相同之特種基金</td><td>國立大學校院校務基金、附設醫院會計制度之一致規定</td><td>教育部訂定，主計總處核定</td></tr>
+</table>
+
+<h3>三、三種會計基礎</h3>
+<table class="cmp">
+<tr><th style="width:20%">名稱</th><th>認列時點</th><th style="width:22%">政府會計之用</th></tr>
+<tr><td class="f">現金基礎（收付實現制）</td><td>於<b>收付現金</b>之時點認列</td><td><b>公庫出納會計</b>採用</td></tr>
+<tr><td class="f">權責發生基礎（權責發生制）</td><td>於<b>發生權利或義務</b>之時點認列</td><td>公庫出納以外<b>一律</b>採用</td></tr>
+<tr><td class="f">契約責任制</td><td>於<b>簽定契約或發出訂單</b>時即保留該筆支出預算</td><td>輔助控制經費，避免預算被流用或年終繳庫</td></tr>
+</table>
+
+<p class="cap">▲ 歸納比較 1 · 會計制度的設計與核定（第18條）</p>
+<table class="cmp">
+<tr><th style="width:28%">制度</th><th>設計</th><th>核定頒行</th></tr>
+<tr><td class="f">中央總會計制度</td><td colspan="2" style="text-align:center"><b>中央主計機關</b>（設計＋核定）</td></tr>
+<tr><td class="f">地方政府總會計制度、各種會計制度之一致規定</td><td>各該政府<b>主計機關</b></td><td><b>上級主計機關</b>（直轄市、縣市 → 主計總處；鄉鎮市 → 縣政府主計處）</td></tr>
+<tr><td class="f">各機關之會計制度</td><td>該機關<b>會計機構</b>，簽報所在機關長官</td><td><b>各該政府之主計機關</b>；並應與關係機關及<b>該管審計機關會商</b></td></tr>
+<tr><td class="f">釋例、會計事務處理之一致規定</td><td colspan="2" style="text-align:center">由<b>各該會計制度之頒行機關</b>核定</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜依機關隸屬判斷會計制度的核定權責</p>
+<p>關鍵字是「<b>各該政府</b>之主計機關」。先問：這個機關屬於哪一個政府？</p>
+<p>‧ 高雄地院是<b>中央政府</b>司法院的所屬機關 → 中央政府的主計機關 = <b>行政院主計總處</b>。</p>
+<p>‧ 臺北市立國小、臺北捷運公司是<b>臺北市政府</b>所屬 → <b>臺北市政府主計處</b>。</p>
+<p>不要被機關所在地（高雄）或上級機關（司法院）誤導。臺鐵局則是「會計部門設計 → 簽報局長 → 報交通部轉呈主計總處核定」。</p>
+</td></tr></table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜從報告需求反推科目、簿籍與憑證</p>
+<p>先確認報告的使用者及所需資訊，再決定如何分類、記錄並取得資料。第17條的設計順序，從會計報告的需求推及科目、簿籍、報表與憑證。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第17～20條</p>
+<p>‧ 會計基礎的唯一例外是<b>公庫出納會計</b>（採現金基礎），徵課、財物經理、特種財物都採權責發生制。</p>
+<p>‧ 地方總會計制度：地方主計機關<b>設計</b>，<b>上級</b>主計機關核定，不是自己核定。</p>
+<p>‧ 第20條是「由上往下不得牴觸」：附屬單位會計不得牴觸單位會計或分會計；反過來「單位會計不得牴觸附屬單位會計」是錯的。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 壹【第17～20條】</p>
+<p class="q">（　　）1. 依會計法規定，會計制度之設計，應先將所需要之何種項目決定後，據以訂定應設立之其他項目？</p>
+<p class="opt">(A) 會計報表　(B) 會計科目　(C) 會計簿籍　(D) 會計報告</p>
+<p class="src">【109年高考】</p>
+<p class="q">（　　）2. 依會計法規定，下列何種會計不採用權責發生制？</p>
+<p class="opt">(A) 財物經理　(B) 徵課　(C) 特種財物　(D) 公庫出納</p>
+<p class="src">【106年高考】</p>
+<p class="q">（　　）3. 臺灣高雄地方法院之會計制度，經由該機關之會計機構設計，並簽報所在機關長官後，應呈請下列何者核定頒行？</p>
+<p class="opt">(A) 臺灣高等法院會計處　(B) 司法院會計處　(C) 行政院主計總處　(D) 高雄市政府主計處</p>
+<p class="src">【108年地特3等】</p>
+<p class="q">（　　）4. 臺北市立國民小學之會計制度由何機關核定頒行？</p>
+<p class="opt">(A) 行政院主計總處　(B) 臺北市政府　(C) 臺北市教育局　(D) 臺北市主計處</p>
+<p class="src">【106年高考】</p>
+<p class="q">（　　）5. 依據會計法規定，直轄市政府總會計制度之設計機關及核定機關分別為何？</p>
+<p class="opt">(A) 直轄市政府主計機關及中央主計機關<br>(B) 直轄市政府主計機關及直轄市政府<br>(C) 中央主計機關及行政院<br>(D) 中央主計機關及審計部</p>
+<p class="src">【105年初考】</p>
+<p class="q">（　　）6. 依會計法規定，各種會計制度之釋例，與會計事務處理之一致規定，由下列何者核定之？</p>
+<p class="opt">(A) 各該會計制度之頒行機關　(B) 各該政府主計機關　(C) 上級主管機關　(D) 審計部</p>
+<p class="src">【109年高考】</p>
+<p class="q">（　　）7. 依會計法規定，關於各會計制度之敍述，下列何者錯誤？</p>
+<p class="opt">(A) 附屬單位會計之會計制度不得牴觸預算法<br>(B) 單位會計之會計制度不得牴觸統計法<br>(C) 附屬單位會計之會計制度不得牴觸該管總會計之會計制度<br>(D) 單位會計之會計制度不得牴觸該管附屬單位會計之會計制度</p>
+<p class="src">【107年初考】</p>
+</td></tr></table>
+
+
+<h1>貳、會計報告之分類 <span class="pg">【第21～26條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十一條</p>
+<p class="law">各種會計報告應劃分會計年度，按左列需要，編製各種定期與不定期之報告，並得兼用統計與數理方法，為適當之分析、解釋或預測：</p>
+<p class="law i1">一、對外報告，應按行政、監察、立法之需要，及人民所須明瞭之會計事實編製之。</p>
+<p class="law i1">二、對內報告，應按預算執行情形、業務進度及管理控制與決策之需要編製之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十二條</p>
+<p class="law"><span class="no">①</span>會計報告分左列二類：</p>
+<p class="law i1">一、靜態之會計報告：表示一定日期之財務狀況。</p>
+<p class="law i1">二、動態之會計報告：表示一定期間內之財務變動經過情形。</p>
+<p class="law"><span class="no">②</span>前項靜態、動態報告各表，遇有比較之必要時，得分別編造比較表。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十三條</p>
+<p class="law"><span class="no">①</span>各單位會計及附屬單位會計之靜態與動態報告，依充分表達原則，及第五條至第七條所列之會計事務，各於其會計制度內訂定之。</p>
+<p class="law"><span class="no">②</span>靜態報告應按其事實，分別編造左列各表：一、平衡表。二、現金結存表。三、票據結存表。四、證券結存表。五、票照等憑證結存表。六、徵課物結存表。七、公債現額表。八、財物或特種財物目錄。九、固定負債目錄。</p>
+<p class="law"><span class="no">③</span>動態報告應按其事實，分別編造左列各表：一、歲入或經費累計表。二、現金出納表。三、票據出納表。四、證券出納表。五、票照等憑證出納表。六、徵課物出納表。七、公債發行表及公債還本付息表。八、財物或特種財物增減表。九、固定負債增減表。十、成本計算表。十一、損益計算表。十二、資金運用表。十三、盈虧撥補表。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十四條至第二十六條</p>
+<p class="law"><b>第24條</b>　非常事件所應編造之會計報告各表，由主計機關按事實之需要，參酌前條之規定分別定之。</p>
+<p class="law"><b>第25條</b>　各單位會計所需編製之會計報告各表，應按基金別編造之。但為簡明計，得按基金別分欄綜合編造。</p>
+<p class="law"><b>第26條</b>　分會計應編造之靜態與動態報告，應就其本身及其隸屬單位會計或附屬單位會計之需要，於其會計制度內訂定之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、依政府會計觀念公報第2號，政府會計報告應提供有用資訊，讓使用者監督政府如何配置有限資源，並評估政府是否履行公開報導、施政績效及財務遵循責任。</p>
+<p>二、對外報告依《會計法》第21條及《決算法》第26條、第26條之1等規定，定期提供社會大眾、立法及監察機關、投資人與債權人。常見形式有月報、半年度結算報告和年度報告。各機關自行編製的管理性報表則供內部員工及管理人員使用。</p>
+<p>三、普會制度第14點，各機關<b>會計月報</b>分三部分：</p>
+<table class="cmp">
+<tr><th style="width:18%">部分</th><th>主要表</th><th>附屬表</th></tr>
+<tr><td class="f">預算執行報表<br>（均為動態）</td><td>歲入累計表、經費累計表、以前年度歲入（歲出）轉入數累計表</td><td>歲出用途別累計表、繳付公庫數分析表、公庫撥入數分析表</td></tr>
+<tr><td class="f">會計報表</td><td>平衡表（靜態）、收入支出表（動態）</td><td>平衡表科目明細表（靜態）；長期投資、固定資產、遞耗資產及無形資產變動表（動態）；應付租賃款及其他長期負債變動表（動態）</td></tr>
+<tr><td class="f">參考表</td><td colspan="2">預算執行與會計收支對照表、公庫收入（支出）差額解釋表、銀行（公庫）存款差額解釋表、財產增減結存表</td></tr>
+</table>
+<p>年度會計報告得與決算報告合併編製，內容與月報大致相同，會計報表附屬表另增<b>長期投資明細表</b>。</p>
+
+<p class="cap">▲ 歸納比較 2 · 靜態報告與動態報告（第23條）</p>
+<table class="cmp">
+<tr><th style="width:22%">事務對象</th><th>靜態（一定日期・存量）</th><th>動態（一定期間・流量）</th></tr>
+<tr><td class="f">整體財務</td><td>平衡表</td><td>歲入或經費累計表</td></tr>
+<tr><td class="f">現金</td><td>現金<b>結存</b>表</td><td>現金<b>出納</b>表</td></tr>
+<tr><td class="f">票據</td><td>票據結存表</td><td>票據出納表</td></tr>
+<tr><td class="f">證券</td><td>證券結存表</td><td>證券出納表</td></tr>
+<tr><td class="f">票照等憑證</td><td>票照等憑證結存表</td><td>票照等憑證出納表</td></tr>
+<tr><td class="f">徵課物</td><td>徵課物結存表</td><td>徵課物出納表</td></tr>
+<tr><td class="f">公債</td><td>公債<b>現額</b>表</td><td>公債<b>發行</b>表及公債<b>還本付息</b>表</td></tr>
+<tr><td class="f">財物</td><td>財物或特種財物<b>目錄</b></td><td>財物或特種財物<b>增減</b>表</td></tr>
+<tr><td class="f">固定負債</td><td>固定負債<b>目錄</b></td><td>固定負債<b>增減</b>表</td></tr>
+<tr><td class="f">營業（動態獨有）</td><td>—</td><td>成本計算表、損益計算表、資金運用表、盈虧撥補表</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜從報表所呈現的時點或期間辨識類型</p>
+<p>看表名的<b>尾字</b>：</p>
+<p>‧ 「<b>結存</b>」「<b>現額</b>」「<b>目錄</b>」「平衡」→ 某一天剩多少 → <b>靜態</b>。</p>
+<p>‧ 「<b>出納</b>」「<b>增減</b>」「<b>累計</b>」「發行」「還本付息」「計算」「運用」「撥補」→ 一段期間發生多少 → <b>動態</b>。</p>
+<p>靜態表兩兩成對都有動態版本，動態多出的4張（成本、損益、資金運用、盈虧撥補）都是營業性質，沒有靜態對應表。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第21～26條</p>
+<p>‧ 對<b>外</b>：行政、監察、立法＋人民；對<b>內</b>：預算執行、業務進度、管理控制與決策。「對內報告應按立法需要」是錯的。</p>
+<p>‧ 單位會計之報告按「<b>基金別</b>」編造（第25條），不是機關別或政事別。</p>
+<p>‧ 非常事件報告由「<b>主計機關</b>」定之，不是目的事業主管機關。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 貳【第21～26條】</p>
+<p class="q">（　　）8. 試問下列各表何者為靜態報告？①平衡表②現金結存表③證券結存表④歲入或經費累計表⑤現金出納表</p>
+<p class="opt">(A) ①②③　(B) ②③④　(C) ②④⑤　(D) ①③④</p>
+<p class="src">【106年地特3等】</p>
+<p class="q">（　　）9. 下列何者為動態報告？①平衡表②成本計算表③現金結存表④盈虧撥補表⑤徵課物出納表⑥固定負債目錄</p>
+<p class="opt">(A) ①③⑥　(B) ②④⑤　(C) ③⑤⑥　(D) ④⑤⑥</p>
+<p class="src">【107年鐵特3級】</p>
+<p class="q">（　　）10. 各種對內會計報告，應按下列何者需要編製各種定期與不定期之報告？①預算執行情形②業務進度③管理控制與決策④立法之需要</p>
+<p class="opt">(A) ①②③④　(B) 僅②③④　(C) 僅①③④　(D) 僅①②③</p>
+<p class="src">【109年初考】</p>
+<p class="q">（　　）11. 依會計法規定，各單位會計所需編製之會計報告各表，應按下列何者編造之？</p>
+<p class="opt">(A) 基金別　(B) 機關別　(C) 單位別　(D) 科目別</p>
+<p class="src">【107年初考】</p>
+</td></tr></table>
+
+
+<h1>參、會計報告之編送 <span class="pg">【第27、28、30～33條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第二十七條、第二十八條、第三十條、第三十一條</p>
+<p class="law"><b>第27條</b>　第二十二條至第二十五條之報告及各表，得由各該政府主計機關，會同其單位會計機關或附屬單位會計機關之主管長官及其主辦會計人員，按事實之需要，酌量減少或合併編製之。</p>
+<p class="law"><b>第28條</b>　政府之總會計，應為第二十一條至第二十三條綜合之報告。但依第九條第三項集中辦理者，得就其會計紀錄產生會計報告。</p>
+<p class="law"><b>第29條</b>　（108年11月20日刪除）</p>
+<p class="law"><b>第30條</b>　各種會計報告表，應根據會計紀錄編造，並使便於核對。</p>
+<p class="law"><b>第31條</b>　非政府機關代理政府事務者，其報告與會計人員之報告發生差額時，應由會計人員加編差額解釋表。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第三十二條</p>
+<p class="law"><span class="no">①</span>各單位會計機關及各附屬單位會計機關報告之編送，應依左列期限：</p>
+<p class="law i1">一、日報於次日內送出。</p>
+<p class="law i1">二、五日報於期間經過後二日內送出。</p>
+<p class="law i1">三、週報、旬報於期間經過後三日內送出。</p>
+<p class="law i1">四、月報、季報於期間經過後十五日內送出。但法令另定期限者，依其期限。</p>
+<p class="law i1">五、半年度報告於期間經過後三十日內送出；年度報告，依決算法之規定。</p>
+<p class="law"><span class="no">②</span>前項第一款至第四款各報告之編送期限，於分會計及附屬單位會計之分會計適用之。</p>
+<p class="law"><span class="no">③</span>第一項第五款之報告，應由單位會計或附屬單位會計機關，就其分會計機關整理後之報告彙編之；其編送期限，得按各該分會計機關呈送整理報告之期限及其郵遞實需期間加算之；採用機器處理會計資料之機關，其會計報告編送期限，由該管主計機關定之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第三十三條</p>
+<p class="law">前條第一項第一款至第四款之報告，其關於各機關本身之部分，在日報應以每日辦事完畢時已入帳之會計事項；在五日報、週報、旬報、月報、季報，應以各該期間之末日辦事完畢時已入帳之會計事項，分別列入。其關於彙編所屬機關之部分，在日報，應以每日辦事完畢時已收到之所屬機關日報內之會計事項；在五日報、週報、旬報、月報、季報，應以各該期間之末日辦事完畢時已收到之所屬機關之五日報、週報或旬報、月報、季報內之會計事項，分別列入。但月報、季報之採用月結、季結制者，不在此限。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、中央政府自<b>49年度</b>起，將政府年度會計報告與總決算視其性質<b>合併編製</b>，並以總決算之名稱表達。公務機關財務報表分為表達預算執行之<b>決算報表</b>，以及呈現會計處理結果之<b>會計報表</b>（平衡表、收入支出表；附屬表平衡表科目明細表；參考表現金出納表）。</p>
+<p>二、法定報告依編送期限有<b>日報、5日報、週報、旬報、月報、季報、半年度報告、年度報告</b>8種；實務上各公務機關與特種基金定期對外者<b>僅月報、半年度結算報告及年度會計報告</b>3種，其餘視需要自行設計。普會制度第18點：報告內容應與簿籍所記相同，各報表相關數額應<b>勾稽相合</b>。</p>
+
+<p class="cap">▲ 歸納比較 3 · 會計報告編送期限（第32條）</p>
+<table class="cmp">
+<tr><th style="width:30%">報告</th><th>送出期限</th><th style="width:30%">分會計是否適用</th></tr>
+<tr><td class="f">日報</td><td><b>次日內</b></td><td rowspan="4">適用（第2項）</td></tr>
+<tr><td class="f">五日報</td><td>期間經過後<b>2日內</b></td></tr>
+<tr><td class="f">週報、旬報</td><td>期間經過後<b>3日內</b></td></tr>
+<tr><td class="f">月報、季報</td><td>期間經過後<b>15日內</b>（法令另定者從之）</td></tr>
+<tr><td class="f">半年度報告</td><td>期間經過後<b>30日內</b></td><td rowspan="2">由單位會計或附屬單位會計就分會計報告彙編</td></tr>
+<tr><td class="f">年度報告</td><td>依<b>決算法</b></td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜差額解釋表的編製權責</p>
+<p>‧ 第31條：<b>非政府機關代理政府事務</b>，其報告與會計人員之報告有差額 → <b>會計人員</b>加編差額解釋表。</p>
+<p>‧ 第90條（第三章）：<b>主計機關會計總報告</b>與公庫、財物經理、徵課、公債、特種財物、特種基金主管機關之報告有差額 → <b>該管審計機關</b>核對並製表解釋。</p>
+<p>‧ 各機關銀行存款結存與帳面結存不符 → 由<b>出納管理單位</b>編製差額解釋表（109年鐵特3級考題視為正確敘述）。</p>
+<p>記法：代理事務的差額由會計人員解釋；政府層級的總報告差額，由立場中立的<b>審計機關</b>來核對。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第27～33條</p>
+<p>‧ 月報、季報<b>15日</b>；半年報<b>30日</b>；年度報告<b>依決算法</b>（不是30日）。</p>
+<p>‧ 第29條已<b>刪除</b>，原「政府財物及固定負債不得列入平衡表」不再適用（見導論參）。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 參【第27～33條】</p>
+<p class="q">（　　）12. 非政府機關代理政府事務者，其報告與會計人員之報告發生差額時，應由下列何者加編差額解釋表？</p>
+<p class="opt">(A) 業務經辦人員　(B) 出納人員　(C) 會計人員　(D) 單位主管決定</p>
+<p class="src">【106年高考】</p>
+<p class="q">（　　）13. 各機關、基金之會計報告，及結（決）算編送期限，下列何者錯誤？</p>
+<p class="opt">(A) 日報應於次日內送出<br>(B) 月報、季報應於期間經過後15日內送出<br>(C) 半年度報告應於期間經過後30日內送出<br>(D) 國庫年度終結報告應於年度結束後30日內送出</p>
+<p class="src">【104年薦任升等】</p>
+<p class="q">（　　）14. 依會計法規定，半年度會計報告之送出期限為何？</p>
+<p class="opt">(A) 依決算法之規定　(B) 於期間經過後1個月內送出　(C) 於期間經過後15日內送出　(D) 於期間經過後30日內送出</p>
+<p class="src">【107年初考】</p>
+</td></tr></table>
+
+
+<h1>肆、會計科目之訂定 <span class="pg">【第34～39條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第三十四條至第三十九條</p>
+<p class="law"><b>第34條</b>　各種會計科目，依各種會計報告所應列入之事項定之，其名稱應顯示其事項之性質；如其科目性質與預算、決算科目相同者，其名稱應與預算、決算科目之名稱相合。</p>
+<p class="law"><b>第35條</b>　各種會計報告總表之會計科目，與其明細表之會計科目，應顯示其統制與隸屬之關係，總表會計科目為統制帳目，明細表會計科目為隸屬帳目。</p>
+<p class="law"><b>第36條</b>　<span class="no">①</span>為便利綜合彙編及比較計，中央政府各機關對於事項相同或性質相同之會計科目，應使其一致，對於互有關係之會計科目，應使之相合。<span class="no">②</span>地方政府對於與中央政府事項相同或性質相同之會計科目，應依中央政府之所定；對於互有關係之會計科目，應使合於中央政府之所定。</p>
+<p class="law"><b>第37條</b>　各種會計科目之訂定，應兼用收付實現事項及權責發生事項，為編定之對象。</p>
+<p class="law"><b>第38條</b>　各種會計科目，應依所列入之報告，並各按其科目之性質，分類編號。</p>
+<p class="law"><b>第39條</b>　<span class="no">①</span>會計科目名稱經規定後，非經各該政府主計機關或其負責主計人員之核定，不得變更。<span class="no">②</span>前項變更會計科目之核定，應通知該管審計機關。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>普會制度第23～26點：會計科目分為<b>資產、負債、淨資產、收入及支出</b>等5類，並設置<b>預算控制類</b>科目及政府年度會計報告必要之沖銷科目；為因應不同觀點之報告，搭配來源別、歲出機關別、政事別、業務或工作計畫別、性質別（經資門）、用途別、預算別等科目使用。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜會計基礎與會計科目設計</p>
+<p>第17條規範會計基礎，涉及事項何時認列。第37條規範科目設計。公庫撥入數、繳付公庫數等科目可反映實際收付，應收與應付科目則可反映已發生的權利、義務。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第36、39條</p>
+<p>‧ 地方政府：事項相同者「<b>應依</b>中央政府之所定」；互有關係者「應使<b>合於</b>中央政府之所定」，兩者用語不同。</p>
+<p>‧ 科目名稱變更：<b>各該政府主計機關</b>或其負責主計人員<b>核定</b>，並<b>通知該管審計機關</b>（通知，不是核定）。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 肆【第34～39條】</p>
+<p class="q">（　　）15. 會計科目名稱經規定後，其變更有何相關規定？</p>
+<p class="opt">(A) 經各該政府主計機關之核定者，得變更之，並應通知該管審計機關<br>(B) 經各該政府審計機關之核定者，得變更之<br>(C) 變更會計科目之核定，應通知各該政府主計機關<br>(D) 變更會計科目之核定，應通知上級政府主計機關</p>
+<p class="src">【105年高考】</p>
+<p class="q">（　　）16. 交通部臺灣鐵路管理局之會計科目名稱經規定後，變更時應如何辦理？</p>
+<p class="opt">(A) 由該局會計處處長核定，並報交通部、行政院主計總處及審計部備查<br>(B) 陳報交通部核定，並轉送行政院主計總處及審計部備查<br>(C) 由交通部會商審計部後，陳報行政院主計總處核定<br>(D) 陳報交通部轉陳行政院主計總處核定，並應通知審計部</p>
+<p class="src">【104年薦任升等】</p>
+<p class="q">（　　）17. 依會計法規定，各種會計科目之訂定，應兼用下列何事項，為編定之對象？</p>
+<p class="opt">(A) 收付實現事項　(B) 權責發生事項　(C) 修正權責發生事項　(D) 收付實現事項及權責發生事項</p>
+<p class="src">【105年地特5等】</p>
+</td></tr></table>
+
+
+<h1>伍、會計簿籍之分類 <span class="pg">【第40～44、77條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第四十條</p>
+<p class="law"><span class="no">①</span>會計簿籍分左列二類：</p>
+<p class="law i1">一、帳簿：謂簿籍之紀錄，為供給編造會計報告事實所必需者。</p>
+<p class="law i1">二、備查簿：謂簿籍之紀錄，不為編造會計報告事實所必需，而僅為便利會計事項之查考，或會計事務之處理者。</p>
+<p class="law"><span class="no">②</span>會計資料採用機器處理者，其機器貯存體中之紀錄，視為會計簿籍。</p>
+<p class="law"><span class="no">③</span>前項機器貯存體中之紀錄，應於處理完畢時，附置總數控制數碼，並另以書面標示，由主辦會計人員審核簽名或蓋章。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第四十一條至第四十四條</p>
+<p class="law"><b>第41條</b>　帳簿分左列二類：一、序時帳簿：謂以事項發生之時序為主而為紀錄者，其個別名稱謂之簿。二、分類帳簿：謂以事項歸屬之會計科目為主而為紀錄者，其個別名稱謂之帳。</p>
+<p class="law"><b>第42條</b>　序時帳簿及分類帳簿，均得就事實上之需要及便利，設立專欄。</p>
+<p class="law"><b>第43條</b>　序時帳簿分左列二種：一、普通序時帳簿：謂對於一切事項為序時登記，或並對於第二款帳項之結數為序時登記而設者，如分錄日記帳簿。二、特種序時帳簿：謂對於特種事項為序時登記而設者，如歲入收支登記簿、經費收支登記簿、現金出納登記簿及其他關於特種事項之登記簿。</p>
+<p class="law"><b>第44條</b>　<span class="no">①</span>分類帳簿分左列二種：一、總分類帳簿：謂對於一切事項為總括之分類登記，以編造會計報告總表為主要目的而設者。二、明細分類帳簿：謂對於特種事項為明細分類或分戶之登記，以編造會計報告明細表為主要目的而設者，如歲入明細帳簿、經費明細帳簿、財物明細帳簿及其他有關於特種事項之明細帳簿。<span class="no">②</span>設有明細分類帳簿者，總分類帳簿內應設統制帳目，登記各該明細分類帳之總數。但財物明細分類帳簿，除依第二十九條應列入平衡表者外，應另設統制帳簿。</p>
+<p class="law"><b>第77條</b>　採用機器處理會計資料者，因機器性能限制，得不適用第六十八條、第七十二條至第七十六條之規定。</p>
+</td></tr></table>
+<p class="src">註：第29條已於108年刪除，但經查全國法規資料庫現行條文（111年6月15日版），第44條第2項但書仍保留「除依第二十九條應列入平衡表者外」之文字，未配合修正。</p>
+
+<h2>乙、解析重點</h2>
+<p>採電腦處理的會計紀錄保存在機器貯存體中，第40條將其視為會計簿籍。若受機器性能限制，依第77條得免適用第68條及第72至76條關於空白頁行註銷、帳頁編號與更換等規定。處理完畢後，應附置總數控制數碼並由主辦會計人員審核簽章。</p>
+
+<p class="cap">▲ 歸納比較 4 · 會計簿籍分類體系</p>
+<table class="cmp">
+<tr><th style="width:14%">第一層</th><th style="width:16%">第二層</th><th style="width:20%">第三層</th><th>例子</th></tr>
+<tr><td class="f" rowspan="4">帳簿<br>（編報告所必需）</td><td rowspan="2">序時帳簿（<b>簿</b>）</td><td>普通序時帳簿</td><td>分錄日記帳簿</td></tr>
+<tr><td>特種序時帳簿</td><td>歲入收支登記簿、經費收支登記簿、<b>現金出納登記簿</b></td></tr>
+<tr><td rowspan="2">分類帳簿（<b>帳</b>）</td><td>總分類帳簿</td><td>編造報告<b>總表</b>用</td></tr>
+<tr><td>明細分類帳簿</td><td>歲入明細帳簿、經費明細帳簿、財物明細帳簿</td></tr>
+<tr><td class="f">備查簿<br>（僅便於查考）</td><td colspan="3">珍貴動產不動產備查簿等；<b>不屬於帳簿</b></td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜經費收支登記簿與經費明細帳簿</p>
+<p>第41條已給答案：序時帳簿的個別名稱叫「<b>簿</b>」，分類帳簿的個別名稱叫「<b>帳</b>」。</p>
+<p>‧ 經費<b>收支登記簿</b>：照日期一筆一筆記 → <b>特種序時帳簿</b>。</p>
+<p>‧ 經費<b>明細帳簿</b>：按科目分戶記 → <b>明細分類帳簿</b>。</p>
+<p>另外「分錄日記帳簿」記一切事項，所以是<b>普通</b>序時帳簿，不是特種。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 伍【第40～44條】</p>
+<p class="q">（　　）18. 有關會計簿籍之敍述，下列何者正確？</p>
+<p class="opt">(A) 會計簿籍分為序時帳簿及分類帳簿二類<br>(B) 政府主計機關對於單位會計之普通序時帳簿及明細分類帳簿，為求簡便計，得酌量合併編製<br>(C) 經費收支登記簿為普通序時帳簿<br>(D) 設有明細分類帳簿者，總分類帳簿內應設統制帳目</p>
+<p class="src">【107年高考】</p>
+<p class="q">（　　）19. 有關會計簿籍之敍述，何者正確？</p>
+<p class="opt">(A) 會計資料採用機器處理者，其機器貯存體中之紀錄，視為會計簿籍<br>(B) 備查簿：謂簿籍之紀錄，為供給編造會計報告事實所必需者<br>(C) 帳簿：謂簿籍之紀錄，不為編造會計報告事實所必需，而僅為便利會計事項之查考<br>(D) 帳簿分為序時帳簿、分類帳簿及調整帳簿3類</p>
+<p class="src">【109年地特5等】</p>
+<p class="q">（　　）20. 歲入收支登記簿及經費收支登記簿屬於下列何種帳簿？</p>
+<p class="opt">(A) 普通序時帳簿　(B) 特種序時帳簿　(C) 總分類帳簿　(D) 備查簿</p>
+<p class="src">【109年經濟部事業機構】</p>
+</td></tr></table>
+
+
+<h1>陸、會計簿籍之設置 <span class="pg">【第45～50條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第四十五條至第五十條</p>
+<p class="law"><b>第45條</b>　政府主計機關，對於總會計、單位會計、附屬單位會計及分會計之特種序時帳簿及明細分類帳簿，為求簡便計，得酌量合併編製。</p>
+<p class="law"><b>第46條</b>　<span class="no">①</span>關於各單位會計或附屬單位會計之帳簿，除應設置普通序時帳簿及總分類帳簿外，其特種序時帳簿及明細分類帳簿，應由各該政府主計機關，會同單位會計或附屬單位會計機關或基金之主管長官及主辦會計人員，按事實之需要，酌量設置之。<span class="no">②</span>各單位會計或附屬單位會計之備查簿，除主計機關認為應設置者外，各機關或基金主管長官及主辦會計人員，亦得按其需要情形，自行設置之。</p>
+<p class="law"><b>第47條</b>　各分會計之會計事務較繁者，其帳簿之種類，準用關於單位會計或附屬單位會計之規定；其會計事務較簡者，得僅設序時帳簿及其必需之備查簿。</p>
+<p class="law"><b>第48條</b>　各分會計機關，應就其序時帳簿之內容，按時抄送主管之單位會計機關或附屬單位會計機關列帳；其會計事務較繁者，得由主管之單位會計機關或附屬單位會計機關，商承各該政府主計機關及該管審計機關，使僅就其每期各科目之借方、貸方各項總數，抄送主管之單位會計機關或附屬單位會計機關列帳。</p>
+<p class="law"><b>第49條</b>　總會計之帳簿，應就其彙編會計總報告所需之記載設置之；其備查簿就其處理事務上之需要設置之。</p>
+<p class="law"><b>第50條</b>　管理特種財物機關，關於所管珍貴動產，應備索引、照相、圖樣及其他便於查對之暗記紀錄等備查簿；關於所管不動產，應備地圖、圖樣等備查簿；其程式由各該政府之主計機關定之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、中央總會計係以各類會計報告彙編產生報告，<b>並未設置帳簿</b>。普會制度第32、40點：簿籍應斟酌需要並力求簡化；各種帳簿應<b>按年設置</b>，同一會計年度應連續記載。</p>
+<p>二、「中央政府各機關珍貴動產不動產管理要點」：珍貴<b>動產</b>取得後應即分類、編號、<b>攝照製卡</b>建檔，登記於索引、照相、圖樣及暗記紀錄等備查簿；珍貴<b>不動產</b>應即分類、編號、辦理登記，並備<b>地圖、圖樣</b>等備查簿；兩者備查簿均<b>永久保存</b>。</p>
+
+<p class="cap">▲ 歸納比較 5 · 各種會計的帳簿設置彈性</p>
+<table class="cmp">
+<tr><th style="width:22%">會計組織</th><th>必設</th><th>酌設</th><th style="width:22%">備查簿</th></tr>
+<tr><td class="f">單位會計、附屬單位會計</td><td><b>普通序時帳簿、總分類帳簿</b></td><td>特種序時帳簿、明細分類帳簿（主計機關會同主管長官及主辦會計酌設）</td><td>主計機關認為應設者；亦得自行設置</td></tr>
+<tr><td class="f">分會計（事務較繁）</td><td colspan="2">準用單位會計或附屬單位會計之規定</td><td>同左</td></tr>
+<tr><td class="f">分會計（事務較簡）</td><td colspan="2">得<b>僅設序時帳簿</b></td><td>必需之備查簿</td></tr>
+<tr><td class="f">總會計</td><td colspan="2">就彙編會計總報告所需之記載設置</td><td>就處理事務上之需要設置</td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第45～50條</p>
+<p>‧ 第45條可「合併編製」的是<b>特種序時帳簿及明細分類帳簿</b>，不含普通序時帳簿與總分類帳簿。</p>
+<p>‧ 分會計事務較繁者，可只抄送各科目借貸總數，須「商承<b>各該政府主計機關</b>及<b>該管審計機關</b>」，不是財政機關。</p>
+<p>‧ 珍貴<b>動產</b>：索引、照相、圖樣、暗記；珍貴<b>不動產</b>：地圖、圖樣。程式由<b>各該政府主計機關</b>定之。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 陸【第45～50條】</p>
+<p class="q">（　　）21. 下列有關分會計的帳簿之敍述，何者錯誤？</p>
+<p class="opt">(A) 其會計事務較繁者，帳簿之種類，準用單位會計或附屬單位會計之規定<br>(B) 其會計事務較簡者，得僅設序時帳簿及其必需之備查簿<br>(C) 其序時帳簿之抄送列帳，應按時抄送主管之單位會計機關或附屬單位會計機關<br>(D) 會計事務較繁者，得經該政府主計與財政機關同意，僅就各科目借、貸總數抄送</p>
+<p class="src">【105年鐵特3級】</p>
+<p class="q">（　　）22. 臺中市政府文化資產處對所管珍貴動產應設置備查簿，該備查簿之程式由下列何者定之？</p>
+<p class="opt">(A) 行政院主計總處　(B) 臺中市政府文化局　(C) 臺中市政府主計處　(D) 臺中市政府</p>
+<p class="src">【104年薦任升等】</p>
+<p class="q">（　　）23. 各單位會計與附屬單位會計之帳簿，下列何者屬必要設置之帳簿？①總分類帳簿②明細分類帳簿③普通序時帳簿④特種序時帳簿⑤備查簿</p>
+<p class="opt">(A) ①②　(B) ①③　(C) ②③　(D) ①③⑤</p>
+<p class="src">【106年經濟部事業機構】</p>
+</td></tr></table>
+
+
+<h1>柒、會計憑證之分類及傳票生效要件 <span class="pg">【第51～57條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十一條</p>
+<p class="law">會計憑證分左列二類：</p>
+<p class="law i1">一、原始憑證：謂證明事項經過而為造具記帳憑證所根據之憑證。</p>
+<p class="law i1">二、記帳憑證：謂證明處理會計事項人員責任，而為記帳所根據之憑證。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十二條</p>
+<p class="law"><span class="no">①</span>原始憑證為左列各種：</p>
+<p class="law i1">一、預算書表及預算準備金依法支用與預算科目間經費依法流用之核准命令。</p>
+<p class="law i1">二、現金、票據、證券之收付及移轉等書據。</p>
+<p class="law i1">三、薪俸、工餉、津貼、旅費、卹養金等支給之表單及收據。</p>
+<p class="law i1">四、財物之購置、修繕；郵電、運輸、印刷、消耗等各項開支發票及收據。</p>
+<p class="law i1">五、財物之請領、供給、移轉、處置及保管等單據。</p>
+<p class="law i1">六、買賣、貸借、承攬等契約及其相關之單據。</p>
+<p class="law i1">七、存匯、兌換及投資等證明單據。</p>
+<p class="law i1">八、歸公財物、沒收財物、贈與或遺贈之財物目錄及證明書類。</p>
+<p class="law i1">九、稅賦捐費等之徵課、查定，或其他依法處理之書據、票照之領發，及徵課物處理之書據。</p>
+<p class="law i1">十、罰款、賠款經過之書據。</p>
+<p class="law i1">十一、公債發行之法令、還本付息之本息票及處理申溢折扣之計算書表。</p>
+<p class="law i1">十二、成本計算之單據。</p>
+<p class="law i1">十三、盈虧處理之書據。</p>
+<p class="law i1">十四、會計報告書表。</p>
+<p class="law i1">十五、其他可資證明第三條各款事項發生經過之單據或其他書類。</p>
+<p class="law"><span class="no">②</span>前項各種憑證之附屬書類，視為各該憑證之一部。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十三條、第五十四條</p>
+<p class="law"><b>第53條</b>　<span class="no">①</span>記帳憑證為左列三種：一、收入傳票。二、支出傳票。三、轉帳傳票。<span class="no">②</span>前項各種傳票，應以顏色或其他方法區別之。</p>
+<p class="law"><b>第54條</b>　各種傳票應為左列各款之記載：一、年、月、日。二、會計科目。三、事由。四、本位幣數目，不以本位幣計數者，其貨幣之種類、數目及折合率。五、有關之原始憑證種類、張數及其號數、日期。六、傳票號數。七、其他備查要點。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十五條</p>
+<p class="law"><span class="no">①</span>各種傳票，非經左列各款人員簽名或蓋章不生效力。但實際上無某款人員者缺之：</p>
+<p class="law i1">一、機關長官或其授權代簽人。</p>
+<p class="law i1">二、業務之主管或主辦人員。</p>
+<p class="law i1">三、主辦會計人員或其授權代簽人。</p>
+<p class="law i1">四、關係現金、票據、證券出納保管移轉之事項時，主辦出納事務人員。</p>
+<p class="law i1">五、關係財物增減、保管、移轉之事項時，主辦經理事務人員。</p>
+<p class="law i1">六、製票員。</p>
+<p class="law i1">七、登記員。</p>
+<p class="law"><span class="no">②</span>前項第一款、第二款、第五款人員，已於原始憑證上為負責之表示者，傳票上得不簽名或蓋章。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十六條、第五十七條</p>
+<p class="law"><b>第56條</b>　原始憑證，其格式合於記帳憑證之需要者，得用作記帳憑證，免製傳票。</p>
+<p class="law"><b>第57條</b>　各分會計機關之事務簡單者，其原始憑證經機關長官及主辦會計人員簽名或蓋章後，得用作記帳憑證，免製傳票。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、普會制度第51點再將原始憑證分為3類：</p>
+<table class="cmp">
+<tr><th style="width:18%">類別</th><th>意義</th><th style="width:30%">例子</th></tr>
+<tr><td class="f">外來憑證</td><td>自本機關<b>以外</b>之機關（構）、法人、團體或個人取得者</td><td>購物發票、收據</td></tr>
+<tr><td class="f">對外憑證</td><td>由本機關製作，<b>給予</b>本機關以外者</td><td>銷貨發票、稅賦捐費徵課單據</td></tr>
+<tr><td class="f">內部憑證</td><td>由本機關製作<b>自行使用</b>者</td><td>折舊分攤表、成本計算之單據</td></tr>
+</table>
+<p>二、普會制度第53點：支出採集中方式處理者，支出傳票與轉帳傳票得分別以<b>付款憑單</b>與<b>轉帳憑單</b>替代。</p>
+<p>三、<b>單式傳票</b>以<b>會計科目</b>為單位，每科目一張（現金收入、現金支出、轉帳收入、轉帳支出傳票）；<b>複式傳票</b>以<b>交易</b>為單位，每筆交易一張（現金收入、現金支出、分錄轉帳、現金轉帳傳票）。</p>
+<p>四、<b>政府支出憑證處理要點</b>重點：員工應本<b>誠信原則</b>對支出憑證真實性負責，網路下載列印者由經手人簽名；收據應記明受領事由、實收數額、支付機關名稱、受領人姓名（名稱）地址及身分證或統一編號、開立日期；憑證遺失者檢附影本由經手人註明原因，無法取得者由經手人開具<b>支出證明單</b>；審核時由事項主管及經手人、主辦會計、機關長官簽名（後兩者已在傳票負責者得免）。</p>
+<p>五、<b>政府支出憑證電子化處理要點</b>：網路作業環境應採電子認證安全管制；檔案以<b>唯讀方式</b>儲存，建立備份及還原機制，除業務需要外<b>不另印製紙本</b>；損壞無法修復或重製時，依會計法第109條及檔案電子儲存管理實施辦法辦理。</p>
+
+<p class="cap">▲ 歸納比較 6 · 傳票上可免簽章的人（第55條第2項）</p>
+<table class="cmp">
+<tr><th style="width:8%">款</th><th style="width:36%">人員</th><th>已在原始憑證負責，傳票可免簽？</th></tr>
+<tr><td>一</td><td class="f">機關長官或其授權代簽人</td><td><b>可</b></td></tr>
+<tr><td>二</td><td class="f">業務之主管或主辦人員</td><td><b>可</b></td></tr>
+<tr><td>三</td><td class="f">主辦會計人員或其授權代簽人</td><td>不可</td></tr>
+<tr><td>四</td><td class="f">主辦出納事務人員</td><td>不可</td></tr>
+<tr><td>五</td><td class="f">主辦經理事務人員</td><td><b>可</b></td></tr>
+<tr><td>六、七</td><td class="f">製票員、登記員</td><td>不可</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜傳票免簽章的適用人員與條件</p>
+<p>原始憑證（例如採購發票、驗收單）上，長官核准、業務主管證明用途、經理事務人員證明財物入庫，<b>他們的責任已經在原始憑證上表示過了</b>，傳票只是再記一次。</p>
+<p>但傳票本身是<b>會計人員</b>製作、<b>出納人員</b>據以付款的文件，他們的責任正是在傳票這一關才發生，所以不能免。記法：「<b>一、二、五可免</b>」。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第51～57條</p>
+<p>‧ 「<b>會計報告書表</b>」是原始憑證（第52條第14款），不是記帳憑證；轉帳傳票才是記帳憑證。</p>
+<p>‧ 記帳憑證只有<b>收入、支出、轉帳</b>傳票3種，沒有「分類傳票」。</p>
+<p>‧ 附屬書類「<b>視為</b>」各該憑證之一部。</p>
+<p>‧ 免製傳票兩條路：格式合於記帳憑證需要（第56條）；分會計事務簡單，經<b>機關長官及主辦會計</b>簽章（第57條）。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 柒【第51～57條】</p>
+<p class="q">（　　）24. 下列何者為原始憑證？①承攬契約②會計報告書表③收入傳票④盈虧處理之書據⑤預算科目間經費依法流用之核准命令⑥贈與或遺贈之財物目錄及證明書類</p>
+<p class="opt">(A) ②④⑤⑥　(B) ①②④⑤⑥　(C) ①③④⑥　(D) ①④⑤</p>
+<p class="src">【108年地特3等】</p>
+<p class="q">（　　）25. 下列何者並非會計法所稱之記帳憑證？</p>
+<p class="opt">(A) 分類傳票　(B) 支出傳票　(C) 轉帳傳票　(D) 收入傳票</p>
+<p class="src">【106年初考】</p>
+<p class="q">（　　）26. 各種傳票依規定需經相關人員簽名或蓋章，但某些人員已於原始憑證上為負責之表示者，傳票上得不簽名或蓋章，該些人員包括：</p>
+<p class="opt">(A) 機關長官或其授權代簽人、業務之主管或主辦人員、主辦出納事務人員<br>(B) 主辦出納事務人員、主辦經理事務人員、登記員<br>(C) 機關長官或其授權代簽人、業務之主管或主辦人員、主辦經理事務人員<br>(D) 業務之主管或主辦人員、主辦經理事務人員、登記員</p>
+<p class="src">【107年高考】</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄 1　本章重點一頁整理</h1>
+<table class="cmp">
+<tr><th style="width:14%">條文</th><th>一句話重點</th></tr>
+<tr><td class="f">第17條</td><td>先定<b>會計報告</b>，再定科目、簿籍、報表、憑證；性質相同者一致規定；除<b>公庫出納</b>外採權責發生制。</td></tr>
+<tr><td class="f">第18條</td><td>中央總會計：主計總處設計核定；地方：各該主計機關設計、上級主計機關核定；各機關：會計機構設計，各該政府主計機關核定，並會商<b>審計機關</b>。</td></tr>
+<tr><td class="f">第20條</td><td>不得牴觸會計、預算、決算、審計、國庫、統計等法，且下層不得牴觸上層制度。</td></tr>
+<tr><td class="f">第21～23條</td><td>對外（行政、監察、立法、人民）／對內；靜態9表、動態13表。</td></tr>
+<tr><td class="f">第25條</td><td>單位會計報告按<b>基金別</b>編造。</td></tr>
+<tr><td class="f">第31條</td><td>非政府機關代理政府事務之差額 → <b>會計人員</b>加編差額解釋表。</td></tr>
+<tr><td class="f">第32條</td><td>日報次日、五日報2日、週旬報3日、月季報15日、半年報30日；年報依決算法。</td></tr>
+<tr><td class="f">第37、39條</td><td>科目兼用收付實現及權責發生事項；名稱變更由主計機關核定並<b>通知審計機關</b>。</td></tr>
+<tr><td class="f">第40～44條</td><td>簿籍＝帳簿＋備查簿；帳簿＝序時（普通、特種）＋分類（總分類、明細）；機器貯存體視為簿籍。</td></tr>
+<tr><td class="f">第46、47條</td><td>單位會計必設<b>普通序時帳簿、總分類帳簿</b>；事務較簡之分會計得僅設序時帳簿及必需之備查簿。</td></tr>
+<tr><td class="f">第50條</td><td>珍貴動產：索引、照相、圖樣、暗記；不動產：地圖、圖樣；程式由主計機關定之。</td></tr>
+<tr><td class="f">第51～57條</td><td>原始憑證15種；記帳憑證3種傳票；第1、2、5款人員已在原始憑證負責者傳票免簽；兩種免製傳票情形。</td></tr>
+</table>
+
+
+<h1 class="pb">附錄 2　練習選擇題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>D</b></td><td>第17條第1項：先將所需要之會計報告決定後，據以訂定其他項目。</td></tr>
+<tr><td>2</td><td><b>D</b></td><td>第17條第3項：除公庫出納會計外，應採用權責發生制。</td></tr>
+<tr><td>3</td><td><b>C</b></td><td>高雄地院屬中央政府機關，由中央政府之主計機關（行政院主計總處）核定頒行。</td></tr>
+<tr><td>4</td><td><b>D</b></td><td>臺北市立國小屬臺北市政府，由臺北市政府主計處核定頒行。</td></tr>
+<tr><td>5</td><td><b>A</b></td><td>第18條第2項：各該政府主計機關設計，呈經上級主計機關（主計總處）核定頒行。</td></tr>
+<tr><td>6</td><td><b>A</b></td><td>第18條第5項：釋例與一致規定由各該會計制度之頒行機關核定。</td></tr>
+<tr><td>7</td><td><b>D</b></td><td>第20條係下層不得牴觸上層；單位會計是附屬單位會計的上層，不會受附屬單位會計拘束。</td></tr>
+<tr><td>8</td><td><b>A</b></td><td>平衡表、現金結存表、證券結存表為靜態；累計表、出納表為動態。</td></tr>
+<tr><td>9</td><td><b>B</b></td><td>成本計算表、盈虧撥補表、徵課物出納表為動態；平衡表、現金結存表、固定負債目錄為靜態。</td></tr>
+<tr><td>10</td><td><b>D</b></td><td>第21條第2款：對內報告按預算執行情形、業務進度及管理控制與決策之需要；立法需要屬對外報告。</td></tr>
+<tr><td>11</td><td><b>A</b></td><td>第25條：按基金別編造之。</td></tr>
+<tr><td>12</td><td><b>C</b></td><td>第31條：由會計人員加編差額解釋表。</td></tr>
+<tr><td>13</td><td><b>D</b></td><td>第32條所列為各單位會計機關之報告；年度報告依決算法，會計法並無「國庫年度終結報告30日內送出」之規定。</td></tr>
+<tr><td>14</td><td><b>D</b></td><td>第32條第1項第5款：半年度報告於期間經過後30日內送出。</td></tr>
+<tr><td>15</td><td><b>A</b></td><td>第39條：經各該政府主計機關或其負責主計人員核定，並通知該管審計機關。</td></tr>
+<tr><td>16</td><td><b>D</b></td><td>臺鐵局屬中央政府，由主計總處核定；交通部為上級機關代轉；變更應通知審計部。</td></tr>
+<tr><td>17</td><td><b>D</b></td><td>第37條：應兼用收付實現事項及權責發生事項。</td></tr>
+<tr><td>18</td><td><b>D</b></td><td>第44條第2項。(A) 簿籍分帳簿與備查簿；(B) 得合併者為特種序時帳簿及明細分類帳簿；(C) 為特種序時帳簿。</td></tr>
+<tr><td>19</td><td><b>A</b></td><td>第40條第2項。(B)(C) 定義對調；(D) 帳簿只分序時與分類二類。</td></tr>
+<tr><td>20</td><td><b>B</b></td><td>第43條第2款明列為特種序時帳簿之例。</td></tr>
+<tr><td>21</td><td><b>D</b></td><td>第48條：應商承各該政府<b>主計機關</b>及該管<b>審計機關</b>，不是財政機關。</td></tr>
+<tr><td>22</td><td><b>C</b></td><td>第50條：程式由各該政府之主計機關（臺中市政府主計處）定之。</td></tr>
+<tr><td>23</td><td><b>B</b></td><td>第46條第1項：應設置普通序時帳簿及總分類帳簿；其餘酌量設置。</td></tr>
+<tr><td>24</td><td><b>B</b></td><td>承攬契約（第6款）、會計報告書表（第14款）、盈虧處理之書據（第13款）、流用核准命令（第1款）、遺贈財物目錄（第8款）皆為原始憑證；收入傳票是記帳憑證。</td></tr>
+<tr><td>25</td><td><b>A</b></td><td>第53條：記帳憑證僅收入、支出、轉帳傳票。</td></tr>
+<tr><td>26</td><td><b>C</b></td><td>第55條第2項：第1款機關長官、第2款業務主管或主辦人員、第5款主辦經理事務人員。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#ch1">← 第一章 通則</a><a href="#ch3">第三章 會計事務程序 →</a></div>
+    </section>
+
+    <section id="view-ch3" data-view="ch3" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　第三章　會計事務程序</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（三）：記帳與過帳 · 結帳 · 錯誤更正 · 帳簿保存 · 檔案年限 · 報告分送</p>
+
+<h2>本章學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:24%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>第58～62條</td><td>沒有原始憑證可以記帳嗎？什麼可以每月彙總造傳票？特種序時帳簿怎麼過帳？</td></tr>
+<tr><td class="f">貳</td><td>第63～66條</td><td>何時結總、何時結帳？結帳前要做哪些整理紀錄？餘額怎麼結轉？</td></tr>
+<tr><td class="f">參</td><td>第67～71條</td><td>寫錯了怎麼改？誰改？傳票與原始憑證怎麼裝訂保管？</td></tr>
+<tr><td class="f">肆</td><td>第72～78條</td><td>帳簿首頁、末頁誰簽章？活頁帳簿的限制？何時可以換新帳簿？</td></tr>
+<tr><td class="f">伍</td><td>第79～82條</td><td>會計報告誰簽章？月報如何公告？</td></tr>
+<tr><td class="f">陸</td><td>第83～84條</td><td>憑證、報告、帳簿各保存幾年？屆滿怎麼處理？</td></tr>
+<tr><td class="f">柒</td><td>第85～92條</td><td>會計報告一路送到哪裡？總報告與特種公務報告不符，由誰核對？</td></tr>
+<tr><td class="f">捌</td><td>第93～94條</td><td>兼辦特種公務、代理政府事務者如何辦會計？會計與非會計事務誰劃分？</td></tr>
+</table>
+
+
+<h1>壹、記帳原則及過帳 <span class="pg">【第58～62條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第五十八條至第六十一條</p>
+<p class="law"><b>第58條</b>　會計人員非根據合法之原始憑證，不得造具記帳憑證；非根據合法之記帳憑證，不得記帳。但整理結算及結算後轉入帳目等事項無原始憑證者，不在此限。</p>
+<p class="law"><b>第59條</b>　大宗財物之增減、保管、移轉，應隨時造具記帳憑證。但零星消費品、材料品之付出，得每月分類彙總造具記帳憑證。</p>
+<p class="law"><b>第60條</b>　公營事業有永久性財物之折舊，與無永久性財物之盤存消耗，應以成本為標準；其成本無可稽考者，以初次入帳時之估價為標準。</p>
+<p class="law"><b>第61條</b>　成本會計事務，對於成本要素，應為詳備之紀錄及精密之計算，分別編造明細報告表，並比較分析其增減原因。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六十二條</p>
+<p class="law"><span class="no">①</span>除本條第二項及第三項之轉帳傳票外，各種傳票於記入序時帳簿時，設有明細分類帳簿者，並應同時記入關係之明細分類帳簿。</p>
+<p class="law"><span class="no">②</span>特種序時帳簿之按期結算，應過入總分類帳簿者，應先以其結數造具轉帳傳票，記入普通序時帳簿，始行過帳。但特種序時帳簿僅為現金出納序時帳簿一種者，得直接過入總分類帳簿。</p>
+<p class="law"><span class="no">③</span>公務財物、特種財物，應就其明細分類帳簿按期結算，以其結數造具轉帳傳票，過入另設之統制帳簿。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、依普通公務單位會計制度第44、45、54、56點，經辦人員應提供合法的原始憑證。收入、支出及財物增減或移轉時，應隨時造具記帳憑證。零用金支用、材料使用及呆稅（帳）沖銷，得定期分類彙總造具。帳簿應詳實、及時記載，做到日清月結。</p>
+<p>二、過帳是按借貸方向及金額，將序時帳簿中的分錄轉記至分類帳相關帳戶。會計人員依傳票及付款、轉帳憑單記入序時帳簿，再過入總分類帳。總分類帳依第四級會計科目設置帳戶。</p>
+
+<p class="cap">▲ 歸納比較 1 · 第62條三條過帳路徑</p>
+<table class="cmp">
+<tr><th style="width:24%">情形</th><th>路徑</th></tr>
+<tr><td class="f">一般傳票（第1項）</td><td>記入序時帳簿，<b>同時</b>記入關係之明細分類帳簿</td></tr>
+<tr><td class="f">特種序時帳簿結數（第2項）</td><td>以結數造<b>轉帳傳票</b> → 記入<b>普通序時帳簿</b> → 過入總分類帳簿</td></tr>
+<tr><td class="f">特種序時帳簿只有現金出納一種（第2項但書）</td><td><b>直接</b>過入總分類帳簿</td></tr>
+<tr><td class="f">公務財物、特種財物（第3項）</td><td>明細分類帳簿按期結算 → 以結數造轉帳傳票 → 過入<b>另設之統制帳簿</b></td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第58～62條</p>
+<p>‧ 第58條<b>有例外</b>：整理結算及結算後轉入帳目等無原始憑證者。考題說「沒有例外」就是錯的。</p>
+<p>‧ 可每月彙總的只有<b>零星消費品、材料品之付出</b>；大宗財物要隨時。說「所有財物均應隨時」是錯的。</p>
+<p>‧ 第60條以<b>成本</b>為標準（不是市價、公允價值、淨變現價值）；無可稽考者以<b>初次入帳時之估價</b>。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 壹【第58～62條】</p>
+<p class="q">（　　）1. 公有營業有永久性財物之折舊，與無永久性財物之盤存消耗，應以何者為標準？</p>
+<p class="opt">(A) 成本　(B) 售價　(C) 公允價值　(D) 淨變現價值</p>
+<p class="src">【107年高考】</p>
+<p class="q">（　　）2. 下列有關會計事務程序之敍述，何者正確？</p>
+<p class="opt">(A) 會計人員非根據合法之原始憑證，不得造具記帳憑證；非根據合法之記帳憑證，不得記帳，沒有例外之規定<br>(B) 各機關之大宗財物之增減、保管、移轉，與零星消費品、材料品之付出等，均應隨時造具記帳憑證<br>(C) 特種序時帳簿僅為現金出納序時帳簿一種者，得直接過入總分類帳簿<br>(D) 除總會計與單位會計之分會計二者外，序時帳簿與分類帳簿不得同時並用活頁</p>
+<p class="src">【109年鐵特3級】</p>
+<p class="q">（　　）3. 會計事務程序之敍述，下列何者錯誤？</p>
+<p class="opt">(A) 會計人員非根據合法之原始憑證，不得造具記帳憑證；非根據合法之記帳憑證，不得記帳<br>(B) 所有財物之增減、保管、移轉，應隨時造具記帳憑證<br>(C) 各種分類帳簿之各帳目所有預收、預付、到期未收、到期未付及其他權責已發生而帳簿尚未登記之各事項，均應於結帳前先為整理紀錄<br>(D) 會計報告、帳簿及重要備查簿或憑證內之記載，繕寫錯誤而當時發現者，應由原登記員劃線註銷更正</p>
+<p class="src">【108年地特5等】</p>
+</td></tr></table>
+
+
+<h1>貳、序時帳簿之結總及辦理結帳或結算 <span class="pg">【第63～66條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六十三條、第六十四條</p>
+<p class="law"><b>第63條</b>　<span class="no">①</span>各種特種序時帳簿，應於左列時期結總：一、每月終了時，遇事實上有需要者，得每月、每週、每五日或每日為之，均應另為累計之總數。二、各種會計事務之主管或主辦人員交代時。三、機關或基金結帳時。<span class="no">②</span>普通序時帳簿，於每月終了時、機關結帳時或主辦會計人員交代時，亦應結總。</p>
+<p class="law"><b>第64條</b>　各機關或基金有左列情形之一時，應辦理結帳或結算：一、會計年度終了時。二、有每月、每季或每半年結算一次之必要者，其每次結算時。三、非常事件，除第一款、第二款情形外，其事件終了時。四、機關裁撤或基金結束時。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六十五條、第六十六條</p>
+<p class="law"><b>第65條</b>　<span class="no">①</span>各種分類帳簿之各帳目所有預收、預付、到期未收、到期未付及其他權責已發生而帳簿尚未登記之各事項，均應於結帳前先為整理紀錄。<span class="no">②</span>公營事業之會計事務，除為前項之整理紀錄外，對於呆帳、折舊、耗竭、攤銷，及材料、用品、產品等盤存，與內部損益銷轉，或其他應為整理之事項，均應為整理紀錄。<span class="no">③</span>各單位會計或附屬單位會計有所屬分會計者，應俟其所屬分會計之結帳報告到達後，再為整理紀錄。但所屬分會計因特殊事故，其結帳報告不能按期到達時，各該單位會計或附屬單位會計得先行整理結帳，加註說明，俟所屬分會計報告到達後，再行補作紀錄，整理結帳。</p>
+<p class="law"><b>第66條</b>　各帳目整理後，其借方、貸方之餘額，應依下列規定處理之：一、公務之會計事務，各收支帳目之餘額，應分別結入歲入預算及經費預算之各種帳目，以計算歲入及經費之餘絀。二、公營事業之會計事務，各損益帳目之餘額，應結入總損益之各種帳目，以為損益之計算。三、前二款會計事務，有關資產、負債性質各帳目之餘額，應轉入下年度或下期各該帳目。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<table class="cmp">
+<tr><th style="width:14%">名詞</th><th>意義</th><th style="width:30%">時點</th></tr>
+<tr><td class="f">結總</td><td>對帳簿內各會計科目之金額作<b>累計之總數</b></td><td>每月終了、交代時、結帳時（普會制度第48點：總分類帳及明細分類帳每月終了或年終結帳時結總1次）</td></tr>
+<tr><td class="f">結帳</td><td>期末結清各分類帳戶，結轉本期損益至下期或下年度</td><td>會計年度終了、非常事件終了（特別預算期滿）、機關裁撤或基金結束</td></tr>
+<tr><td class="f">結算</td><td>對一個時期內所有收支情況進行總結及核算</td><td>年度中有每月、每季或每半年辦理之必要時</td></tr>
+</table>
+
+<p>普會制度第65點：會計年度終了，收入、支出科目互抵後之餘額結轉至<b>淨資產</b>；資產、負債及淨資產類科目餘額轉入下年度。年終結帳分錄如下：</p>
+<table class="cmp">
+<tr><th style="width:50%">借方</th><th>貸方</th></tr>
+<tr><td>ＸＸ收入<br>公庫撥入數<br>資產負債淨額（借餘時）</td><td>ＸＸ支出<br>繳付公庫數<br>資產負債淨額（貸餘時）</td></tr>
+</table>
+<p class="src">「資產負債淨額」係資產減除負債後之餘額，增加記入貸方，減少記入借方。</p>
+
+<p class="cap">▲ 歸納比較 2 · 結總時點 vs. 結帳時點</p>
+<table class="cmp">
+<tr><th style="width:30%">事件</th><th>特種序時帳簿結總</th><th>普通序時帳簿結總</th><th>辦理結帳或結算</th></tr>
+<tr><td class="f">每月終了</td><td>○（需要時得每週、五日、每日）</td><td>○</td><td>有必要時結算</td></tr>
+<tr><td class="f">各種會計事務主管或主辦人員交代</td><td>○</td><td>僅<b>主辦會計人員</b>交代時</td><td><b>✕</b></td></tr>
+<tr><td class="f">機關或基金結帳</td><td>○</td><td>○</td><td>—</td></tr>
+<tr><td class="f">會計年度終了</td><td>—</td><td>—</td><td>○</td></tr>
+<tr><td class="f">非常事件終了</td><td>—</td><td>—</td><td>○</td></tr>
+<tr><td class="f">機關裁撤、基金結束</td><td>—</td><td>—</td><td>○（裁撤或結束當日）</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜人員交代時的結總與法定結帳時點</p>
+<p>交代時需要的是一個「<b>交接點</b>」：前任到哪一筆為止負責、後任從哪一筆開始負責。把帳簿<b>結總</b>（算出累計數）就足以劃清責任，不必把整個年度的帳結清。結帳會結轉損益、結清帳戶，只在年度終了、事件終了或機關基金結束這類「<b>會計期間真的結束</b>」時才做。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第63～66條</p>
+<p>‧ 「得每月、每週、每5日或每日結總」只適用<b>特種</b>序時帳簿；普通序時帳簿沒有這個彈性。</p>
+<p>‧ 結帳時機沒有「基金設立時」「機關首長異動時」「主管人員交代時」。</p>
+<p>‧ 分會計報告因特殊事故不能按期到達，單位會計<b>得先行整理結帳</b>，加註說明，事後補作紀錄。</p>
+<p>‧ 公務：收支餘額結入<b>歲入預算及經費預算</b>帳目算餘絀；公營事業：損益餘額結入<b>總損益</b>帳目。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 貳【第63～66條】</p>
+<p class="q">（　　）4. 有關帳簿結總之規定，下列敍述何者錯誤？</p>
+<p class="opt">(A) 普通序時帳簿遇事實上有需要者，得每月、每週、每5日或每日結總<br>(B) 特種序時帳簿於每月終了時結總<br>(C) 各種會計事務之主管或主辦人員交代時，特種序時帳簿應結總<br>(D) 主辦會計人員交代時，普通序時帳簿應結總</p>
+<p class="src">【107年高考】</p>
+<p class="q">（　　）5. 各機關或基金應辦理結帳或結算之情形不包括下列何者？</p>
+<p class="opt">(A) 會計年度終了時<br>(B) 有每月、每季或每半年結算1次之必要者，其每次結算時<br>(C) 機關首長異動時<br>(D) 機關裁撤或基金結束時</p>
+<p class="src">【108年地特5等】</p>
+<p class="q">（　　）6. 下列有關整理紀錄規定的敍述，何者錯誤？</p>
+<p class="opt">(A) 各種分類帳簿之各帳目預收、預付、到期未收、到期未付及其他權責已發生而帳簿尚未登記之各事項，均應於結帳前先為整理紀錄<br>(B) 公有營業除為(A)選項之整理外，對呆帳、折舊、耗竭、攤銷，及材料、用品、產品等盤存，與內部損益銷轉時，均應為整理紀錄<br>(C) 各單位會計或附屬單位會計有所屬分會計者，應俟其所屬分會計之結帳報告到達後，再為整理紀錄<br>(D) 所屬分會計因特殊事故不能按期送達時，各該單位會計或附屬單位會計不得先行整理結帳，須俟分會計報告到達後，再作整理結帳</p>
+<p class="src">【107年鐵特3級】</p>
+</td></tr></table>
+
+
+<h1>參、帳務錯誤之更正及原始憑證之保管 <span class="pg">【第67～71條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六十七條、第六十八條</p>
+<p class="law"><b>第67條</b>　<span class="no">①</span>會計報告、帳簿及重要備查帳或憑證內之記載，繕寫錯誤而當時發現者，應由原登記員劃線註銷更正，於更正處簽名或蓋章證明，不得挖補、擦、刮或用藥水塗滅。<span class="no">②</span>前項錯誤，於事後發現，而其錯誤不影響結數者，應由查覺人將情形呈明主辦會計人員，由主辦會計人員依前項辦法更正之；其錯誤影響結數者，另製傳票更正之。採用機器處理會計資料或貯存體之錯誤，其更正辦法由中央主計機關另定之。<span class="no">③</span>因繕寫錯誤而致公庫受損失者，關係會計人員應負連帶損害賠償責任。</p>
+<p class="law"><b>第68條</b>　帳簿及重要備查簿內，如有重揭兩頁，致有空白時，將空白頁劃線註銷；如有誤空一行或二行，一列或二列者，應將誤空之行列劃線註銷，均應由登記員及主辦會計人員簽名或蓋章證明。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第六十九條至第七十一條</p>
+<p class="law"><b>第69條</b>　各傳票入帳後，應依照類別與日期號數之順序，彙訂成冊，另加封面，並於封面詳記起訖之年、月、日、張數及號數，由會計人員保存備核。</p>
+<p class="law"><b>第70條</b>　<span class="no">①</span>原始憑證，除依法送審計機關審核者外，應逐一標註傳票編號，附同傳票，依前條規定辦理；其不附入傳票保管者，亦應標註傳票編號，依序黏貼整齊，彙訂成冊，另加封面，並於封面詳記起訖之年、月、日、頁數及號數，由主辦會計人員於兩頁間中縫與每件黏貼邊縫，加蓋騎縫印章，由會計人員保存備核。但原始憑證便於分類裝訂成冊者，得免黏貼。<span class="no">②</span>依第九條集中處理會計事務者，其原始憑證之整理及保管，得由中央主計機關另訂辦法處理之。</p>
+<p class="law"><b>第71條</b>　左列各種原始憑證，不適用前條之規定。但仍應於前條冊內註明其保管處所及其檔案編號，或其他便於查對之事實：一、各種契約。二、應另歸檔案之文書及另行訂冊之報告書表。三、應留待將來使用之存取或保管現金、票據、證券及財物之憑證。四、應轉送其他機關之文件。五、其他事實上不能或不應黏貼訂冊之文件。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、普會制度「電腦處理會計業務」重點：採用主計總處開發之<b>共通性會計資訊系統</b>者依其作業規定；資訊單位對會計資料負<b>保密</b>之責；輸入或查詢者應經主管核准建立帳戶及安全密碼，職務變更時應立即消除；重要資料建立備份，<b>正式檔及備用檔分置兩地</b>保存；會計單位應將電腦產出資料與原輸入憑證核對。</p>
+<p>二、主計總處「各機關採用電子方式處理會計資料或貯存體之錯誤更正要點」：錯誤指<b>輸入資料錯誤、程式設計錯誤、電腦操作錯誤及電腦故障</b>。輸入錯誤由<b>原製單人員</b>更正傳票或表單，經部門權責人員核章後更正；程式錯誤由程式維護部門更正；影響貯存體資料者，會計部門以書面通知資料處理部門將錯誤資料<b>恢復至更新前之狀況</b>。</p>
+
+<p class="cap">▲ 歸納比較 3 · 繕寫錯誤的更正方式（第67條）</p>
+<table class="cmp">
+<tr><th style="width:28%">情形</th><th style="width:22%">由誰更正</th><th>方法</th></tr>
+<tr><td class="f">當時發現</td><td><b>原登記員</b></td><td>劃線註銷更正，於更正處簽名或蓋章；不得挖補、擦、刮或藥水塗滅</td></tr>
+<tr><td class="f">事後發現、<b>不影響</b>結數</td><td>查覺人呈明 → <b>主辦會計人員</b></td><td>同上，劃線註銷更正</td></tr>
+<tr><td class="f">事後發現、<b>影響</b>結數</td><td>—</td><td><b>另製傳票</b>更正</td></tr>
+<tr><td class="f">機器處理資料或貯存體之錯誤</td><td colspan="2">更正辦法由<b>中央主計機關</b>另定</td></tr>
+<tr><td class="f">致公庫受損失</td><td colspan="2">關係<b>會計人員</b>負<b>連帶</b>損害賠償責任</td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第67～71條</p>
+<p>‧ 當時發現由「<b>原登記員</b>」改，不是主辦會計人員。</p>
+<p>‧ 空白頁、誤空行列：劃線註銷，由<b>登記員及主辦會計人員</b>簽章（不是機關長官或見證人）。</p>
+<p>‧ 騎縫印章由<b>主辦會計人員</b>加蓋。</p>
+<p>‧ 契約、應轉送其他機關之文件等5類原始憑證<b>不適用</b>黏貼訂冊，但要在冊內註明保管處所及檔案編號。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 參【第67～71條】</p>
+<p class="q">（　　）7. 會計報告、帳簿及重要備查帳或憑證内之記載，繕寫錯誤而於事後發現，其錯誤影響結數者，應如何處理？</p>
+<p class="opt">(A) 另製傳票更正　(B) 劃線註銷更正　(C) 挖補、擦、刮更正　(D) 用藥水塗滅更正</p>
+<p class="src">【109年高考】</p>
+<p class="q">（　　）8. 下列有關會計報告繕寫錯誤之敘述，何者錯誤？</p>
+<p class="opt">(A) 會計報告繕寫錯誤而當時發現者，應由主辦會計人員劃線註銷更正<br>(B) 會計報告繕寫錯誤於事後發現，且其錯誤不影響結數者，應由主辦會計人員劃線註銷更正<br>(C) 會計報告繕寫錯誤於事後發現，且其錯誤影響結數者，應由主辦會計人員另製傳票更正之<br>(D) 會計報告繕寫錯誤而致公庫受損失者，關係會計人員應負連帶損害賠償責任</p>
+<p class="src">【105年地特3等】</p>
+<p class="q">（　　）9. 某機關會計人員登記序時帳簿，因重揭兩頁致有空白，應如何處理？</p>
+<p class="opt">(A) 不須處理　(B) 將空白頁黏貼　(C) 將空白頁劃線註銷　(D) 將空白頁打洞註銷</p>
+<p class="src">【106年初考】</p>
+<p class="q">（　　）10. 有關原始憑證之敍述，何者錯誤？</p>
+<p class="opt">(A) 原始憑證，除依法送審計機關審核者外，應逐一標註傳票編號，附同傳票入帳後，依照類別與日期號數之順序，彙訂成冊<br>(B) 原始憑證不附入傳票保管者，亦應標註傳票編號，依序黏貼整齊，彙訂成冊，由主辦會計人員加蓋騎縫印章<br>(C) 但原始憑證便於分類裝訂成冊者，得免黏貼<br>(D) 各種契約、或應轉送其他機關之文件等原始憑證，仍適用上述(A)至(C)之規定</p>
+<p class="src">【109年地特5等】</p>
+</td></tr></table>
+
+
+<h1>肆、帳簿之使用及保存 <span class="pg">【第72～78條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第七十二條至第七十八條</p>
+<p class="law"><b>第72條</b>　各種帳簿之首頁，應標明機關名稱、帳簿名稱、冊次、頁數、啟用日期，並由機關長官及主辦會計人員簽名或蓋章。</p>
+<p class="law"><b>第73條</b>　各種帳簿之末頁，應列經管人員一覽表，填明主辦會計人員及記帳、覆核等關係人員之姓名、職務與經管日期，並由各本人簽名或蓋章。</p>
+<p class="law"><b>第74條</b>　各種帳簿之帳頁，均應順序編號，不得撕毀。總分類帳簿及明細分類帳簿，並應在帳簿前加一目錄。</p>
+<p class="law"><b>第75條</b>　<span class="no">①</span>活頁帳簿每用一頁，應由主辦會計人員蓋章於該頁之下端；其首頁、末頁適用第七十二條、第七十三條之規定。但免填頁數，另置頁數累計表及臨時目錄於首頁之後，裝訂時應加封面，並為第七十四條之手續，隨將總頁數填入首頁。卡片式之活頁不能裝訂成冊者，應由經管人員裝匣保管。<span class="no">②</span>除總會計外，序時帳簿與分類帳簿不得同時並用活頁。</p>
+<p class="law"><b>第76條</b>　<span class="no">①</span>各種帳簿，除已用盡者外，在決算期前，不得更換新帳簿；其可長期賡續記載者，在決算期後，亦無庸更換。<span class="no">②</span>更換新帳簿時，應於舊帳簿空白頁上，逐頁註明空白作廢字樣。</p>
+<p class="law"><b>第77條</b>　採用機器處理會計資料者，因機器性能限制，得不適用第六十八條、第七十二條至第七十六條之規定。</p>
+<p class="law"><b>第78條</b>　使用完畢之會計報告、簿籍、機器處理會計資料之貯存體及裝訂成冊之會計憑證，均應分年編號收藏，並製目錄備查。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>第72～76條與第78條對帳簿首頁、末頁、帳頁、活頁、更換與保存有詳細規定。但目前各機關多以電腦處理，依普會制度第100點，中央政府普通公務單位會計以使用主計總處開發之<b>共通性會計資訊系統</b>為原則；國家發展委員會另訂有「檔案電子儲存管理實施辦法」。</p>
+
+<p class="cap">▲ 歸納比較 4 · 帳簿各處由誰簽章</p>
+<table class="cmp">
+<tr><th style="width:24%">位置</th><th>應記載</th><th style="width:30%">簽名或蓋章</th></tr>
+<tr><td class="f">首頁（第72條）</td><td>機關名稱、帳簿名稱、冊次、頁數、啟用日期</td><td><b>機關長官及主辦會計人員</b></td></tr>
+<tr><td class="f">末頁（第73條）</td><td>經管人員一覽表：姓名、職務、經管日期</td><td>主辦會計、記帳、覆核等<b>各本人</b></td></tr>
+<tr><td class="f">活頁每一頁（第75條）</td><td>—</td><td><b>主辦會計人員</b>蓋於該頁下端</td></tr>
+<tr><td class="f">空白頁、誤空行列（第68條）</td><td>劃線註銷</td><td><b>登記員及主辦會計人員</b></td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第72～78條</p>
+<p>‧ 首頁要「機關長官<b>及</b>主辦會計」兩人，不是「或」；末頁不需要機關長官。</p>
+<p>‧ 「序時帳簿與分類帳簿不得同時並用活頁」的唯一例外是<b>總會計</b>。</p>
+<p>‧ 決算期前，除已用盡者外不得更換新帳簿；更換時舊帳簿空白頁<b>逐頁註明空白作廢</b>（不是撕下）。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 肆【第72～78條】</p>
+<p class="q">（　　）11. 各種帳簿之末頁應由何人簽名或蓋章？①主辦會計人員②記帳人員③覆核人員④機關長官</p>
+<p class="opt">(A) 僅①　(B) 僅①②　(C) 僅①②③　(D) ①②③④</p>
+<p class="src">【107年鐵特3級】</p>
+<p class="q">（　　）12. 下列有關帳簿之處理的敍述，何者錯誤？</p>
+<p class="opt">(A) 總會計、單位會計、分會計、附屬單位會計、附屬單位會計之分會計的序時帳簿與分類帳簿，得同時並用活頁<br>(B) 活頁帳簿每用1頁，應由主辦會計人員蓋章於該頁之下端<br>(C) 卡片式之活頁不能裝訂成冊者，應由經管人員裝匣保管<br>(D) 各種帳簿除已用盡者外，在決算期前，不得更換新帳簿；其可長期賡續記載者，在決算期後，亦無庸更換</p>
+<p class="src">【106年地特5等】</p>
+<p class="q">（　　）13. 會計法有關帳簿空白頁之規定，下列何者正確？</p>
+<p class="opt">(A) 帳簿空白頁之註銷應由登記員及見證人簽名或蓋章證明<br>(B) 帳簿如因重揭兩頁，致有空白時，應將空白頁以膠水黏住<br>(C) 更換新帳簿時，舊帳簿空白頁須撕下，並在末筆註明<br>(D) 更換新帳簿時，舊帳簿空白頁上，應逐頁註明空白作廢</p>
+<p class="src">【109年經濟部事業機構】</p>
+</td></tr></table>
+
+
+<h1>伍、會計報告之簽章、編號及公告 <span class="pg">【第79～82條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第七十九條至第八十二條</p>
+<p class="law"><b>第79條</b>　<span class="no">①</span>各項會計報告，應由機關長官及主辦會計人員簽名或蓋章；其有關各類主管或主辦人員之事務者，並應由該事務之主管或主辦人員會同簽名或蓋章。但內部使用之會計報告，機關長官免予簽名或蓋章。<span class="no">②</span>前項會計報告經彙訂成冊者，機關長官及主辦會計人員得僅在封面簽名或蓋章。</p>
+<p class="law"><b>第80條</b>　會計報告簿籍及憑證上之簽名或蓋章，不得用別字或別號。</p>
+<p class="law"><b>第81條</b>　第三十二條第一項第一款至第四款之報告，應各編以順序號數，其號數均應每年度重編一次。但在會計年度終了後整理期間內補編之報告，仍續編該終了年度之順序號數。</p>
+<p class="law"><b>第82條</b>　<span class="no">①</span>總會計年度報告之公告，依決算法之規定。<span class="no">②</span>各機關會計月報，應由會計人員按月向該機關公告之。但其中應保守秘密之部分，得不公告。<span class="no">③</span>各該機關人員對上項公告有疑義時，得向會計人員查詢之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、普會制度第19～21點：會計報告應加具目次、裝訂成冊，封面書明機關名稱、報告種類及所屬年度（月報列明月份），由機關長官及主辦會計人員蓋<b>職名章</b>；除涉及機密部分依國家機密保護法處理外，應<b>公告於網站</b>或張貼於機關內適當揭示處；機關人員有疑義時應<b>以書面</b>向會計單位查詢，涉及非會計業務者由業務單位協同辦理。</p>
+<p>二、中央總會計年度報告自49年度起與中央政府總決算合併編製，依<b>決算法</b>公告：中央主計機關於會計年度結束後<b>4個月內</b>提出總決算於監察院（實務上提前至4月底）；審計長於總決算送達後<b>3個月內</b>完成審核，提出審核報告於立法院（實務上7月底前）。</p>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第79～82條</p>
+<p>‧ <b>內部使用</b>之會計報告，機關長官免簽；主辦會計仍要簽。</p>
+<p>‧ 總會計年度報告之公告依「<b>決算法</b>」，不是會計法或審計法。</p>
+<p>‧ 會計月報由<b>會計人員</b>按月向<b>該機關</b>公告；秘密部分得不公告。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 伍【第79～82條】</p>
+<p class="q">（　　）14. 依會計法規定，總會計年度報告之公告，依下列何者之規定？</p>
+<p class="opt">(A) 預算法　(B) 決算法　(C) 會計法　(D) 審計法</p>
+<p class="src">【109年高考】</p>
+</td></tr></table>
+
+
+<h1>陸、會計檔案之保存及銷毀 <span class="pg">【第83～84條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第八十三條</p>
+<p class="law"><span class="no">①</span>各種會計憑證，均應自總決算公布或令行日起，至少保存二年；屆滿二年後，除有關債權、債務者外，經該管上級機關與該管審計機關之同意，得予銷毀。</p>
+<p class="law"><span class="no">②</span>前項保存期限，如有特殊原因，亦得依上述程序延長或縮短之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第八十四條</p>
+<p class="law"><span class="no">①</span>各種會計報告、帳簿及重要備查簿，與機器處理會計資料之貯存體暨處理手冊，自總決算公布或令行日起，在總會計至少保存二十年；在單位會計、附屬單位會計至少保存十年；在分會計、附屬單位會計之分會計至少保存五年。其屆滿各該年限者，在總會計經行政長官及審計機關之同意，得移交文獻機關或其他相當機關保管之；在單位會計、附屬單位會計及分會計應經該管上級機關與該管審計機關之同意，始得銷毀之。但日報、五日報、週報、旬報、月報之保存期限，得縮短為三年。</p>
+<p class="law"><span class="no">②</span>前項保存年限，如有特殊原因，得依前項程序縮短之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>總會計的報告及帳簿記載政府整體財務資訊。依第84條，保存期滿後，經行政長官及審計機關同意，得移交文獻機關或其他相當機關保管。各機關會計檔案在總決算公布或令行日後，依第109條由主辦會計人員移交所在機關的檔案管理人員。適用銷毀規定的檔案，應先取得該管上級機關與審計機關同意，再依《檔案法》第12條擬具銷毀計畫及目錄，送檔案中央主管機關審核。涉及債權、債務的會計憑證，另依第83條辨明其適用限制。</p>
+
+<p class="cap">▲ 歸納比較 5 · 會計檔案保存年限（自總決算公布或令行日起）</p>
+<table class="cmp">
+<tr><th style="width:26%">檔案</th><th style="width:16%">最低年限</th><th>屆滿後</th></tr>
+<tr><td class="f">會計憑證（第83條）</td><td><b>2年</b></td><td>經<b>上級機關＋審計機關</b>同意得銷毀；<b>債權債務者不得銷毀</b></td></tr>
+<tr><td class="f">總會計之報告、帳簿等</td><td><b>20年</b></td><td>經<b>行政長官＋審計機關</b>同意，得<b>移交文獻機關</b>保管</td></tr>
+<tr><td class="f">單位會計、附屬單位會計</td><td><b>10年</b></td><td rowspan="2">經<b>上級機關＋審計機關</b>同意，始得銷毀</td></tr>
+<tr><td class="f">分會計、附屬單位會計之分會計</td><td><b>5年</b></td></tr>
+<tr><td class="f">日報、五日報、週報、旬報、月報</td><td>得縮短為<b>3年</b></td><td>—（不含季報、半年報、年報）</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜先辨認會計組織，再查檔案保存年限</p>
+<p>第84條依會計組織訂定通常最低保存年限。</p>
+<p>‧ 總統府如以中央政府單位會計的身分判斷，其帳簿通常至少保存10年。</p>
+<p>‧ 鄉（鎮、市）政府的總會計帳簿，通常至少保存20年。</p>
+<p>‧ 保存期間自總決算公布或令行之日起算。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 陸【第83～84條】</p>
+<p class="q">（　　）15. 政府有關債權、債務之會計憑證，自總決算公布或令行日起，至少應保存幾年，並經該管上級及審計機關同意後，得予銷毀？</p>
+<p class="opt">(A) 2年　(B) 10年　(C) 20年　(D) 不得銷毀</p>
+<p class="src">【107年地特3等】</p>
+<p class="q">（　　）16. 各種會計報告、帳簿及重要備查簿，自總決算公布或令行日起，在總會計、單位會計、附屬單位會計至少應保存幾年？</p>
+<p class="opt">(A) 20年、10年、10年　(B) 20年、10年、5年　(C) 30年、20年、20年　(D) 30年、20年、10年</p>
+<p class="src">【106年鐵特3級及退除役特考3等】</p>
+<p class="q">（　　）17. 總統府之各種會計報告、帳簿及重要備查簿，與機器處理會計資料之貯存體暨處理手冊，自總決算公布或令行日起，至少要保存幾年？</p>
+<p class="opt">(A) 5年　(B) 10年　(C) 15年　(D) 20年</p>
+<p class="src">【108年薦任升等】</p>
+<p class="q">（　　）18. 依會計法規定，下列有關會計報告、簿籍保存之敍述何者正確？①在附屬單位會計，至多保存10年②有關保存時間之起算日，係指總會計公布或令行之日③在總會計，得在保存屆滿20年後，經行政長官及審計機關同意移交文獻機關保管④所有會計報告均得經行政長官及審計機關同意縮短保存期限為3年</p>
+<p class="opt">(A) ①②③④　(B) ①③　(C) ②④　(D) ③</p>
+<p class="src">【107年地特5等】</p>
+</td></tr></table>
+
+
+<h1>柒、會計報告之分送 <span class="pg">【第85～92條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第八十五條至第八十八條</p>
+<p class="law"><b>第85條</b>　各級分會計機關之會計報告，應由主辦會計人員依照規定之期日、期間及方式編製之，經該機關長官核閱後，呈送該管上級機關。</p>
+<p class="law"><b>第86條</b>　前條報告，經該管上級機關長官核閱後，應交其主辦會計人員查核之；其有統制、綜合之需要者，並應分別為統制之紀錄及綜合之報告。</p>
+<p class="law"><b>第87條</b>　<span class="no">①</span>各級分會計機關之會計報告，依次遞送至單位會計或附屬單位會計機關，單位會計或附屬單位會計機關長官核閱後，應交其主辦會計人員查核之；其有統制、綜合之需要者，並應分別為統制之紀錄或綜合之報告，呈送該管上級機關。<span class="no">②</span>前項單位會計機關，如為第二級機關單位時，應按其需要，分別報告該級政府之主計、公庫、財物經理及審計等機關。</p>
+<p class="law"><b>第88條</b>　各單位會計機關得以其報告逕行分送各該政府之主計、公庫、財物經理及審計等機關。但有必要時，亦得呈由上級單位會計機關分別轉送。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第八十九條至第九十二條</p>
+<p class="law"><b>第89條</b>　各該政府主計機關，接到各單位會計機關、各單位會計基金之各種會計報告後，其有統制、綜合之需要者，應分別為統制之紀錄，以彙編各該政府之會計總報告。</p>
+<p class="law"><b>第90條</b>　各該政府主計機關之會計總報告，與其政府之公庫、財物經理、徵課、公債、特種財物及特種基金等主管機關之報告發生差額時，應由該管審計機關核對，並製表解釋之。</p>
+<p class="law"><b>第91條</b>　各種會計報告，均應由編製機關存留副本備查。</p>
+<p class="law"><b>第92條</b>　採用機器集中處理會計資料者，其產生之會計報告或資料，由集中處理機關分送各有關機構。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、單位預算的分預算編入單位預算。附屬單位預算的分預算中，營業基金以合併報表併入原投資事業，非營業特種基金則由所隸屬基金綜計。兩類分會計的報告，應分別送所屬的單位會計或附屬單位會計機關查核及彙編。</p>
+<p>二、依審計法第36條，各機關應依會計法及會計制度編製會計報告連同相關資訊檔案，依限送審計機關審核。普會制度第17點：會計月報於<b>次月15日前</b>、年度會計報告比照總決算編製要點，分送<b>上級主管機關、審計機關、財政部及中央主計機關</b>。</p>
+<p>三、中央總會計中特種公務會計之彙入方式：賦稅徵課收支<b>先記入</b>普通公務單位會計再彙入；國庫出納之現金及應付保管款<b>直接彙入</b>平衡表，各機關繳庫及領款應與國庫出納會計核計相符；國有財產之撥交地方政府財產、非公用財產及公共債務之長短期債務<b>直接彙入</b>。總決算另編收入實現數與繳付公庫數分析表等3表，表達兩者差異之原因。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜第90條的報告差額核對程序</p>
+<p>差額是主計機關的總報告和財政部（公庫、國產、徵課、公債）的報告對不上。兩邊都是「當事人」，讓任一方自己解釋都不夠中立。審計機關屬監察院，獨立於行政院之外，由它核對並<b>製表解釋</b>最客觀。</p>
+<p>地方政府一樣：臺北市總會計報告與市庫報告不符 → 由<b>審計部臺北市審計處</b>核對。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 柒【第85～92條】</p>
+<p class="q">（　　）19. 依會計法規定，臺北市政府總會計報告與其公庫出納終結報告發生差額時，應由下列何者負責核對並製表解釋之？</p>
+<p class="opt">(A) 臺北市政府秘書處　(B) 臺北市政府主計處　(C) 審計部臺北市審計處　(D) 臺北市政府財政局</p>
+<p class="src">【104年鐵特3級及退除役特考3等】</p>
+<p class="q">（　　）20. 下列有關會計報告的敍述，何者正確？</p>
+<p class="opt">(A) 分會計之會計報告，其保存期限與單位會計、附屬單位會計相同<br>(B) 主計機關之會計總報告，與其政府之公庫、財物經理、徵課、公債、特種財物等報告發生差額時，應由該主計機關核對並製表解釋<br>(C) 採用機器集中處理會計資料者，其產生之會計報告，由集中處理機關分送各有關機構<br>(D) 各單位會計機關不得以其報告逕行分送各該政府主計、公庫、財物經理及審計等機關，必須呈由上級單位會計機關分別轉送</p>
+<p class="src">【106年地特5等】</p>
+</td></tr></table>
+
+
+<h1>捌、會計事務處理之職責 <span class="pg">【第93～94條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十三條、第九十四條</p>
+<p class="law"><b>第93條</b>　<span class="no">①</span>各公務機關掌理一種以上之特種公務者，應辦理一種以上之特種公務之會計事務；其兼辦公營事業者，並應辦理公營事業之會計事務。<span class="no">②</span>非政府所屬機關代理政府事務者，對於所代理之事務，應依本法之規定，辦理會計事務。</p>
+<p class="law"><b>第94條</b>　各機關會計事務與非會計事務之劃分，應由主計機關會同關係機關核定。但法律另有規定者，依其規定。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、普會制度第101、102點列舉之<b>會計業務</b>：預（概）算、分配預算及決（結）算書表之編製；會計報告之編造、分析及解釋；預算執行控制之審核、簽證及會辦；經費流用、動支預備金、準備金及保留案件之核辦；收支憑證審核、傳票編製、簿籍登記；<b>工程、財物及勞務採購案件之監辦</b>；內部審核之執行；審計機關審核通知之彙辦；會計憑證之整理；會計制度之訂定（修正）等。以外者均為<b>非會計業務</b>。</p>
+<p>二、<b>政府採購法第13條</b>：公告金額以上採購之開標、比價、議價、決標及驗收，除特殊情形外，應由<b>主（會）計及有關單位</b>會同監辦。「機關主會計及有關單位會同監辦採購辦法」重點：</p>
+<table class="cmp">
+<tr><th style="width:12%">條文</th><th>重點</th></tr>
+<tr><td class="f">第3條</td><td>「有關單位」由機關首長或其授權人員就<b>政風、監查（察）、督察、檢核或稽核</b>單位擇一指定。</td></tr>
+<tr><td class="f">第4條</td><td>監辦方式為<b>實地監視</b>或<b>書面審核</b>（書面審核須經機關首長或授權人員核准）；不包括廠商資格、規格、商業條款、底價、決標條件及驗收方法等<b>實質或技術事項</b>，但發現違法仍得提出意見。</td></tr>
+<tr><td class="f">第5條</td><td>13種特殊情形經核准得不派員監辦，如<b>未設主（會）計單位及有關單位</b>、地區偏遠、重複性採購同年度已有監辦前例、無廠商投標而流標等。</td></tr>
+<tr><td class="f">第6條</td><td>廠商提出異議或申訴、申請調解仲裁訴訟、採購稽核小組認定重大異常而尚未解決者，<b>不得</b>核准免監辦。</td></tr>
+<tr><td class="f">第7條</td><td>監辦人員完成後於紀錄簽名；主持人不接受監辦意見者應納入紀錄報機關首長決定；書面審核監辦之紀錄應<b>先由各相關人員均簽名</b>後再送監辦人員，並載明「書面審核監辦」。</td></tr>
+<tr><td class="f">第8條</td><td>採購案之<b>承辦人員不得為該案之監辦人員</b>。</td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第93、94條與監辦</p>
+<p>‧ 會計與非會計事務之劃分：<b>主計機關會同關係機關</b>核定（法律另有規定者從之）。</p>
+<p>‧ 監辦單位不只主（會）計，還有「<b>有關單位</b>」。</p>
+<p>‧ 第5條第1款的特殊情形是「未設主（會）計單位<b>及</b>有關單位」，兩者都沒有才算，且仍需經機關首長或其授權人員核准。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 捌【第93～94條】</p>
+<p class="q">（　　）21. 依會計法規定，各機關會計事務與非會計事務之劃分，除法律另有規定者外，應由下列何者核定？</p>
+<p class="opt">(A) 中央主計機關會同審計機關　(B) 各主計機關會同關係機關　(C) 各主計機關會同審計機關　(D) 中央主計機關會同關係機關</p>
+<p class="src">【107年初考】</p>
+<p class="q">（　　）22. 有關會計人員會同監辦採購，下列敍述何者正確？</p>
+<p class="opt">(A) 採購監辦單位僅指主（會）計單位<br>(B) 未設主（會）計單位，係機關首長得不派員監辦之特殊情形<br>(C) 採書面審核監辦時，紀錄應先由各相關人員均簽名後，再併同有關文件送監辦人員<br>(D) 監辦人員所提意見，採購主持人得不接受並逕行決定，但應納入紀錄</p>
+<p class="src">【108年高考】</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄 1　本章重點一頁整理</h1>
+<table class="cmp">
+<tr><th style="width:14%">條文</th><th>一句話重點</th></tr>
+<tr><td class="f">第58、59條</td><td>無合法原始憑證不造記帳憑證（整理結算除外）；零星消費品、材料品得每月彙總。</td></tr>
+<tr><td class="f">第60、61條</td><td>公營事業折舊與盤存消耗以<b>成本</b>為標準；成本要素詳備紀錄、分析增減。</td></tr>
+<tr><td class="f">第62條</td><td>特種序時帳簿結數經轉帳傳票記入普通序時帳簿再過帳；只有現金出納一種者得直接過帳。</td></tr>
+<tr><td class="f">第63、64條</td><td>結總：月終、交代、結帳；結帳：年度終了、定期結算、非常事件終了、機關裁撤或基金結束。</td></tr>
+<tr><td class="f">第65、66條</td><td>結帳前整理預收、預付、到期未收未付；公務收支結入預算帳目，公營事業損益結入總損益。</td></tr>
+<tr><td class="f">第67、68條</td><td>當時發現：原登記員劃線更正；事後不影響結數：主辦會計更正；影響結數：另製傳票。</td></tr>
+<tr><td class="f">第72～76條</td><td>首頁長官＋主辦會計簽章；末頁經管人員一覽表；除總會計外序時與分類帳簿不得同時用活頁。</td></tr>
+<tr><td class="f">第79～82條</td><td>內部報告長官免簽；總會計年報依<b>決算法</b>公告；月報由會計人員按月公告。</td></tr>
+<tr><td class="f">第83、84條</td><td>憑證2年（債權債務不得銷毀）；總會計20年、單位10年、分會計5年；日至月報得縮為3年。</td></tr>
+<tr><td class="f">第90條</td><td>總報告與公庫等主管機關報告差額 → <b>該管審計機關</b>核對並製表解釋。</td></tr>
+<tr><td class="f">第94條</td><td>會計與非會計事務之劃分由<b>主計機關會同關係機關</b>核定。</td></tr>
+</table>
+
+
+<h1 class="pb">附錄 2　練習選擇題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>A</b></td><td>第60條：以成本為標準。題目「公有營業」為舊用語，現行法為「公營事業」。</td></tr>
+<tr><td>2</td><td><b>C</b></td><td>第62條第2項但書。(A) 第58條有但書；(B) 零星消費品得每月彙總；(D) 唯一例外為總會計。</td></tr>
+<tr><td>3</td><td><b>B</b></td><td>第59條：零星消費品、材料品之付出，得每月分類彙總造具記帳憑證。</td></tr>
+<tr><td>4</td><td><b>A</b></td><td>得每月、每週、每5日或每日結總者為<b>特種</b>序時帳簿（第63條第1項第1款）。</td></tr>
+<tr><td>5</td><td><b>C</b></td><td>第64條4款情形不含機關首長異動。</td></tr>
+<tr><td>6</td><td><b>D</b></td><td>第65條第3項但書：得先行整理結帳，加註說明，俟報告到達後補作紀錄。</td></tr>
+<tr><td>7</td><td><b>A</b></td><td>第67條第2項：錯誤影響結數者，另製傳票更正之。</td></tr>
+<tr><td>8</td><td><b>A</b></td><td>當時發現者由<b>原登記員</b>劃線註銷更正。</td></tr>
+<tr><td>9</td><td><b>C</b></td><td>第68條：將空白頁劃線註銷，由登記員及主辦會計人員簽章。</td></tr>
+<tr><td>10</td><td><b>D</b></td><td>第71條：各種契約、應轉送其他機關之文件等不適用第70條，但應於冊內註明保管處所及檔案編號。</td></tr>
+<tr><td>11</td><td><b>C</b></td><td>第73條：主辦會計人員及記帳、覆核等關係人員各本人簽章，不含機關長官。</td></tr>
+<tr><td>12</td><td><b>A</b></td><td>第75條第2項：除總會計外，序時帳簿與分類帳簿不得同時並用活頁。</td></tr>
+<tr><td>13</td><td><b>D</b></td><td>第76條第2項：舊帳簿空白頁上逐頁註明空白作廢字樣。</td></tr>
+<tr><td>14</td><td><b>B</b></td><td>第82條第1項：總會計年度報告之公告，依決算法之規定。</td></tr>
+<tr><td>15</td><td><b>D</b></td><td>第83條：屆滿2年後「除有關債權、債務者外」始得銷毀，故債權債務憑證不得銷毀。</td></tr>
+<tr><td>16</td><td><b>A</b></td><td>第84條：總會計20年，單位會計、附屬單位會計均為10年。</td></tr>
+<tr><td>17</td><td><b>B</b></td><td>總統府為單位預算機關，屬單位會計，至少保存10年。</td></tr>
+<tr><td>18</td><td><b>D</b></td><td>①為「至少」10年；②起算日為「總決算」公布或令行日；④得縮短為3年者限日報至月報，且程序為上級機關及審計機關同意。僅③正確。</td></tr>
+<tr><td>19</td><td><b>C</b></td><td>第90條：由該管審計機關（審計部臺北市審計處）核對並製表解釋。</td></tr>
+<tr><td>20</td><td><b>C</b></td><td>第92條。(A) 分會計5年；(B) 由審計機關核對；(D) 第88條得逕行分送。</td></tr>
+<tr><td>21</td><td><b>B</b></td><td>第94條：主計機關會同關係機關核定。</td></tr>
+<tr><td>22</td><td><b>C</b></td><td>監辦採購辦法第7條第3項。(A) 尚有有關單位；(B) 第5條第1款須「未設主（會）計單位<b>及</b>有關單位」；(D) 應報機關首長或其授權人員決定。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#ch2">← 第二章 會計制度</a><a href="#ch4">第四章 內部審核 →</a></div>
+    </section>
+
+    <section id="view-ch4" data-view="ch4" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　第四章　內部審核</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（四）：執行人員與種類 · 審核範圍 · 會計人員職權 · 國務機要計畫費用與特別費</p>
+
+<h2>本章學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:24%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>第95～97條</td><td>內部審核由誰執行？分哪兩種、哪三個範圍？用什麼方式實施？</td></tr>
+<tr><td class="f">貳</td><td>第98～103條</td><td>會計人員可以查閱、封鎖什麼？遇到違法會計文書要怎麼一步步處理？哪些原始憑證應拒絕簽署？</td></tr>
+<tr><td class="f">參</td><td>第99條之1</td><td>哪些費用的財務責任視為解除？111年修正增列了什麼？</td></tr>
+</table>
+
+
+<h1>壹、內部審核之執行人員、種類、範圍及實施方式 <span class="pg">【第95～97條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十五條</p>
+<p class="law"><span class="no">①</span>各機關實施內部審核，應由會計人員執行之。但涉及非會計專業規定、實質或技術性事項，應由業務主辦單位負責辦理。</p>
+<p class="law"><span class="no">②</span>內部審核分下列二種：</p>
+<p class="law i1">一、事前審核：謂事項入帳前之審核，著重收支之控制。</p>
+<p class="law i1">二、事後複核：謂事項入帳後之審核，著重憑證、帳表之複核與工作績效之查核。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十六條、第九十七條</p>
+<p class="law"><b>第96條</b>　內部審核之範圍如左：一、財務審核：謂計畫、預算之執行與控制之審核。二、財物審核：謂現金及其他財物之處理程序之審核。三、工作審核：謂計算工作負荷或工作成果每單位所費成本之審核。</p>
+<p class="law"><b>第97條</b>　內部審核之實施，兼採書面審核與實地抽查方式，並應規定分層負責，劃分辦理之範圍。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<h3>一、內部審核處理準則（主計總處訂定）</h3>
+<p>（一）<b>意義</b>（第2條）：經由<b>收支之控制、現金及其他財物處理程序之審核、會計事務之處理及工作成果之查核</b>，以協助各機關發揮<b>內部控制</b>之功能。</p>
+<p>（二）實施方式（第4條）。內部審核兼採書面審核與定期或不定期的實地抽查，並得以電腦輔助。主（會）計單位指定人員審核會計報表、憑證及簿籍，也負責查核所轄分支機關經管的現金與財物。主管機關應監督所屬機關的執行情形，必要時得派員抽查。</p>
+
+<p class="cap">▲ 歸納比較 1 · 內部審核的三個範圍與細項（第96條、準則第3條）</p>
+<table class="cmp">
+<tr><th style="width:16%">範圍</th><th style="width:28%">會計法定義</th><th style="width:16%">準則細項</th><th>細項定義</th></tr>
+<tr><td class="f" rowspan="3">財務審核</td><td rowspan="3">計畫、預算之<b>執行與控制</b>之審核</td><td>預算審核</td><td>各項計畫與預算之執行及控制之審核</td></tr>
+<tr><td>收支審核</td><td>各項業務收支處理作業之查核</td></tr>
+<tr><td>會計審核</td><td>會計憑證、報表、簿籍及有關會計事務處理程序之審核</td></tr>
+<tr><td class="f" rowspan="2">財物審核</td><td rowspan="2"><b>現金及其他財物</b>之處理程序之審核</td><td>現金審核</td><td>現金、票據、證券等出納事務處理及保管情形之查核</td></tr>
+<tr><td>採購及財物審核</td><td>工程定作、財物買受定製承租、勞務委任僱傭等採購及財物處理程序之審核</td></tr>
+<tr><td class="f">工作審核</td><td>計算工作負荷或工作成果<b>每單位所費成本</b>之審核</td><td colspan="2">—</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜財務審核與財物審核的判斷依據</p>
+<p>‧ 財務審核著重計畫及預算的執行與控制，涵蓋預算、收支及會計審核。</p>
+<p>‧ 財物審核著重現金及其他財物的處理程序，涵蓋現金審核及採購與財物審核。</p>
+<p>題目若提到現金的保管或處理程序，可先對照財物審核。</p>
+</td></tr></table>
+
+<h3>二、內部控制的主管機關變動</h3>
+<p>行政院於<b>100年2月1日</b>訂定「健全內部控制實施方案」，以合理確保達成<b>提升施政效能、遵循法令規定、保障資產安全、提供可靠資訊</b>4項目標。其後修正為「強化內部控制實施方案」，於<b>104年7月7日</b>停止適用；各機關內部控制改由<b>國家發展委員會</b>主管並與風險管理整合，主計總處則負責<b>內部稽核</b>事項。</p>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第95～97條</p>
+<p>‧ 執行人員是<b>會計人員</b>（不是審計、政風、稽核人員）；非會計專業、實質或技術性事項由<b>業務主辦單位</b>負責（108年增訂）。</p>
+<p>‧ 只有<b>事前審核、事後複核</b>兩種，沒有「事中審核」。</p>
+<p>‧ 事前：著重<b>收支之控制</b>；事後：著重<b>憑證帳表之複核與工作績效之查核</b>。</p>
+<p>‧ 範圍只有<b>財務、財物、工作</b>三種；「預算審核」是財務審核的細項，「遵行審核」「績效審核」不存在。</p>
+<p>‧ 方式是「<b>兼採</b>」書面審核與實地抽查，不是擇一，也不是實地全查。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 壹【第95～97條】</p>
+<p class="q">（　　）1. 各機關實施內部審核，涉及實質或技術性事項，應由何人執行之？</p>
+<p class="opt">(A) 會計人員　(B) 審計人員　(C) 業務主辦單位　(D) 主管上級機關</p>
+<p class="src">【109年鐵特3級】</p>
+<p class="q">（　　）2. 下列有關內部審核之敍述，何者正確？</p>
+<p class="opt">(A) 事前審核謂事項入帳前之審核，著重收支之控制，以及憑證、帳表之複核<br>(B) 財務審核謂計畫、預算之執行與控制之審核，以及現金及其他財物之處理程序之審核<br>(C) 內部審核之實施，得就書面審核與實地抽查方式中，選擇其中較優者之一辦理<br>(D) 內部審核應由會計人員執行之，但涉及非會計專業規定、實質或技術性事項，應由業務主辦單位負責辦理</p>
+<p class="src">【109年地特3等】</p>
+<p class="q">（　　）3. 下列何者非屬會計法第96條所列內部審核範圍之項目？</p>
+<p class="opt">(A) 財物審核　(B) 工作審核　(C) 遵行審核　(D) 財務審核</p>
+<p class="src">【106年地特3等】</p>
+<p class="q">（　　）4. 依內部審核處理準則之規定，下列何者不屬於財務審核之範圍？</p>
+<p class="opt">(A) 預算審核　(B) 現金審核　(C) 會計審核　(D) 收支審核</p>
+<p class="src">【105年經濟部事業機構】</p>
+<p class="q">（　　）5. 內部審核人員審核資本支出計畫之執行，針對「採購款項之支付是否與採購契約所訂相符」之查核注意事項，係屬內部審核處理準則規範之何種內部審核範圍？</p>
+<p class="opt">(A) 預算審核　(B) 收支審核　(C) 會計審核　(D) 採購及財物審核</p>
+<p class="src">【108年高考】</p>
+</td></tr></table>
+
+
+<h1>貳、會計人員執行內部審核之職權 <span class="pg">【第98～103條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十八條</p>
+<p class="law"><span class="no">①</span>會計人員為行使內部審核職權，向各單位查閱簿籍、憑證暨其他文件，或檢查現金、財物時，各該負責人不得隱匿或拒絕。遇有疑問，並應為詳細之答復。</p>
+<p class="law"><span class="no">②</span>會計人員行使前項職權，遇必要時，得報經該機關長官之核准，封鎖各項有關簿籍、憑證或其他文件，並得提取其一部或全部。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十九條</p>
+<p class="law"><span class="no">①</span>各機關主辦會計人員，對於不合法之會計程序或會計文書，應使之更正；不更正者，應拒絕之，並報告該機關主管長官。</p>
+<p class="law"><span class="no">②</span>前項不合法之行為，由於該機關主管長官之命令者，應以書面聲明異議；如不接受時，應報告該機關之主管上級機關長官與其主辦會計人員或主計機關。</p>
+<p class="law"><span class="no">③</span>不為前二項之異議及報告時，關於不合法行為之責任，主辦會計人員應連帶負之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百條、第一百零一條</p>
+<p class="law"><b>第100條</b>　各機關會計人員對於財物之訂購或款項之預付，經查核與預算所定用途及計畫進度相合者，應為預算之保留。關係經費負擔或收入一切契約，及大宗動產、不動產之買賣契約，非經會計人員事前審核簽名或蓋章，不生效力。</p>
+<p class="law"><b>第101條</b>　<span class="no">①</span>會計憑證關係現金、票據、證券之出納者，非經主辦會計人員或其授權人之簽名或蓋章，不得為出納之執行。<span class="no">②</span>對外之收款收據，非經主辦會計人員或其授權人之簽名或蓋章者，不生效力。但有特殊情形者，得報經該管主計機關核准，另定處理辦法。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百零二條</p>
+<p class="law"><span class="no">①</span>各機關會計人員審核原始憑證，發現有左列情形之一者，應拒絕簽署：</p>
+<p class="law i1">一、未註明用途或案據者。</p>
+<p class="law i1">二、依照法律或習慣應有之主要書據缺少或形式不具備者。</p>
+<p class="law i1">三、應經招標、比價或議價程序始得舉辦之事項，而未經執行內部審核人員簽名或蓋章者。</p>
+<p class="law i1">四、應經機關長官或事項之主管或主辦人員之簽名或蓋章，而未經其簽名或蓋章者。</p>
+<p class="law i1">五、應經經手人、品質驗收人、數量驗收人及保管人簽名或蓋章而未經其簽名或蓋章者；或應附送品質或數量驗收之證明文件而未附送者。</p>
+<p class="law i1">六、關係財物增減、保管、移轉之事項時，應經主辦經理事務人員簽名或蓋章，而未經其簽名或蓋章者。</p>
+<p class="law i1">七、書據之數字或文字有塗改痕跡，而塗改處未經負責人員簽名或蓋章證明者。</p>
+<p class="law i1">八、書據上表示金額或數量之文字、號碼不符者。</p>
+<p class="law i1">九、第三款及第五款所舉辦之事項，其金額已達稽察限額之案件，未經依照法定稽察程序辦理者。</p>
+<p class="law i1">十、其他與法令不符者。</p>
+<p class="law"><span class="no">②</span>前項第四款規定之人員，得由各機關依其業務規模，按金額訂定分層負責辦法辦理之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百零三條</p>
+<p class="law">會計人員執行內部審核事項，應依照有關法令辦理；非因違法失職或重大過失，不負損害賠償責任。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、內部審核屬<b>行政監督</b>範疇，會計人員依法執行應受法律保障，故第103條規定非因違法失職或重大過失，不負損害賠償責任。內部審核處理準則另補充：執行人員應事先研閱有關法令、規章；得擬訂<b>內部審核計畫</b>報機關長官核定；完成審核之帳表憑證應<b>載明日期並簽章</b>；發現特殊情況或重要改進建議應<b>以書面報告</b>，經主辦會計人員報請機關長官核定；資料應建檔留備上級機關或審計機關查核。</p>
+<p>二、準則第16條：審核原始憑證發現第102條情形者，應「<b>使之更正或拒絕簽署</b>」（會計法僅規定拒絕簽署）。第102條第1項第9款之「<b>稽察限額</b>」，源自已於<b>88年6月2日廢止</b>之「機關營繕工程及購置定製變賣財物稽察條例」；配合政府採購法施行，準則已刪除該款，但會計法條文仍保留。</p>
+<p>三、依準則第24條，審核採購時，應確認有無預算及是否符合預算用途。投標須知與契約草案涉及財務收支的內容，應確認是否於招標前送主（會）計單位審核。財物每年至少盤點一次。已屆使用年限但仍具使用價值的財物，應設帳管制。經辦處分財物的人員不得主持驗交。</p>
+
+<p class="cap">▲ 歸納比較 2 · 第99條：遇到不合法會計程序或文書的處理步驟</p>
+<table class="cmp">
+<tr><th style="width:24%">情形</th><th>第一步</th><th>第二步</th><th style="width:24%">不作為的後果</th></tr>
+<tr><td class="f">一般人員之不合法行為（第1項）</td><td><b>使之更正</b></td><td>不更正 → <b>拒絕之</b>，並報告<b>該機關主管長官</b></td><td rowspan="2">主辦會計人員對不合法行為之責任<b>連帶負之</b></td></tr>
+<tr><td class="f">由主管長官命令所致（第2項）</td><td>以<b>書面聲明異議</b></td><td>不接受 → 報告<b>主管上級機關長官與其主辦會計人員或主計機關</b></td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜第99條第2項的實務難點（109年高考申論）</p>
+<p>依主計機構人員設置管理條例第29條，主辦會計人員對上級主辦人員負責，同時<b>依法受所在機關長官之指揮</b>；第105條又規定其一般費用列在所在機關預算；公務員服務法第2條規定屬官對長官命令有服從義務。</p>
+<p>書面異議後如仍堅持，很容易與首長衝突，影響公務倫理、考績（上級主辦會計會參考機關長官的考核結果核定）與日後業務推動。所以實務上多半只循主計一條鞭<b>向上級主辦會計人員報告</b>尋求協助，很少同時向上級機關<b>長官</b>報告。第1項的書面處理則普遍做得到。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第98～103條</p>
+<p>‧ 封鎖、提取簿籍憑證：須報經「<b>該機關長官</b>」核准，不是上級主管機關長官。</p>
+<p>‧ 長官命令所致：第一步是「<b>書面</b>聲明異議」，不能口頭，也不是直接報告上級。</p>
+<p>‧ 契約與大宗動產不動產買賣契約：非經<b>會計人員</b>事前審核簽章不生效力；出納執行與對外收據：須<b>主辦會計人員或其授權人</b>簽章。</p>
+<p>‧ 對外收款收據有例外：特殊情形報經<b>該管主計機關</b>核准另定辦法。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 貳【第98～103條】</p>
+<p class="q">（　　）6. 下列有關內部審核規定的敘述，何者錯誤？</p>
+<p class="opt">(A) 會計人員為行使內部審核職權，向各單位查閱簿籍、憑證暨其他文件，或檢查現金、財物時，各該負責人不得隱匿或拒絕<br>(B) 會計人員行使前項職權，遇必要時，得報經該主管機關之長官核准，封鎖各項有關簿籍、憑證或其他文件，並得提取其一部或全部<br>(C) 內部審核之實施，兼採書面審核與實地抽查方式，並應規定分層負責，劃分辦理之範圍<br>(D) 各機關實施內部審核，應由會計人員執行之</p>
+<p class="src">【107年鐵特3級】</p>
+<p class="q">（　　）7. 各機關主辦會計人員，對於不合法之會計程序或會計文書，應使之更正；不更正者，應如何處理？</p>
+<p class="opt">(A) 應拒絕之，並做成備忘紀錄　(B) 應拒絕之，並報告該機關主管長官　(C) 應拒絕之，並報告主計機關　(D) 應拒絕之，並報告該管審計機關</p>
+<p class="src">【106年初考】</p>
+<p class="q">（　　）8. 不合法之會計文書，係由於該機關主管長官之命令者，各機關主辦會計人員，首先應如何處理？</p>
+<p class="opt">(A) 應使之更正　(B) 應報告上級機關長官　(C) 應以書面聲明異議　(D) 應報告上級主計機關</p>
+<p class="src">【106年薦任升等】</p>
+<p class="q">（　　）9. 各機關大宗動產、不動產之買賣契約，非經下列何者事前審核簽名或蓋章，不生效力？</p>
+<p class="opt">(A) 主計單位　(B) 主辦會計　(C) 會計人員　(D) 主辦出納</p>
+<p class="src">【108年地特5等】</p>
+<p class="q">（　　）10. 會計憑證關係現金、票據、證券之出納者，非經何者簽名或蓋章，不得為出納之執行？</p>
+<p class="opt">(A) 審計人員或其授權人員　(B) 機關長官或其授權人　(C) 出納人員或其授權人　(D) 主辦會計人員或其授權人</p>
+<p class="src">【109年高考】</p>
+<p class="q">（　　）11. 下列有關內部審核之敍述，何者正確？</p>
+<p class="opt">(A) 事前審核應由會計人員執行之；事後複核應由審計人員執行之<br>(B) 內部審核之範圍包括財務審核、財物審核、工作審核及績效審核<br>(C) 內部審核之實施應採實地抽查方式，不得採書面審核方式<br>(D) 會計人員執行內部審核事項，非因違法失職或重大過失，不負損害賠償責任</p>
+<p class="src">【105年鐵特3級】</p>
+</td></tr></table>
+
+
+<h1>參、95年12月31日以前支用之國務機要計畫費用、特別費不追究責任 <span class="pg">【第99條之1】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第九十九條之一（111年6月15日修正公布）</p>
+<p class="law">中華民國九十五年十二月三十一日以前各機關支用之國務機要計畫費用、特別費，其報支、經辦、核銷、支用及其他相關人員之財務責任均視為解除，不追究其行政及民事責任；如涉刑事責任者，不罰。</p>
+</td></tr></table>
+
+<p class="cap">▲ 歸納比較 3 · 第99條之1 修正前後對照</p>
+<table class="cmp">
+<tr><th style="width:18%">比較面向</th><th>100年5月18日增訂</th><th>111年6月15日修正（現行）</th></tr>
+<tr><td class="f">適用費用</td><td><b>特別費</b></td><td><b>國務機要計畫費用</b>、<b>特別費</b></td></tr>
+<tr><td class="f">時間範圍</td><td colspan="2">中華民國<b>95年12月31日以前</b>各機關支用者（未修正）</td></tr>
+<tr><td class="f">效果</td><td colspan="2">報支、經辦、核銷、支用及其他相關人員之財務責任<b>視為解除</b>；不追究<b>行政及民事</b>責任；涉刑事責任者<b>不罰</b>（未修正）</td></tr>
+</table>
+
+<h2>乙、解析重點</h2>
+<p>一、<b>特別費</b>係為因應機關、學校首長、副首長等人員公務所需，由行政院核定每月可支給數額。行政院於<b>95年12月29日</b>訂定「各級政府機關特別費支用規定」，使用範圍包括：(1) 婚喪喜慶之禮金、奠儀、禮品、花籃等；(2) 對本機關及所屬人員之獎（犒）賞、慰勞及餐敘；(3) 對外部機關、民間團體與有關人士之招待、餽（捐）贈及慰問。支用應依政府支出憑證處理要點取得收據或發票，不能取得者由經手人開具<b>支出證明單</b>，經支用人核章後請款。</p>
+<p>二、立法理由。自民國90年起，機關首長特別費的報支及核銷陸續引發爭議。提案理由指出，相關作業歷經多年已形成行政慣例，應保護依慣例辦理人員的善意信賴。本條由立法委員提案，於民國100年5月18日公布。</p>
+<p>三、民國111年6月15日修正。第99條之1在「特別費」前增列「國務機要計畫費用」，使民國95年12月31日以前支用的該項費用也適用本條。修正維持原有日期界線與法律效果，包括財務責任視為解除、不追究行政及民事責任，以及涉及刑事責任者不罰。</p>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜國務機要計畫費用與特別費的用途</p>
+<p>‧ <b>特別費</b>：各機關、學校首長、副首長因公務所需，由行政院核定每月可支給數額，用於婚喪喜慶、獎賞慰勞、對外招待餽贈等。</p>
+<p>‧ <b>國務機要計畫費用</b>：編列於<b>總統府</b>預算，供總統推動國務機要計畫之用的經費。</p>
+<p>兩者性質都屬首長因公務所需、長期依行政慣例報支核銷的經費，111年修正就是把同一套「信賴保護、解除責任」的處理，延伸到95年底以前的國務機要計畫費用。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第99條之1</p>
+<p>‧ 現行條文適用<b>兩種</b>費用：<b>國務機要計畫費用</b>、<b>特別費</b>（111年修正前只有特別費；舊考題選項只寫特別費者，依當時法律仍屬正確）。</p>
+<p>‧ 日期是<b>95年12月31日以前</b>（與特別費支用規定95年12月29日訂定相銜接），111年修正<b>沒有</b>改變這個日期。</p>
+<p>‧ 效果：財務責任<b>視為解除</b>，不追究<b>行政及民事</b>責任；涉刑事責任者<b>不罰</b>。</p>
+<p>‧ 增訂：100年5月18日；修正：<b>111年6月15日</b>。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 參【第99條之1】</p>
+<p class="q">（　　）12. 依會計法規定，下列那一日期以前，有關特別費支用之相關人員財務責任均由法律予以明文解除？</p>
+<p class="opt">(A) 93年12月31日　(B) 94年12月31日　(C) 95年12月31日　(D) 96年12月31日</p>
+<p class="src">【107年初考】</p>
+<p class="q">（　　）13. 依現行會計法第99條之1規定，95年12月31日以前各機關支用之下列何種費用，其相關人員之財務責任均視為解除？①特別費②國務機要計畫費用③機密費④首長交通費</p>
+<p class="opt">(A) 僅①　(B) 僅①②　(C) 僅①③　(D) ①②③④</p>
+<p class="src">【自編題，依111年6月15日修正條文】</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄 1　本章重點一頁整理</h1>
+<table class="cmp">
+<tr><th style="width:14%">條文</th><th>一句話重點</th></tr>
+<tr><td class="f">第95條</td><td>會計人員執行；非會計專業、實質或技術性事項由業務主辦單位；事前審核（收支控制）、事後複核（憑證帳表、工作績效）。</td></tr>
+<tr><td class="f">第96條</td><td>財務（預算、收支、會計）、財物（現金、採購及財物）、工作（每單位成本）。</td></tr>
+<tr><td class="f">第97條</td><td><b>兼採</b>書面審核與實地抽查；分層負責。</td></tr>
+<tr><td class="f">第98條</td><td>查閱、檢查不得隱匿拒絕；必要時報經<b>該機關長官</b>核准封鎖、提取。</td></tr>
+<tr><td class="f">第99條</td><td>更正 → 拒絕並報告長官；長官命令所致 → <b>書面異議</b> → 報告上級長官與其主辦會計或主計機關；未為者連帶負責。</td></tr>
+<tr><td class="f">第99條之1</td><td>95年12月31日以前之<b>國務機要計畫費用、特別費</b>：財務責任解除，不追究行政民事，刑事不罰（111年6月15日修正增列國務機要計畫費用）。</td></tr>
+<tr><td class="f">第100、101條</td><td>契約、大宗動產不動產買賣契約須<b>會計人員</b>事前審核簽章；出納執行及對外收據須<b>主辦會計或其授權人</b>簽章。</td></tr>
+<tr><td class="f">第102條</td><td>原始憑證10款應拒絕簽署之情形。</td></tr>
+<tr><td class="f">第103條</td><td>非因違法失職或重大過失，不負損害賠償責任。</td></tr>
+</table>
+
+
+<h1 class="pb">附錄 2　練習選擇題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>C</b></td><td>第95條第1項但書：涉及非會計專業規定、實質或技術性事項，由業務主辦單位負責辦理。</td></tr>
+<tr><td>2</td><td><b>D</b></td><td>(A) 憑證帳表複核屬事後複核；(B) 現金財物處理屬財物審核；(C) 應兼採兩種方式。</td></tr>
+<tr><td>3</td><td><b>C</b></td><td>第96條範圍為財務、財物、工作審核，無遵行審核。</td></tr>
+<tr><td>4</td><td><b>B</b></td><td>現金審核屬財物審核；預算、會計、收支審核屬財務審核。</td></tr>
+<tr><td>5</td><td><b>A</b></td><td>準則第12條將資本支出進度與預算比較（含採購款項支付是否與契約相符）列為計畫與預算執行控制之審核，屬預算審核。</td></tr>
+<tr><td>6</td><td><b>B</b></td><td>第98條第2項：報經「該機關長官」核准，不是主管機關之長官。</td></tr>
+<tr><td>7</td><td><b>B</b></td><td>第99條第1項：不更正者，應拒絕之，並報告該機關主管長官。</td></tr>
+<tr><td>8</td><td><b>C</b></td><td>第99條第2項：由主管長官命令所致者，應以書面聲明異議。</td></tr>
+<tr><td>9</td><td><b>C</b></td><td>第100條：非經會計人員事前審核簽名或蓋章，不生效力。</td></tr>
+<tr><td>10</td><td><b>D</b></td><td>第101條第1項：非經主辦會計人員或其授權人之簽名或蓋章，不得為出納之執行。</td></tr>
+<tr><td>11</td><td><b>D</b></td><td>第103條。(A) 均由會計人員執行；(B) 無績效審核；(C) 兼採書面審核與實地抽查。</td></tr>
+<tr><td>12</td><td><b>C</b></td><td>第99條之1：95年12月31日以前支用之特別費（111年修正後另含國務機要計畫費用）。</td></tr>
+<tr><td>13</td><td><b>B</b></td><td>現行第99條之1僅列國務機要計畫費用、特別費兩種；機密費、首長交通費不在條文內。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#ch3">← 第三章 會計事務程序</a><a href="#ch5">第五章 會計人員 →</a></div>
+    </section>
+
+    <section id="view-ch5" data-view="ch5" hidden>
+      <div class="doc">
+
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:22pt;font-weight:bold;color:#1F3864;margin:0">會計法　第五章　會計人員</p>
+<p style="text-align:center;font-family:'微軟正黑體',sans-serif;font-size:13pt;color:#404040;margin:2pt 0 10pt 0">教學講義（五）：超然主計 · 會計檔案責任 · 兼職限制 · 請假與交代</p>
+
+<h2>本章學習地圖</h2>
+<table class="cmp">
+<tr><th style="width:10%">主題</th><th style="width:24%">相關條文</th><th>要能回答的問題</th></tr>
+<tr><td class="f">壹</td><td>第2、104～108、110條</td><td>主計機構、人事、職務如何超然？會計人員費用列在哪裡？與首長爭執誰處理？</td></tr>
+<tr><td class="f">貳</td><td>第109條</td><td>會計檔案移交給誰？遺失損毀要報告給誰？匿不呈報的後果？</td></tr>
+<tr><td class="f">參</td><td>第112條</td><td>會計人員不得兼營什麼？哪些職務可依法兼任？</td></tr>
+<tr><td class="f">肆</td><td>第111、113～120條</td><td>請假誰代理？交代由誰監交、幾日內完成？交代不清負什麼責任？</td></tr>
+</table>
+
+
+<h1>壹、超然主計制度之規定 <span class="pg">【第2、104～108、110條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 主計機構超然：第二條、第一百零五條</p>
+<p class="law"><b>第2條</b>　各下級政府主計機關（無主計機關者，其最高主計人員），關於會計事務，應受該管上級政府主計機關之監督與指導。</p>
+<p class="law"><b>第105條</b>　主計機關派駐各機關之辦理會計人員所需一般費用，應列入所在機關之經費預算；其屬專案業務費，得列入該管主計機關之預算。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 主計人員超然：第一百零四條</p>
+<p class="law">各該政府所屬各機關主辦會計人員及其佐理人員之任免、遷調、訓練及考績，由各該政府之主計機關依法為之。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 主計職務超然：第一百零六條至第一百零八條、第一百十條</p>
+<p class="law"><b>第106條</b>　各該政府所屬各機關之會計事務，由各該管主計機關派駐之主辦會計人員綜理、監督、指揮之；主計機關得隨時派員赴各機關視察會計制度之實施狀況，與會計人員之辦理情形。</p>
+<p class="law"><b>第107條</b>　各機關辦理第五條至第七條所列各種會計事務之佐理人員，均應由主計機關派充，除直接對於前條主辦會計人員負責外，並依其性質，分別對於各類事務之主管或主辦人員負責，而受其指揮。</p>
+<p class="law"><b>第108條</b>　第五條至第七條所列各種會計事務，在事務簡單之機關得合併或委託辦理。但會計事務設有專員辦理者，不得兼辦出納或經理財物之事務。</p>
+<p class="law"><b>第110條</b>　主辦會計人員與所在機關長官因會計事務發生爭執時，由該管上級機關之主管長官及其主辦會計人員處理之。會計人員有違法或失職情事時，經所在機關長官函達主計機關長官，應即依法處理之。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、<b>主計機構超然</b>：主計機構人員設置管理條例第5條，設置及員額編制標準由中央主計機關定之（主計總處訂有「主計機構設置及員額編制標準」）。除主計總處及部分直轄市主計處（如臺北市、新北市）屬機關形態、以單位預算編列外，其餘主計人員人事費及業務費依第105條<b>列入所在機關預算</b>。</p>
+<p>二、主計人員超然。任免、遷調、考核、獎懲及訓練進修，由各該政府主計機關依《主計機構人員設置管理條例》辦理。依《行政院主計總處組織法》第7條，主計長得依法調用各機關的歲計、會計及統計人員。</p>
+<p>三、<b>主計職務超然</b>：除會計法第99、106～108、110條外，統計法第21、22條、主計總處組織法第6條、主計機構人員設置管理條例第29條均有類似規定。</p>
+<p>四、會計人員依《政府採購法》第13條與監辦辦法辦理採購監辦，並依《會計法》第95條及《內部審核處理準則》第21條執行相關內部審核與現金審核。採購經辦與監辦應依相關規定分工。《會計法》第108條另規定，設有會計專員辦理會計事務者，該專員不得兼辦出納或經理財物。</p>
+
+<p class="cap">▲ 歸納比較 1 · 主計超然的三個面向</p>
+<table class="cmp">
+<tr><th style="width:18%">面向</th><th style="width:20%">會計法條文</th><th>規定重點</th></tr>
+<tr><td class="f" rowspan="2">主計機構超然</td><td>第2條</td><td>下級政府主計機關受<b>上級政府主計機關</b>監督與指導</td></tr>
+<tr><td>第105條</td><td>一般費用列<b>所在機關</b>預算；專案業務費<b>得</b>列<b>該管主計機關</b>預算</td></tr>
+<tr><td class="f">主計人事超然</td><td>第104條</td><td>主辦會計及佐理人員之任免、遷調、訓練、考績由<b>各該政府主計機關</b>為之</td></tr>
+<tr><td class="f" rowspan="4">主計職務超然</td><td>第106條</td><td>主辦會計人員綜理、監督、指揮會計事務；主計機關得<b>隨時</b>派員視察制度實施與<b>會計人員</b>辦理情形</td></tr>
+<tr><td>第107條</td><td>佐理人員由主計機關派充，對主辦會計負責，並依性質對各類事務主管負責</td></tr>
+<tr><td>第108條</td><td>事務簡單得合併或委託辦理；設有<b>專員</b>辦理者不得兼辦出納或經理財物</td></tr>
+<tr><td>第110條</td><td>與機關長官爭執：<b>上級機關之主管長官及其主辦會計人員</b>處理；違法失職：機關長官函達<b>主計機關長官</b>處理</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜主計人事權與費用預算的分工</p>
+<p>人事管理依主計體系的權責辦理。依第105條，派駐人員所需的一般費用列入所在機關預算，專案業務費則得列入該管主計機關預算。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 超然主計</p>
+<p>‧ 第104條是「各該政府之<b>主計機關</b>」，不是人事機關或機關首長；財政部主辦會計的人事由<b>主計總處</b>辦理，臺北市各機關由<b>臺北市政府主計處</b>辦理。</p>
+<p>‧ 第110條爭執處理是「上級機關之主管長官<b>及</b>其主辦會計人員」兩者共同，不是擇一。</p>
+<p>‧ 第108條的限制條件是「設有<b>專員</b>辦理者」，不是「在任何情況下」都不得兼辦。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 壹【第104～108、110條】</p>
+<p class="q">（　　）1. 財政部主辦會計人員之任免、遷調、訓練及考績，由何機關依法為之？財政部之辦理會計人員所需一般費用，應列入何機關之經費預算？</p>
+<p class="opt">(A) 財政部；財政部　(B) 財政部；行政院主計總處　(C) 行政院主計總處；財政部　(D) 行政院主計總處；行政院主計總處</p>
+<p class="src">【107年地特3等】</p>
+<p class="q">（　　）2. 主計機關派駐各機關之辦理會計人員所需費用，應如何編列？</p>
+<p class="opt">(A) 一般費用列入所在機關之經費預算；其屬專案業務費，得列入上級機關之預算<br>(B) 一般費用與專案業務費，均得列入所在機關之經費預算<br>(C) 一般費用列入所在機關之經費預算；其屬專案業務費，得列入該管主計機關之預算<br>(D) 一般費用列入該管主計機關之預算；其屬專案業務費，得列入所在機關之經費預算</p>
+<p class="src">【106年薦任升等】</p>
+<p class="q">（　　）3. 主辦會計人員與所在機關長官因會計事務發生爭執時該如何處理？</p>
+<p class="opt">(A) 由該管上級機關之主管長官處理之<br>(B) 由該管上級機關之主辦會計人員處理之<br>(C) 由該管上級機關之主管長官及其主辦會計人員處理之<br>(D) 由中央政府之主計機關依法辦理之</p>
+<p class="src">【106年地特3等】</p>
+<p class="q">（　　）4. 會計人員有違法或失職情事時，所在機關長官應如何處理？</p>
+<p class="opt">(A) 函達上級機關長官依法處理之　(B) 函達審計機關長官依法處理之　(C) 函達司法機關長官依法處理之　(D) 函達主計機關長官依法處理之</p>
+<p class="src">【107年經濟部事業機構】</p>
+<p class="q">（　　）5. 有關會計人員之規定，下列何者有誤？</p>
+<p class="opt">(A) 主計機關派駐各機關之辦理會計人員所需一般費用，應列入所在機關之經費預算<br>(B) 為強化內部控制功能，辦理會計事務者，在任何情況下均不得兼辦出納或經理財物之事務<br>(C) 主辦會計人員與所在機關長官因會計事務發生爭執時，由該管上級機關之主管長官及其主辦會計人員處理之<br>(D) 會計人員不得兼營會計師、律師業務</p>
+<p class="src">【105年經濟部事業機構】</p>
+</td></tr></table>
+
+
+<h1>貳、會計檔案之保管及有遺失、損毀時之處理 <span class="pg">【第109條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百零九條</p>
+<p class="law"><span class="no">①</span>各機關之會計憑證、會計報告及記載完畢之會計簿籍等檔案，於總決算公布或令行日後，應由主辦會計人員移交所在機關管理檔案人員保管之。但使用機器處理會計資料所用之儲存體，得另行處理之。</p>
+<p class="law"><span class="no">②</span>會計檔案遇有遺失、損毀等情事時，應即呈報該管上級主辦會計人員或主計機關及所在機關長官與該管審計機關，分別轉呈各該管最上級機關，非經審計機關認為其對於良善管理人應有之注意並無怠忽，且予解除責任者，應付懲戒。</p>
+<p class="law"><span class="no">③</span>遇有前項情事，匿不呈報者，從重懲戒。</p>
+<p class="law"><span class="no">④</span>因第二項或第三項情事，致公庫受損害者，負賠償責任。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>一、依《政府會計憑證保管調案及銷毀應行注意事項》第2點，移交前由主辦會計人員指派專人處理憑證。移交後，由檔案管理人員依《檔案法》管理，並與主（會）計單位依權責分工。電子化支出憑證依《政府支出會計憑證電子化處理要點》辦理。</p>
+<p>二、遺失損毀時，保管人員應儘速通報主辦會計人員，由其依第2項程序呈報。依公務員懲戒法第9條，懲戒處分有免除職務、撤職、罰款、記過、申誡等9種；會計法第109條之懲戒，指行政處分之<b>申誡及記過</b>。主計人員獎懲辦法第8條：未盡善良管理之責致檔案遺失或損毀，視情節<b>申誡1次或2次</b>。</p>
+
+<p class="cap">▲ 歸納比較 2 · 會計檔案遺失、損毀的責任</p>
+<table class="cmp">
+<tr><th style="width:26%">情形</th><th>後果</th></tr>
+<tr><td class="f">已呈報，經審計機關認定已盡<b>善良管理人</b>注意並解除責任</td><td>免責</td></tr>
+<tr><td class="f">已呈報，但未經審計機關解除責任</td><td><b>應付懲戒</b></td></tr>
+<tr><td class="f">匿不呈報</td><td><b>從重懲戒</b></td></tr>
+<tr><td class="f">上述情形致公庫受損害</td><td>另負<b>賠償責任</b></td></tr>
+</table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第109條</p>
+<p>‧ 移交方向：<b>主辦會計人員 → 所在機關管理檔案人員</b>，不是移交審計機關。</p>
+<p>‧ 呈報對象有四方：上級主辦會計人員或主計機關、<b>所在機關長官</b>、<b>該管審計機關</b>，再分別轉呈最上級機關。</p>
+<p>‧ 是否解除責任，由<b>審計機關</b>認定。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 貳【第109條】</p>
+<p class="q">（　　）6. 依現行會計法之規定，各機關之會計憑證、會計報告及記載完畢之會計簿籍等檔案，於總決算公布或令行日後，應如何保管之？</p>
+<p class="opt">(A) 由機關主辦會計人員移交該管審計機關<br>(B) 由所在機關管理檔案人員移交該管審計機關<br>(C) 由所在機關管理檔案人員移交主辦會計人員<br>(D) 由主辦會計人員移交所在機關管理檔案人員</p>
+<p class="src">【108年地特3等】</p>
+<p class="q">（　　）7. 依會計法第109條，某機關會計人員所保管之會計檔案遺失，惟匿不呈報，該會計人員將面臨何種處罰？</p>
+<p class="opt">(A) 解除職務　(B) 記過　(C) 從重懲戒　(D) 公告姓名</p>
+<p class="src">【109年經濟部事業機構】</p>
+</td></tr></table>
+
+
+<h1>參、會計人員兼職及兼任職務之限制 <span class="pg">【第112條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百十二條</p>
+<p class="law">會計人員不得兼營會計師、律師業務，除法律另有規定外，不得兼任公務機關、公私營業機構之職務。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>會計人員屬公務員，除第112條外，並適用<b>公務員服務法</b>：第13條不得經營商業或投機事業；第14條除法令所規定外不得兼任他項公職或業務，依法兼職者不得兼薪及兼領公費；第14條之2兼任非營利事業或團體職務受有報酬者，應經服務機關許可（考試院訂有許可辦法）。實務上，會計人員經服務機關許可，得兼任會計員、社團法人或財團法人或行政法人之董事或監察人、公民營公司官股代表董監事、學校財團法人之公益監察人等，並依「軍公教人員兼職費支給表」領取兼職費。</p>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 第112條</p>
+<p>‧ 會計師、律師業務：<b>絕對</b>不得兼營。</p>
+<p>‧ 公務機關、公私營業機構職務：「除法律另有規定外」不得兼任，所以依法兼任官股董監事是可以的。考題說「亦不得兼任某公營機構之董監事」是錯的。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 參【第112條】</p>
+<p class="q">（　　）8. 下列有關會計人員之敘述，何者錯誤？</p>
+<p class="opt">(A) 會計人員不得兼營會計師、律師業務，亦不得兼任某公營機構之董監事<br>(B) 會計人員變更其職務者，應辦交代<br>(C) 會計佐理人員辦理交代，應由主辦會計人員監交<br>(D) 會計檔案遇有遺失，應即呈報該管上級主辦會計人員或主計機關及所在機關長官與該管審計機關，分別轉呈各該管最上級機關</p>
+<p class="src">【107年高考】</p>
+</td></tr></table>
+
+
+<h1>肆、會計人員請假及交代 <span class="pg">【第111、113～120條】</span></h1>
+
+<h2>甲、會計法相關條文</h2>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百十一條、第一百十三條</p>
+<p class="law"><b>第111條</b>　主辦會計人員之請假或出差，應呈請該管上級機關之主辦會計人員或主計機關指派人員代理；其期間不逾一個月者，得自行委託人員代理。但仍應先期呈報，並連帶負責。</p>
+<p class="law"><b>第113條</b>　會計人員經解除或變更其職務者，應辦交代。但短期給假或因公出差者，不在此限。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百十四條至第一百十六條</p>
+<p class="law"><b>第114條</b>　<span class="no">①</span>主辦會計人員辦理交代，應由所在機關長官或其代表及上級機關主辦會計人員或其代表監交。<span class="no">②</span>前項人員交代時，應將印信、文件及其他公有物與其經管之會計憑證、會計簿籍、會計報告、機器處理會計資料之貯存體、機器處理會計手冊，造表悉數交付後任，其已編有目錄者，依目錄移交，得不另行造表。</p>
+<p class="law"><b>第115條</b>　會計佐理人員辦理交代，應由主辦會計人員或其代表監交；交代時，應將業務上所用之章戳、文件、簿籍及其他公有物並經辦未了事件，造表悉數交付後任。</p>
+<p class="law"><b>第116條</b>　交代人員應將經管帳簿及重要備查簿，由前任人員蓋章於其經管最末一筆帳項之後；新任蓋章於其最初一筆帳項之前。均註明年、月、日，證明責任之終始。</p>
+</td></tr></table>
+<table class="box law-b"><tr><td>
+<p class="bt">法條原文 · 會計法第一百十七條至第一百二十條</p>
+<p class="law"><b>第117條</b>　<span class="no">①</span>主辦會計人員，應自後任接替之日起五日內交代清楚，非取得交代證明書後，不得擅離任所。但前任因病卸職或在任病故時，得由其最高級佐理人員代辦交代，均仍由該前任負責。<span class="no">②</span>後任接受移交時，應即會同監交人員，於二日內依據移交表或目錄，逐項點收清楚，出具交代證明書，交前任收執，並會同前任呈報所在機關長官及各該管上級機關。但移交簿籍之內容，仍由前任負責。</p>
+<p class="law"><b>第118條</b>　會計佐理人員，自後任接替之日起二日內交代清楚，除因病卸任者，得委託代辦交代外，其在任病故者之交代，應由其該管上級人員為之。</p>
+<p class="law"><b>第119條</b>　會計人員交代不清者，應依法懲處；因而致公庫損失者，並負賠償責任；與交代不清有關係之人員，應連帶負責。</p>
+<p class="law"><b>第120條</b>　因機關被裁或基金結束而交代時，交代人員視為前任，接受人員視為後任；其交代適用本章之規定。</p>
+</td></tr></table>
+
+<h2>乙、解析重點</h2>
+<p>依超然主計制度，主辦會計人員除對上級主辦會計人員負責外，並依法受所在機關長官之指揮，故請假或出差應報經<b>所在機關長官</b>核准，並呈請上級指派人員代理；期間不逾1個月者，實務上多依第111條後段自行覓人代理。交代則已形成固定作業模式：由所在機關長官及上級主辦會計人員（或其代表）監交，交接印信並編造移交清冊，避免延宕或交代不清。</p>
+
+<p class="cap">▲ 歸納比較 3 · 主辦會計人員 vs. 會計佐理人員的交代</p>
+<table class="cmp">
+<tr><th style="width:22%">比較面向</th><th>主辦會計人員</th><th>會計佐理人員</th></tr>
+<tr><td class="f">監交人</td><td><b>所在機關長官</b>或其代表<b>及上級機關主辦會計人員</b>或其代表</td><td><b>主辦會計人員</b>或其代表</td></tr>
+<tr><td class="f">移交內容</td><td>印信、文件、公有物、會計憑證、簿籍、報告、機器貯存體及手冊（已有目錄者依目錄）</td><td>章戳、文件、簿籍、公有物及<b>經辦未了事件</b></td></tr>
+<tr><td class="f">前任交代期限</td><td>後任接替之日起<b>5日內</b>；未取得交代證明書不得擅離任所</td><td>後任接替之日起<b>2日內</b></td></tr>
+<tr><td class="f">後任點收期限</td><td>會同監交人員<b>2日內</b>逐項點收、出具交代證明書</td><td>—</td></tr>
+<tr><td class="f">因病卸職</td><td>得由其<b>最高級佐理人員</b>代辦，仍由前任負責</td><td>得委託代辦</td></tr>
+<tr><td class="f">在任病故</td><td>得由其<b>最高級佐理人員</b>代辦，仍由前任負責</td><td>由其<b>該管上級人員</b>為之</td></tr>
+</table>
+
+<table class="box hint"><tr><td>
+<p class="bt">HINT｜前任交代與後任點收期限</p>
+<p>‧ 主辦會計人員應自後任接替日起5日內交代清楚。</p>
+<p>‧ 後任接受移交時，應會同監交人員於2日內依表或目錄逐項點收。</p>
+<p>‧ 會計佐理人員應自後任接替日起2日內交代清楚。</p>
+<p>點收完成後，移交簿籍的內容仍由前任負責。依第116條，前任在最後一筆之後蓋章，新任在最初一筆之前蓋章，並記明日期。</p>
+</td></tr></table>
+
+<table class="box note"><tr><td>
+<p class="bt">易錯點 · 請假與交代</p>
+<p>‧ 請假或出差不逾<b>1個月</b>得自行委託代理，但仍應<b>先期呈報</b>並<b>連帶負責</b>；逾1個月則應呈請上級指派。</p>
+<p>‧ <b>短期給假、因公出差</b>不必辦交代。</p>
+<p>‧ 交代不清：依法懲處；致公庫損失負賠償責任；有關係之人員<b>應</b>連帶負責（不是「得」）。</p>
+</td></tr></table>
+
+<h2>丙、練習選擇題</h2>
+<table class="box prac"><tr><td>
+<p class="bt">課堂練習 · 肆【第111、113～120條】</p>
+<p class="q">（　　）9. 政府所屬各機關之會計事務由主辦會計人員綜理、監督及指揮，其有關主辦會計人員交代事項，下列敘述何者有誤？</p>
+<p class="opt">(A) 主辦會計人員辦理交代，應由所在機關長官或其代表及上級機關主辦會計人員或其代表監交<br>(B) 主辦會計人員，應自後任接替之日起5日內交代清楚<br>(C) 後任主辦會計人員接受移交時，應於5日內依據移交表或目錄，逐項點收清楚，出具交代證明書，交前任收執<br>(D) 前任主辦會計人員因病卸職或在任病故時，得由其最高級佐理人員代辦交代，均仍由該前任負責</p>
+<p class="src">【105年高考】</p>
+<p class="q">（　　）10. 依會計法規定，會計人員辦理交代之敍述何者正確？</p>
+<p class="opt">(A) 會計佐理人員，自後任接替之日起3日內交代清楚<br>(B) 會計佐理人員因病卸任者，得委託代辦交代<br>(C) 主辦會計人員，應自後任接替之日起7日內交代清楚<br>(D) 主辦會計請假不逾1個月者，應自行委託人員代理</p>
+<p class="src">【108年鐵特3級及退除役特考3等】</p>
+<p class="q">（　　）11. 主辦會計人員、會計佐理人員自後任接替之日起需分別於多少日內交代清楚？</p>
+<p class="opt">(A) 10日；5日　(B) 5日；2日　(C) 10日；10日　(D) 5日；5日</p>
+<p class="src">【108年地特5等】</p>
+<p class="q">（　　）12. 依會計法規定，某機關主辦會計在任病故，得由下列何者辦理交代？</p>
+<p class="opt">(A) 該機關新任主辦會計人員　(B) 該機關最高級會計佐理人員　(C) 該主辦會計人員之上級長官　(D) 該上級長官指派之會計佐理人員</p>
+<p class="src">【107年地特5等】</p>
+</td></tr></table>
+
+
+<h1 class="pb">附錄 1　本章重點一頁整理</h1>
+<table class="cmp">
+<tr><th style="width:14%">條文</th><th>一句話重點</th></tr>
+<tr><td class="f">第104條</td><td>主辦會計及佐理人員之任免、遷調、訓練、考績由<b>各該政府主計機關</b>為之。</td></tr>
+<tr><td class="f">第105條</td><td>一般費用列<b>所在機關</b>預算；專案業務費得列<b>該管主計機關</b>預算。</td></tr>
+<tr><td class="f">第106～108條</td><td>主辦會計綜理會計事務；主計機關得隨時視察；佐理人員由主計機關派充；設有專員者不得兼辦出納或經理財物。</td></tr>
+<tr><td class="f">第109條</td><td>總決算公布後檔案移交<b>管理檔案人員</b>；遺失損毀未經審計機關解除責任應付懲戒，匿不呈報從重懲戒。</td></tr>
+<tr><td class="f">第110條</td><td>與首長爭執：上級機關主管長官<b>及</b>其主辦會計人員處理；違法失職：函達主計機關長官。</td></tr>
+<tr><td class="f">第111條</td><td>請假出差由上級指派代理；不逾<b>1個月</b>得自行委託，但應先期呈報並連帶負責。</td></tr>
+<tr><td class="f">第112條</td><td>不得兼營會計師、律師業務；除法律另有規定外不得兼任公務機關、公私營業機構職務。</td></tr>
+<tr><td class="f">第113～118條</td><td>解除或變更職務應交代；主辦會計5日交代、後任2日點收；佐理人員2日交代。</td></tr>
+<tr><td class="f">第119、120條</td><td>交代不清：懲處、賠償、有關人員連帶負責；機關被裁或基金結束時亦適用。</td></tr>
+</table>
+
+
+<h1 class="pb">附錄 2　練習選擇題解答</h1>
+<table class="cmp">
+<tr><th style="width:5%">#</th><th style="width:8%">答案</th><th>解析</th></tr>
+<tr><td>1</td><td><b>C</b></td><td>第104條：由各該政府之主計機關（主計總處）；第105條：一般費用列所在機關（財政部）預算。</td></tr>
+<tr><td>2</td><td><b>C</b></td><td>第105條：一般費用列所在機關預算；專案業務費得列入該管主計機關之預算。</td></tr>
+<tr><td>3</td><td><b>C</b></td><td>第110條：由該管上級機關之主管長官及其主辦會計人員處理之。</td></tr>
+<tr><td>4</td><td><b>D</b></td><td>第110條後段：經所在機關長官函達主計機關長官，應即依法處理之。</td></tr>
+<tr><td>5</td><td><b>B</b></td><td>第108條：限於「會計事務設有專員辦理者」不得兼辦，事務簡單者得合併或委託辦理。</td></tr>
+<tr><td>6</td><td><b>D</b></td><td>第109條第1項：由主辦會計人員移交所在機關管理檔案人員保管。</td></tr>
+<tr><td>7</td><td><b>C</b></td><td>第109條第3項：匿不呈報者，從重懲戒。</td></tr>
+<tr><td>8</td><td><b>A</b></td><td>第112條：除法律另有規定外，不得兼任；依法得兼任公營機構官股董監事。</td></tr>
+<tr><td>9</td><td><b>C</b></td><td>第117條第2項：後任應於<b>2日內</b>點收清楚。</td></tr>
+<tr><td>10</td><td><b>B</b></td><td>第118條。(A) 為2日；(C) 為5日；(D) 為「得」自行委託。</td></tr>
+<tr><td>11</td><td><b>B</b></td><td>第117條5日；第118條2日。</td></tr>
+<tr><td>12</td><td><b>B</b></td><td>第117條第1項但書：得由其最高級佐理人員代辦交代。</td></tr>
+</table>
+
+</div>
+      <div class="chapter-bar"><a href="#ch4">← 第四章 內部審核</a><a href="#">回首頁 →</a></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  var order = ['home', 'ch0', 'ch1', 'ch2', 'ch3', 'ch4', 'ch5'];
+  function show() {
+    var id = (location.hash || '').replace('#', '');
+    if (order.indexOf(id) < 1) id = 'home';
+    document.querySelectorAll('main > section').forEach(function (s) { s.hidden = s.getAttribute('data-view') !== id; });
+    document.querySelectorAll('.toc a').forEach(function (a) {
+      if (a.getAttribute('data-view') === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+</script>
